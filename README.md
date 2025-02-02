@@ -1,4 +1,9 @@
-# SAE-402
+# SAE-402 CANNIER GILIAN, LOUIS POTEVIN, PAIN VIVIEN
+
+The game: \
+In this game, the player has to move around a city in England, such as London or Liverpool. This will allow him to interact and communicate with NPC. Interactions can take different forms: \
+    • Have the choice between 2 questions and must choose the right one, if we give the wrong one the character will answer the wrong one and this can give bad reactions \
+    • Have to find the right translation, if we give the wrong one the character will respond to the wrong and it can give bad reactions
 
 
 Model considered and we will take over
