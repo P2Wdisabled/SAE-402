@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>Ville Anglaise en A-Frame (.glb)</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <style>
+      body { margin: 0; }
+    </style>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <a-asset-item id="building1" src="./models/City/Large Building.glb"></a-asset-item>
+        <a-asset-item id="building2" src="./models/City/Skyscraper.glb"></a-asset-item>
+        <a-asset-item id="building3" src="./models/City/Large Building-h7Jaq7bqMq.glb"></a-asset-item>
+        <a-asset-item id="building4" src="./models/City/Low Wide-DKgknsHjmr.glb"></a-asset-item>
+        <a-asset-item id="building6" src="./models/City/Small Building.glb"></a-asset-item>
+      </a-assets>
+
+      <a-plane position="0 0 0" rotation="-90 0 0" width="300" height="300" color="#777"></a-plane>
+
+      <!-- Rangée 1 -->
+      <a-entity gltf-model="#building1" position="6 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building1" position="1 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building1" position="-4 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building1" position="-9 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building1" position="-14 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building1" position="-19 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building1" position="11 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building1" position="-24 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building6" position="6 0 5" scale="5 5 5"></a-entity>
+      <a-entity gltf-model="#building6" position="2 0 5" scale="5 5 5"></a-entity>
+      <a-entity gltf-model="#building6" position="-2 0 5" scale="5 5 5"></a-entity>
+      <a-entity gltf-model="#building6" position="-6 0 5" scale="5 5 5"></a-entity>
+      <a-entity gltf-model="#building6" position="-10 0 5" scale="5 5 5"></a-entity>
+      <a-entity gltf-model="#building6" position="-14 0 5" scale="5 5 5"></a-entity>
+      <a-entity gltf-model="#building6" position="-22 0 5" scale="5 5 5"></a-entity>
+      <a-entity gltf-model="#building6" position="-18 0 5" scale="5 5 5"></a-entity>
+      <a-entity gltf-model="#building6" position="10 0 5" scale="5 5 5"></a-entity>
+      <a-entity gltf-model="#building2" position="16 0 -0.5" scale="6 6 6" rotation="0 -90 0"></a-entity>
+      <a-entity gltf-model="#building3" position="-28 0 10.9" scale="5 5 5"></a-entity>
+      <a-entity gltf-model="#building4" position="-30 -0.8 -6" scale="8 8 8"></a-entity>
+      <a-entity gltf-model="#building4" position="-32 -0.8 -8" scale="8 8 8" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#building4" position="-32 -0.8 -15.5" scale="8 8 8" rotation="0 90 0"></a-entity>
+
+      
+      <a-entity gltf-model="#building6" position="6 0 5" scale="5 5 5"></a-entity>
+      <a-entity gltf-model="#building6" position="2 0 5" scale="5 5 5"></a-entity>
+      <a-entity gltf-model="#building6" position="-2 0 5" scale="5 5 5"></a-entity>
+      <a-entity gltf-model="#building6" position="-6 0 5" scale="5 5 5"></a-entity>
+      <a-entity gltf-model="#building6" position="-10 0 5" scale="5 5 5"></a-entity>
+      <a-entity gltf-model="#building6" position="-14 0 5" scale="5 5 5"></a-entity>
+      <a-entity gltf-model="#building6" position="-22 0 5" scale="5 5 5"></a-entity>
+      <a-entity gltf-model="#building6" position="-18 0 5" scale="5 5 5"></a-entity>
+      <a-entity gltf-model="#building6" position="10 0 5" scale="5 5 5"></a-entity>
+
+      <a-entity id="cameraRig" position="-40 2 -40" custom-controls>
+        <a-entity camera look-controls wasd-controls="enabled: false"></a-entity>
+      </a-entity>
+
+      <script>
+        AFRAME.registerComponent('custom-controls', {
+          schema: { speed: { type: 'number', default: 20 } },
+          init: function () {
+            this.keys = {};
+            this.onKeyDown = this.onKeyDown.bind(this);
+            this.onKeyUp = this.onKeyUp.bind(this);
+            window.addEventListener('keydown', this.onKeyDown);
+            window.addEventListener('keyup', this.onKeyUp);
+          },
+          remove: function () {
+            window.removeEventListener('keydown', this.onKeyDown);
+            window.removeEventListener('keyup', this.onKeyUp);
+          },
+          onKeyDown: function (e) {
+            this.keys[e.key.toLowerCase()] = true;
+          },
+          onKeyUp: function (e) {
+            this.keys[e.key.toLowerCase()] = false;
+          },
+          tick: function (time, deltaTime) {
+            var delta = deltaTime / 1000;
+            var distance = this.data.speed * delta;
+            var rig = this.el.object3D;
+            var cameraEl = this.el.querySelector('[camera]');
+            var cameraObj = cameraEl.object3D;
+            var moveDir = new THREE.Vector3();
+            var forward = new THREE.Vector3(0, 0, -1);
+            forward.applyQuaternion(cameraObj.quaternion).normalize();
+            var up = new THREE.Vector3(0, 1, 0);
+            var right = new THREE.Vector3().crossVectors(forward, up).normalize();
+
+            if (this.keys['z']) { moveDir.add(forward); }
+            if (this.keys['s']) { moveDir.add(forward.clone().negate()); }
+            if (this.keys['d']) { moveDir.add(right); }
+            if (this.keys['q']) { moveDir.add(right.clone().negate()); }
+            if (this.keys[' ']) { moveDir.add(up); }
+            if (this.keys['control']) { moveDir.add(up.clone().negate()); }
+
+            if (moveDir.length() > 0) {
+              moveDir.normalize();
+              rig.position.add(moveDir.multiplyScalar(distance));
+            }
+          }
+        });
+      </script>
+    </a-scene>
+  </body>
+</html>
