@@ -47,6 +47,7 @@
     </a-scene>
 
     <script>
+        
         // Fonction d'easing pour un mouvement plus fluide
         function easeInOutQuad(t) {
             return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
@@ -69,7 +70,7 @@
             const dx = targetX - currentX;
             const dz = targetZ - currentZ;
             const targetAngle = Math.atan2(dz, dx) * (180 / Math.PI); // Convertir l'angle en degrés
-
+            console.log(targetAngle);
             // Durée du mouvement en millisecondes
             const duration = 3000; // 3 secondes
 
@@ -96,7 +97,6 @@
 
                 // Interpolation de la rotation pour une transition fluide
                 const newRotationY = currentAngle + (targetAngle - currentAngle) * easedProgress;
-
                 pnj.setAttribute('rotation', { x: 0, y: newRotationY, z: 0 });
 
                 // Continuer l'animation tant que le mouvement n'est pas terminé
@@ -114,7 +114,7 @@
             movePNJRandomly('pnj1-entity', -10, 10);
             movePNJRandomly('pnj2-entity', -10, 10);
             movePNJRandomly('pnj3-entity', -10, 10);
-        }, 10000);
+        }, 1000);
     </script>
 </body>
 </html>
