@@ -4,117 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PNJ avec A-Frame et Three.js</title>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.aframe.io/releases/1.2.0/aframe-extras.min.js"></script>
-    <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.3.0/dist/aframe-physics-system.min.js"></script>
-    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-physics-system@5.0.0/dist/aframe-physics-system.min.js"></script>
+    <script src="https://unpkg.com/super-hands@2.0.2/dist/super-hands.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.154.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.154.0/examples/jsm/"
+        }
+    }
+    </script>
 </head>
 <body>
-    <a-scene physics="debug: true">
-        <a-assets>
-             <!-- Charger le modèle du premier PNJ -->
-            <a-asset-item id="pnj1" src="./NPC/Man.glb"></a-asset-item>
-             <!-- Charger le modèle du deuxième PNJ -->
-            <a-asset-item id="pnj2" src="./NPC/Business Man.glb"></a-asset-item>
-            <!-- Charger le modèle du troisième PNJ -->
-            <a-asset-item id="pnj3" src="./NPC/Hoodie Character.glb"></a-asset-item>
-        </a-assets>
+<a-scene physics="debug: true; gravity: -9.8">
+    <a-assets>
+        <a-asset-item id="pnj1" src="./NPC/Man.glb"></a-asset-item>
+        <a-asset-item id="pnj2" src="./NPC/Business Man.glb"></a-asset-item>
+        <a-asset-item id="pnj3" src="./NPC/Hoodie Character.glb"></a-asset-item>
+        <a-mixin id="controller"
+                         physics-collider
+                         static-body="shape: sphere; sphereRadius: 0.02"
+                         super-hands="colliderEvent: collisions;
+                                                    colliderEventProperty: els;
+                                                    colliderEndEvent: collisions;
+                                                    colliderEndEventProperty: clearedEls"
+                         collision-filter="group: hands; collidesWith: red, blue; collisionForces: false">
+        </a-mixin>
+        <a-mixin id="cube" dynamic-body grabbable
+                         geometry="primitive: box; width: 0.5; height: 0.5; depth: 0.5">
+        </a-mixin>
+    </a-assets>
 
-        <!-- Ajouter la caméra en tant que personnage -->
-        <a-entity id="camera-entity" camera look-controls wasd-controls="acceleration: 25" position="0 0.8 5" dynamic-body="mass: 0.1"></a-entity>
+    <a-entity camera look-controls wasd-controls position="0 1.6 0" 
+                        dynamic-body 
+                        collision-filter="group: player; collidesWith: default, red, blue, hands">
+    </a-entity>
 
-        <!-- Ajouter le personnage 1 -->
-        <a-entity id="pnj1-entity" gltf-model="#pnj1" position="2 0 -5" scale="0.2 0.2 0.2"></a-entity>
+    <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc" mixin="controller"></a-entity>
+    <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc" mixin="controller"></a-entity>
 
-        <!-- Ajouter le personnage 2 -->
-        <a-entity id="pnj2-entity" gltf-model="#pnj2" position="-2 0 -5" scale="0.5 0.5 0.5"></a-entity>
+    <a-entity id="pnj1-entity" gltf-model="#pnj1" position="2 0 -5" scale="0.2 0.2 0.2" dynamic-body></a-entity>
+    <a-entity id="pnj2-entity" gltf-model="#pnj2" position="-2 0 -5" scale="0.5 0.5 0.5" dynamic-body></a-entity>
+    <a-entity id="pnj3-entity" gltf-model="#pnj3" position="0 0 -5" scale="0.5 0.5 0.5" dynamic-body></a-entity>
 
-        <!-- Ajouter le personnage 3 -->
-        <a-entity id="pnj3-entity" gltf-model="#pnj3" position="0 0 -5" scale="0.5 0.5 0.5"></a-entity>
+    <a-light type="directional" position="2 4 3" intensity="0.6"></a-light>
+    <a-light type="ambient" intensity="0.4"></a-light>
 
-        <!-- Lumière -->
-        <a-light type="directional" position="2 4 3" intensity="0.6"></a-light>
-        <a-light type="ambient" intensity="0.4"></a-light>
-
-        <!-- Ajouter le sol -->
-        <a-plane rotation="-90 0 0" position="0 0 0" width="20" height="20" color="#7BC8A4" static-body></a-plane>
-
-        <a-box position="0 1 -10" width="20" height="2" depth="0.1" visible="true" static-body="shape: box;"></a-box>
-        <a-box position="0 1 10" width="20" height="2" depth="0.1" visible="true" static-body="shape: box;"></a-box>
-        <a-box position="-10 1 0" width="0.1" height="2" depth="20" visible="true" static-body="shape: box;"></a-box>
-        <a-box position="10 1 0" width="0.1" height="2" depth="20" visible="true" static-body="shape: box;"></a-box>
-        <a-box position="10 1 0" width="0.1" height="2" depth="20" visible="true" static-body="shape: box;"></a-box>
-    </a-scene>
-
-    <script>
-        
-        // Fonction d'easing pour un mouvement plus fluide
-        function easeInOutQuad(t) {
-            return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-        }
-
-        // Logique de déplacement fluide et de rotation pour le personnage
-        function movePNJRandomly(pnjId, min, max) {
-            const pnj = document.querySelector(`#${pnjId}`);
-            
-            // Nouvelle position aléatoire
-            const targetX = Math.random() * (max - min) + min;
-            const targetZ = Math.random() * (max - min) + min;
-
-            // Initialiser la position actuelle
-            const currentPosition = pnj.getAttribute('position');
-            const currentX = currentPosition.x;
-            const currentZ = currentPosition.z;
-
-            // Calculer la direction du mouvement
-            const dx = targetX - currentX;
-            const dz = targetZ - currentZ;
-            const targetAngle = Math.atan2(dz, dx) * (180 / Math.PI); // Convertir l'angle en degrés
-            console.log(targetAngle);
-            // Durée du mouvement en millisecondes
-            const duration = 3000; // 3 secondes
-
-            // Animation fluide de la rotation et du déplacement
-            let startTime;
-            function animateMovement(time) {
-                if (!startTime) startTime = time;
-                const elapsedTime = time - startTime;
-
-                // Calcul du pourcentage du mouvement
-                const progress = Math.min(elapsedTime / duration, 1);
-                const easedProgress = easeInOutQuad(progress);
-
-                // Interpolation linéaire entre la position actuelle et la nouvelle position
-                const newX = currentX + dx * easedProgress;
-                const newZ = currentZ + dz * easedProgress;
-
-                // Mettre à jour la position
-                pnj.setAttribute('position', { x: newX, y: currentPosition.y, z: newZ });
-
-                // Récupérer l'angle actuel du PNJ
-                const currentRotation = pnj.getAttribute('rotation');
-                const currentAngle = currentRotation.y;
-
-                // Interpolation de la rotation pour une transition fluide
-                const newRotationY = currentAngle + (targetAngle - currentAngle) * easedProgress;
-                pnj.setAttribute('rotation', { x: 0, y: newRotationY, z: 0 });
-
-                // Continuer l'animation tant que le mouvement n'est pas terminé
-                if (progress < 1) {
-                    requestAnimationFrame(animateMovement);
-                }
-            }
-
-            // Lancer l'animation
-            requestAnimationFrame(animateMovement);
-        }
-
-        // Déplacer le personnage de manière aléatoire toutes les 10 secondes
-        setInterval(() => {
-            movePNJRandomly('pnj1-entity', -10, 10);
-            movePNJRandomly('pnj2-entity', -10, 10);
-            movePNJRandomly('pnj3-entity', -10, 10);
-        }, 1000);
-    </script>
+    <a-plane rotation="-90 0 0" group="red" position="0 0 0" width="20" height="20"
+                     color="#7BC8A4"
+                     static-body sleepy
+                     collision-filter="group: red; collidesWith: default, hands, blue, player">
+    </a-plane>
+</a-scene>
+<script src="/script.js"></script>
 </body>
 </html>
