@@ -47,19 +47,20 @@
          </a-entity>
  
          <a-entity id="pnj1-container" position="2 0 -5">
-             <a-entity id="pnj1-entity" gltf-model="#pnj1" scale="0.2 0.2 0.2"></a-entity>
-             <a-box position="0 1 0" width="1" height="2" depth="1" opacity="0" transparent="true" class="clickable" event-set__click="_event: click; _target: #dialogue-box; visible: true"></a-box>
-         </a-entity>
- 
-         <a-entity id="pnj2-container" position="-2 0 -5">
-             <a-entity id="pnj2-entity" gltf-model="#pnj2" scale="0.5 0.5 0.5"></a-entity>
-             <a-box position="0 1 0" width="1" height="2" depth="1" opacity="0" transparent="true" class="clickable" event-set__click="_event: click; _target: #dialogue-box; visible: true"></a-box>
-         </a-entity>
- 
-         <a-entity id="pnj3-container" position="0 0 -5">
-             <a-entity id="pnj3-entity" gltf-model="#pnj3" scale="0.5 0.5 0.5"></a-entity>
-             <a-box position="0 1 0" width="1" height="2" depth="1" opacity="0" transparent="true" class="clickable" event-set__click="_event: click; _target: #dialogue-box; visible: true"></a-box>
-         </a-entity>
+            <a-entity id="pnj1-entity" gltf-model="#pnj1" scale="0.2 0.2 0.2"></a-entity>
+            <a-box id="pnj1-hitbox" class="clickable" position="0 1 0" width="1" height="2" depth="1" opacity="0" transparent="true"></a-box>
+        </a-entity>
+        
+        <a-entity id="pnj2-container" position="-2 0 -5">
+            <a-entity id="pnj2-entity" gltf-model="#pnj2" scale="0.5 0.5 0.5"></a-entity>
+            <a-box id="pnj2-hitbox" class="clickable" position="0 1 0" width="1" height="2" depth="1" opacity="0" transparent="true"></a-box>
+        </a-entity>
+        
+        <a-entity id="pnj3-container" position="0 0 -5">
+            <a-entity id="pnj3-entity" gltf-model="#pnj3" scale="0.5 0.5 0.5"></a-entity>
+            <a-box id="pnj3-hitbox" class="clickable" position="0 1 0" width="1" height="2" depth="1" opacity="0" transparent="true"></a-box>
+        </a-entity>
+        
 
 
         <!-- Lumière -->
@@ -143,31 +144,52 @@ function movePNJRandomly(pnjId, min, max) {
 
 // Déplacer le personnage de manière aléatoire toutes les 10 secondes
 setInterval(() => {
-    movePNJRandomly('pnj1-entity', -10, 10);
-    movePNJRandomly('pnj2-entity', -10, 10);
-    movePNJRandomly('pnj3-entity', -10, 10);
+    movePNJRandomly('pnj1-container', -10, 10);
+    movePNJRandomly('pnj2-container', -10, 10);
+    movePNJRandomly('pnj3-container', -10, 10);
 }, 10000);
 // Ajouter un événement de clic pour chaque PNJ
-function closeDialogue() {
-    document.getElementById('dialogue-box').style.display = 'none';
-    document.getElementById('overlay').style.display = 'none';
-}
-
+// Fonction pour ouvrir la pop-up de dialogue avec le bon message
 function openDialogue(pnjId) {
     let text = "Je suis un PNJ inconnu.";
     if (pnjId === 'pnj1-hitbox') text = "Salut, je suis le PNJ 1 !";
     if (pnjId === 'pnj2-hitbox') text = "Bonjour, je suis le PNJ 2 !";
     if (pnjId === 'pnj3-hitbox') text = "Hey ! Je suis le PNJ 3 !";
+
     document.getElementById('dialogue-text').innerText = text;
     document.getElementById('dialogue-box').style.display = 'block';
     document.getElementById('overlay').style.display = 'block';
 }
 
+// Fonction pour fermer la pop-up de dialogue
+function closeDialogue() {
+    document.getElementById('dialogue-box').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+}
+
+// Ajouter un événement de clic pour chaque hitbox de PNJ
 document.querySelectorAll('.clickable').forEach(hitbox => {
     hitbox.addEventListener('click', function () {
         openDialogue(this.id);
     });
 });
+
+// Fonction pour mettre à jour la position des hitbox selon les déplacements des PNJ
+function updateHitboxPosition() {
+    document.querySelectorAll('.clickable').forEach(hitbox => {
+        let parent = hitbox.parentElement;
+        let position = parent.getAttribute('position');
+
+        if (position) {
+            hitbox.setAttribute('position', { x: 0, y: 1, z: 0 });
+        }
+    });
+}
+
+// Rafraîchir la position des hitbox toutes les 50ms
+setInterval(updateHitboxPosition, 50);
+
+
     </script>
 </body>
 </html>
