@@ -1,65 +1,309 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PNJ avec A-Frame et Three.js</title>
-    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aframe-physics-system@5.0.0/dist/aframe-physics-system.min.js"></script>
-    <script src="https://unpkg.com/super-hands@2.0.2/dist/super-hands.min.js"></script>
-    <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
-    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
-    <script type="importmap">
-    {
-        "imports": {
-            "three": "https://unpkg.com/three@0.154.0/build/three.module.js",
-            "three/addons/": "https://unpkg.com/three@0.154.0/examples/jsm/"
+  <head>
+    <meta charset="utf-8">
+    <title>Ville Anglaise en A-Frame (.glb)</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <style>
+      body { margin: 0; }
+    </style>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <a-asset-item id="building1" src="./models/City/Large Building.glb"></a-asset-item> /* batiment vert 2*3 */
+        <a-asset-item id="building2" src="./models/City/Skyscraper.glb"></a-asset-item> /* gratte ciel */
+        <a-asset-item id="building3" src="./models/City/Large Building-h7Jaq7bqMq.glb"></a-asset-item>  /* batiment avant dernier etage noir */
+        <a-asset-item id="building4" src="./models/City/Low Wide-DKgknsHjmr.glb"></a-asset-item> /* batiment gris a 3 qui fait un L */
+        <a-asset-item id="building6" src="./models/City/Small Building.glb"></a-asset-item> /* batiment porte caché */
+        <a-asset-item id="building7" src="./models/Large Building.glb"></a-asset-item> /* batiment vert long */
+        <a-asset-item id="building8" src="./models/City/Large Building-3IhrYZp6tP.glb"></a-asset-item> /* batiment  vert 4*3 */
+        <a-asset-item id="building9" src="./models/City/Low Building-dYEbYdPfJr.glb"></a-asset-item> /* batiment gris noir  */
+        <a-asset-item id="building10" src="./models/City/Large Building-ppwtREejXg.glb"></a-asset-item> /* batiment  vert 4*5 */
+        <a-asset-item id="building11" src="./models/Town House.glb"></a-asset-item> /* Mairie */
+        <a-asset-item id="building12" src="./models/Market Stalls.glb"></a-asset-item> /* Marché */
+        <a-asset-item id="building13" src="./models/Ping Pong table.glb"></a-asset-item> /* Table de Ping Pong*/
+        <a-asset-item id="building14" src="./models/Basketball court.glb"></a-asset-item> /* Basket terrain*/
+        <a-asset-item id="building15" src="./models/Tennis court.glb"></a-asset-item> /*Tennis terrain*/
+        <a-asset-item id="building16" src="./models/Soccer Field.glb"></a-asset-item> /*foot terrain*/
+        <a-asset-item id="building17" src="./models/City/Low Building-zfjlejAxB7.glb"></a-asset-item> /*tour dubai*/
+        <a-asset-item id="building18" src="./models/City/Skyscraper.glb"></a-asset-item> /*gratte ciel 1 */
+        <a-asset-item id="building19" src="./models/City/Skyscraper-XST1j6kYsL.glb"></a-asset-item> /*gratte ciel 2*/
+        <a-asset-item id="building20" src="./models/Parking Lot.glb"></a-asset-item> /*parking*/
+        <a-asset-item id="building21" src="./models/Road block.glb"></a-asset-item> /*route*/
+        
+        
+        
+      </a-assets>
+
+      <a-plane position="0 0 0" rotation="-90 0 0" width="300" height="300" color="#777"></a-plane>
+
+
+
+      <a-entity gltf-model="#building21" position="8 0 -0.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="3 0 -0.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-2 0 -0.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-7 0 -0.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-12 0 -0.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-17 0 -0.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-22 0 -0.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-27 0 -0.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-32 0 -0.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+
+      <a-entity gltf-model="#building21" position="-62 0 1.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-67 0 1.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-72 0 1.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-77 0 1.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-82 0 1.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-87 0 1.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-92 0 1.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-97 0 1.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-102 0 1.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-107 0 1.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-112 0 1.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-117 0 1.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-122 0 1.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-127 0 1.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-132 0 1.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+
+
+      <a-entity gltf-model="#building21" position="-45 0 20" scale="8 8 8" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-45 0 25" scale="8 8 8" rotation="0 90 0"></a-entity>
+      
+      <a-entity gltf-model="#building21" position="-45 0 35" scale="8 8 8" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-45 0 40" scale="8 8 8" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-45 0 45" scale="8 8 8" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-45 0 50" scale="8 8 8" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-45 0 55" scale="8 8 8" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-45 0 60" scale="8 8 8" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-45 0 65" scale="8 8 8" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-45 0 70" scale="8 8 8" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-45 0 75" scale="8 8 8" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-45 0 80" scale="8 8 8" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-45 0 85" scale="8 8 8" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-45 0 90" scale="8 8 8" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-45 0 95" scale="8 8 8" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-45 0 100" scale="8 8 8" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-45 0 105" scale="8 8 8" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-45 0 110" scale="8 8 8" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-45 0 115" scale="8 8 8" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-45 0 120" scale="8 8 8" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-45 0 125" scale="8 8 8" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-45 0 130" scale="8 8 8" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-45 0 135" scale="8 8 8" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-45 0 140" scale="8 8 8" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-45 0 145" scale="8 8 8" rotation="0 90 0"></a-entity>
+
+      <a-entity gltf-model="#building21" position="9.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="4.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-0.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-5.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-10.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-15.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-20.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-25.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-30.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-35.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-40.6 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+
+       <a-entity gltf-model="#building21" position="-49.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-54.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-59.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-64.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-69.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-74.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-79.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-84.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-89.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building21" position="-94.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+      
+
+    
+
+<!-- /* coté haut */ -->
+      <!-- Rangée batiment vert ( gauche)  -->
+      <a-entity gltf-model="#building1" position="6 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building1" position="1 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building1" position="-4 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building1" position="-9 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building1" position="-14 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building1" position="-19 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building1" position="11 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#building1" position="-24 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
+
+      <!-- Rangée batiment porte caché (droite)  -->
+      <a-entity gltf-model="#building6" position="6 0 5" scale="5 5 5"></a-entity>
+      <a-entity gltf-model="#building6" position="2 0 5" scale="5 5 5"></a-entity>
+      <a-entity gltf-model="#building6" position="-2 0 5" scale="5 5 5"></a-entity>
+      <a-entity gltf-model="#building6" position="-6 0 5" scale="5 5 5"></a-entity>
+      <a-entity gltf-model="#building6" position="-10 0 5" scale="5 5 5"></a-entity>
+      <a-entity gltf-model="#building6" position="-14 0 5" scale="5 5 5"></a-entity>
+      <a-entity gltf-model="#building6" position="-22 0 5" scale="5 5 5"></a-entity>
+      <a-entity gltf-model="#building6" position="-18 0 5" scale="5 5 5"></a-entity>
+      <a-entity gltf-model="#building6" position="10 0 5" scale="5 5 5"></a-entity>
+
+      <!-- Divers -->
+      <a-entity gltf-model="#building2" position="16 0 -0.5" scale="6 6 6" rotation="0 -90 0"></a-entity>
+      <a-entity gltf-model="#building3" position="-28 0 10.9" scale="5 5 5"></a-entity>
+      <a-entity gltf-model="#building4" position="-30 -0.8 -6" scale="8 8 8"></a-entity>
+      <a-entity gltf-model="#building4" position="-32 -0.8 -8" scale="8 8 8" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#building4" position="-32 -0.8 -15.5" scale="8 8 8" rotation="0 90 0"></a-entity>
+     
+<!-- /* coté bas */ -->
+
+    <a-entity gltf-model="#building10" position="-145 12 2" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building10" position="-145 -0.8 2" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building8" position="-135 -0.8 -10" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building9" position="-127.5 -0.8 -10" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building8" position="-120 -0.8 -10" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building9" position="-112.5 -0.8 -10" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building8" position="-105 -0.8 -10" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building9" position="-97.5 -0.8 -10" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building8" position="-90 -0.8 -10" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building9" position="-82.5 -0.8 -10" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building8" position="-75 -0.8 -10" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building9" position="-67.5 -0.8 -10" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building8" position="-60 -0.8 -10" scale="8 8 8" rotation="0 180 0"></a-entity>
+
+    <a-entity gltf-model="#building7" position="-132 -0.8 13" scale="8 8 8" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building7" position="-117 -0.8 13" scale="8 8 8" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building7" position="-80 -0.8 13" scale="8 8 8" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building7" position="-65 -0.8 13" scale="8 8 8" rotation="0 0 0"></a-entity>
+
+<!-- /* Coté mairie */ -->
+    <a-entity gltf-model="#building11" position="-50 -0.8 -120" scale="8 8 8" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building12" position="-50 -0.8 -40" scale="8 8 8" rotation="0 0 0"></a-entity>
+
+
+<!-- Coté sport  -->
+<a-entity gltf-model="#building13" position="10 0.2 50" scale="2 2 2" rotation="0 90 0"></a-entity>
+<a-entity gltf-model="#building13" position="10 0.2 70" scale="2 2 2" rotation="0 90 0"></a-entity>
+<a-entity gltf-model="#building13" position="10 0.2 60" scale="2 2 2" rotation="0 90 0"></a-entity>
+<a-entity gltf-model="#building14" position="-20 -0 115" scale="1.3 1.3 1.3" rotation="0 0 0"></a-entity>
+<a-entity gltf-model="#building15" position="-20 0 60" scale="1.3 1.3 1.3" rotation="0 90 0"></a-entity>
+<a-entity gltf-model="#building16" position="10 0 115" scale="25 25 25" rotation="0 90 0"></a-entity>
+<!-- Coté riche -->
+<a-entity gltf-model="#building17" position="-100 0 100" scale="30 30 30" rotation="0 180 0"></a-entity>
+<a-entity gltf-model="#building18" position="-140 0 40" scale="7 7 7" rotation="0 270 0"></a-entity>
+<a-entity gltf-model="#building19" position="-140 0 60" scale="7 7 7" rotation="0 270 0"></a-entity>
+<a-entity gltf-model="#building18" position="-140 0 80" scale="7 7 7" rotation="0 270 0"></a-entity>
+<a-entity gltf-model="#building19" position="-140 0 100" scale="7 7 7" rotation="0 270 0"></a-entity>
+<a-entity gltf-model="#building18" position="-140 0 120" scale="7 7 7" rotation="0 270 0"></a-entity>
+<a-entity gltf-model="#building19" position="-140 0 140" scale="7 7 7" rotation="0 270 0"></a-entity>
+<a-entity gltf-model="#building18" position="-60 0 40" scale="7 7 7" rotation="0 90 0"></a-entity>
+<a-entity gltf-model="#building19" position="-60 0 60" scale="7 7 7" rotation="0 90 0"></a-entity>
+<a-entity gltf-model="#building18" position="-60 0 80" scale="7 7 7" rotation="0 90 0"></a-entity>
+<a-entity gltf-model="#building19" position="-60 0 100" scale="7 7 7" rotation="0 90 0"></a-entity>
+<a-entity gltf-model="#building18" position="-60 0 120" scale="7 7 7" rotation="0 90 0"></a-entity>
+<a-entity gltf-model="#building19" position="-60 0 140" scale="7 7 7" rotation="0 90 0"></a-entity>
+<a-entity gltf-model="#building20" position="-87 0 130" scale="7 7 7" rotation="0 90 0"></a-entity>
+<a-entity gltf-model="#building20" position="-112 0 130" scale="7 7 7" rotation="0 90 0"></a-entity>
+<a-entity gltf-model="#building18" position="-82 0 60" scale="7 7 7" rotation="0 90 0"></a-entity>
+<a-entity gltf-model="#building19" position="-82 0 40" scale="7 7 7" rotation="0 90 0"></a-entity>
+<a-entity gltf-model="#building18" position="-118 0 60" scale="7 7 7" rotation="0 270 0"></a-entity>
+<a-entity gltf-model="#building19" position="-118 0 40" scale="7 7 7" rotation="0 270 0"></a-entity>
+
+
+      <a-entity id="cameraRig" position="6 20 -6" custom-controls>
+        <a-entity camera look-controls wasd-controls="enabled: false"></a-entity>
+      </a-entity>
+
+      <script>
+        AFRAME.registerComponent('custom-controls', {
+          schema: { speed: { type: 'number', default: 20 } },
+          init: function () {
+        this.keys = {};
+        this.onKeyDown = this.onKeyDown.bind(this);
+        this.onKeyUp = this.onKeyUp.bind(this);
+        window.addEventListener('keydown', this.onKeyDown);
+        window.addEventListener('keyup', this.onKeyUp);
+          },
+          remove: function () {
+        window.removeEventListener('keydown', this.onKeyDown);
+        window.removeEventListener('keyup', this.onKeyUp);
+          },
+          onKeyDown: function (e) {
+        this.keys[e.key.toLowerCase()] = true;
+          },
+          onKeyUp: function (e) {
+        this.keys[e.key.toLowerCase()] = false;
+          },
+          tick: function (time, deltaTime) {
+        var delta = deltaTime / 1000;
+        var distance = this.data.speed * delta;
+        var rig = this.el.object3D;
+        var cameraEl = this.el.querySelector('[camera]');
+        var cameraObj = cameraEl.object3D;
+        var moveDir = new THREE.Vector3();
+        var forward = new THREE.Vector3(0, 0, -1);
+        forward.applyQuaternion(cameraObj.quaternion).normalize();
+        var up = new THREE.Vector3(0, 1, 0);
+        var right = new THREE.Vector3().crossVectors(forward, up).normalize();
+
+        if (this.keys['z']) { moveDir.add(forward); }
+        if (this.keys['s']) { moveDir.add(forward.clone().negate()); }
+        if (this.keys['d']) { moveDir.add(right); }
+        if (this.keys['q']) { moveDir.add(right.clone().negate()); }
+        if (this.keys[' ']) { moveDir.add(up); }
+        if (this.keys['control']) { moveDir.add(up.clone().negate()); }
+
+        if (moveDir.length() > 0) {
+          moveDir.normalize();
+          rig.position.add(moveDir.multiplyScalar(distance));
         }
+          }
+        });
+
+  AFRAME.registerComponent('road', {
+    schema: {
+      length: { type: 'number', default: 5 },
+      width: { type: 'number', default: 2 },
+      color: { type: 'color', default: '#000000' },
+      dashed: { type: 'boolean', default: true }
+    },
+    init: function () {
+      var data = this.data;
+      var el = this.el;
+
+      var geometry = new THREE.PlaneGeometry(data.width, data.length);
+      var material = new THREE.MeshStandardMaterial({ color: data.color });
+      var mesh = new THREE.Mesh(geometry, material);
+
+      mesh.rotation.x = -Math.PI / 2;
+      el.setObject3D('mesh', mesh);
+
+      if (data.dashed) {
+        var dashLength = 0.5;
+        var dashWidth = 0.1;
+        var dashColor = '#FFFFFF';
+        var dashMaterial = new THREE.MeshStandardMaterial({ color: dashColor });
+        var dashGeometry = new THREE.PlaneGeometry(dashWidth, dashLength);
+
+        for (var i = -data.length / 2; i < data.length / 2; i += dashLength * 2) {
+          var dash = new THREE.Mesh(dashGeometry, dashMaterial);
+          dash.position.set(0, 0.01, i + dashLength / 2);
+          dash.rotation.x = -Math.PI / 2;
+          el.object3D.add(dash);
+        }
+
+        // Add dashed line in the middle horizontally
+        var sideDashLength = 0.1;
+        var sideDashWidth = 0.5;
+        var sideDashGeometry = new THREE.PlaneGeometry(sideDashWidth, sideDashLength);
+
+        for (var j = -data.width / 2; j < data.width / 2; j += sideDashWidth * 2) {
+          var sideDash = new THREE.Mesh(sideDashGeometry, dashMaterial);
+          sideDash.position.set(j + sideDashWidth / 2, 0.01, 0);
+          sideDash.rotation.x = -Math.PI / 2;
+          el.object3D.add(sideDash);
+        }
+      }
     }
-    </script>
-</head>
-<body>
-<a-scene physics="debug: true; gravity: -9.8">
-    <a-assets>
-        <a-asset-item id="pnj1" src="./NPC/Man.glb"></a-asset-item>
-        <a-asset-item id="pnj2" src="./NPC/Business Man.glb"></a-asset-item>
-        <a-asset-item id="pnj3" src="./NPC/Hoodie Character.glb"></a-asset-item>
-        <a-mixin id="controller"
-                         physics-collider
-                         static-body="shape: sphere; sphereRadius: 0.02"
-                         super-hands="colliderEvent: collisions;
-                                                    colliderEventProperty: els;
-                                                    colliderEndEvent: collisions;
-                                                    colliderEndEventProperty: clearedEls"
-                         collision-filter="group: hands; collidesWith: red, blue; collisionForces: false">
-        </a-mixin>
-        <a-mixin id="cube" dynamic-body grabbable
-                         geometry="primitive: box; width: 0.5; height: 0.5; depth: 0.5">
-        </a-mixin>
-    </a-assets>
+  });
+  </script>
 
-    <a-entity camera look-controls wasd-controls position="0 1.6 0" 
-                        dynamic-body 
-                        collision-filter="group: player; collidesWith: default, red, blue, hands">
-    </a-entity>
-
-    <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc" mixin="controller"></a-entity>
-    <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc" mixin="controller"></a-entity>
-
-    <a-entity id="pnj1-entity" gltf-model="#pnj1" position="2 0 -5" scale="0.2 0.2 0.2" dynamic-body></a-entity>
-    <a-entity id="pnj2-entity" gltf-model="#pnj2" position="-2 0 -5" scale="0.5 0.5 0.5" dynamic-body></a-entity>
-    <a-entity id="pnj3-entity" gltf-model="#pnj3" position="0 0 -5" scale="0.5 0.5 0.5" dynamic-body></a-entity>
-
-    <a-light type="directional" position="2 4 3" intensity="0.6"></a-light>
-    <a-light type="ambient" intensity="0.4"></a-light>
-
-    <a-plane rotation="-90 0 0" group="red" position="0 0 0" width="20" height="20"
-                     color="#7BC8A4"
-                     static-body sleepy
-                     collision-filter="group: red; collidesWith: default, hands, blue, player">
-    </a-plane>
-</a-scene>
-<script src="/script.js"></script>
-</body>
+  <a-entity road="length: 5; width: 3.6; color: #131e27; dashed: true" position="-45 0.1 30"></a-entity>
+  <a-entity road="length: 5; width: 3.6; color: #131e27; dashed: true" position="-45 0.1 30"></a-entity>
+    </a-scene>
+  </body>
 </html>
