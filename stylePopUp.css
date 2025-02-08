@@ -1,0 +1,75 @@
+#dialogue-box {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8); /* Fond sombre semi-transparent */
+    color: white;
+    padding: 20px;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    font-family: Arial, sans-serif;
+    z-index: 1000;
+}
+
+#dialogue-text {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.dialogue-button {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+#choice1 {
+    background: #4CAF50;
+    color: white;
+}
+
+#choice2 {
+    background: #F44336;
+    color: white;
+}
+
+#choice1:hover {
+    background: #45a049;
+    transform: scale(1.05);
+}
+
+#choice2:hover {
+    background: #d32f2f;
+    transform: scale(1.05);
+}
+
+#close-button {
+    background: gray;
+    color: white;
+    margin-top: 10px;
+}
+
+#close-button:hover {
+    background: #555;
+    transform: scale(1.05);
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}

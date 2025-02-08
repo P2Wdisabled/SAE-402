@@ -3,65 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PNJ avec A-Frame et Three.js</title>
+    <title>NPC avec A-Frame et Three.js</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.aframe.io/releases/1.2.0/aframe-extras.min.js"></script>
     <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.3.0/dist/aframe-physics-system.min.js"></script>
     <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script>
+    <link rel="stylesheet" href="stylePopUp.css">
 </head>
 <body>
-    <style>
-        #dialogue-box {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 20px;
-            border: 2px solid black;
-            z-index: 1000;
-            pointer-events: auto;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-        }
-        #overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
-    </style>
+
     <a-scene physics="debug: true">
         <a-assets>
-             <a-asset-item id="pnj1" src="./NPC/Man.glb"></a-asset-item>
-             <a-asset-item id="pnj2" src="./NPC/Business%20Man.glb"></a-asset-item>
-             <a-asset-item id="pnj3" src="./NPC/Hoodie%20Character.glb"></a-asset-item>
+             <a-asset-item id="npc1" src="./NPC/Man.glb"></a-asset-item>
+             <a-asset-item id="npc2" src="./NPC/Business%20Man.glb"></a-asset-item>
+             <a-asset-item id="npc3" src="./NPC/Hoodie%20Character.glb"></a-asset-item>
          </a-assets>
  
          <a-entity id="camera-entity" camera look-controls wasd-controls="acceleration: 25" position="0 1.6 5">
              <a-cursor></a-cursor>
          </a-entity>
  
-         <a-entity id="pnj1-container" position="2 0 -5">
-            <a-entity id="pnj1-entity" gltf-model="#pnj1" scale="0.2 0.2 0.2"></a-entity>
-            <a-box id="pnj1-hitbox" class="clickable" position="0 1 0" width="1" height="2" depth="1" opacity="0" transparent="true"></a-box>
+         <a-entity id="npc1-container" position="2 0 -5">
+            <a-entity id="npc1-entity" gltf-model="#npc1" scale="0.2 0.2 0.2"></a-entity>
+            <a-box id="npc1-hitbox" class="clickable" position="0 1 0" width="1" height="2" depth="1" opacity="0" transparent="true"></a-box>
         </a-entity>
         
-        <a-entity id="pnj2-container" position="-2 0 -5">
-            <a-entity id="pnj2-entity" gltf-model="#pnj2" scale="0.5 0.5 0.5"></a-entity>
-            <a-box id="pnj2-hitbox" class="clickable" position="0 1 0" width="1" height="2" depth="1" opacity="0" transparent="true"></a-box>
+        <a-entity id="npc2-container" position="-2 0 -5">
+            <a-entity id="npc2-entity" gltf-model="#npc2" scale="0.5 0.5 0.5"></a-entity>
+            <a-box id="npc2-hitbox" class="clickable" position="0 1 0" width="1" height="2" depth="1" opacity="0" transparent="true"></a-box>
         </a-entity>
         
-        <a-entity id="pnj3-container" position="0 0 -5">
-            <a-entity id="pnj3-entity" gltf-model="#pnj3" scale="0.5 0.5 0.5"></a-entity>
-            <a-box id="pnj3-hitbox" class="clickable" position="0 1 0" width="1" height="2" depth="1" opacity="0" transparent="true"></a-box>
+        <a-entity id="npc3-container" position="0 0 -5">
+            <a-entity id="npc3-entity" gltf-model="#npc3" scale="0.5 0.5 0.5"></a-entity>
+            <a-box id="npc3-hitbox" class="clickable" position="0 1 0" width="1" height="2" depth="1" opacity="0" transparent="true"></a-box>
         </a-entity>
         
-
 
         <!-- Lumière -->
         <a-light type="directional" position="2 4 3" intensity="0.6"></a-light>
@@ -77,119 +53,14 @@
     </a-scene>
     <div id="overlay"></div>
     <div id="dialogue-box">
-        <p id="dialogue-text">Bonjour !</p>
+        <p id="dialogue-text">Hi! How can I help you?</p>
+        <button id="choice1" onclick="handleChoice(1)">Where is the bar?</button>
+        <button id="choice2" onclick="handleChoice(2)">Where is the police station?</button>
         <button onclick="closeDialogue()">Fermer</button>
-    <script>
-        // Fonction d'easing pour un mouvement plus fluide
-  function easeInOutQuad(t) {
-    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-}
-
-// Logique de déplacement fluide et de rotation pour le personnage
-function movePNJRandomly(pnjId, min, max) {
-    const pnj = document.querySelector(`#${pnjId}`);
+    </div>
     
-    // Nouvelle position aléatoire
-    const targetX = Math.random() * (max - min) + min;
-    const targetZ = Math.random() * (max - min) + min;
-
-    // Initialiser la position actuelle
-    const currentPosition = pnj.getAttribute('position');
-    const currentX = currentPosition.x;
-    const currentZ = currentPosition.z;
-
-    // Calculer la direction du mouvement
-    const dx = targetX - currentX;
-    const dz = targetZ - currentZ;
-    const targetAngle = Math.atan2(dz, dx) * (180 / Math.PI); // Convertir l'angle en degrés
-
-    // Durée du mouvement en millisecondes
-    const duration = 3000; // 3 secondes
-
-    // Animation fluide de la rotation et du déplacement
-    let startTime;
-    function animateMovement(time) {
-        if (!startTime) startTime = time;
-        const elapsedTime = time - startTime;
-
-        // Calcul du pourcentage du mouvement
-        const progress = Math.min(elapsedTime / duration, 1);
-        const easedProgress = easeInOutQuad(progress);
-
-        // Interpolation linéaire entre la position actuelle et la nouvelle position
-        const newX = currentX + dx * easedProgress;
-        const newZ = currentZ + dz * easedProgress;
-
-        // Mettre à jour la position
-        pnj.setAttribute('position', { x: newX, y: currentPosition.y, z: newZ });
-
-        // Récupérer l'angle actuel du PNJ
-        const currentRotation = pnj.getAttribute('rotation');
-        const currentAngle = currentRotation.y;
-
-        // Interpolation de la rotation pour une transition fluide
-        const newRotationY = currentAngle + (targetAngle - currentAngle) * easedProgress;
-
-        pnj.setAttribute('rotation', { x: 0, y: newRotationY, z: 0 });
-
-        // Continuer l'animation tant que le mouvement n'est pas terminé
-        if (progress < 1) {
-            requestAnimationFrame(animateMovement);
-        }
-    }
-
-    // Lancer l'animation
-    requestAnimationFrame(animateMovement);
-}
-
-// Déplacer le personnage de manière aléatoire toutes les 10 secondes
-setInterval(() => {
-    movePNJRandomly('pnj1-container', -10, 10);
-    movePNJRandomly('pnj2-container', -10, 10);
-    movePNJRandomly('pnj3-container', -10, 10);
-}, 10000);
-// Ajouter un événement de clic pour chaque PNJ
-// Fonction pour ouvrir la pop-up de dialogue avec le bon message
-function openDialogue(pnjId) {
-    let text = "Je suis un PNJ inconnu.";
-    if (pnjId === 'pnj1-hitbox') text = "Salut, je suis le PNJ 1 !";
-    if (pnjId === 'pnj2-hitbox') text = "Bonjour, je suis le PNJ 2 !";
-    if (pnjId === 'pnj3-hitbox') text = "Hey ! Je suis le PNJ 3 !";
-
-    document.getElementById('dialogue-text').innerText = text;
-    document.getElementById('dialogue-box').style.display = 'block';
-    document.getElementById('overlay').style.display = 'block';
-}
-
-// Fonction pour fermer la pop-up de dialogue
-function closeDialogue() {
-    document.getElementById('dialogue-box').style.display = 'none';
-    document.getElementById('overlay').style.display = 'none';
-}
-
-// Ajouter un événement de clic pour chaque hitbox de PNJ
-document.querySelectorAll('.clickable').forEach(hitbox => {
-    hitbox.addEventListener('click', function () {
-        openDialogue(this.id);
-    });
-});
-
-// Fonction pour mettre à jour la position des hitbox selon les déplacements des PNJ
-function updateHitboxPosition() {
-    document.querySelectorAll('.clickable').forEach(hitbox => {
-        let parent = hitbox.parentElement;
-        let position = parent.getAttribute('position');
-
-        if (position) {
-            hitbox.setAttribute('position', { x: 0, y: 1, z: 0 });
-        }
-    });
-}
-
-// Rafraîchir la position des hitbox toutes les 50ms
-setInterval(updateHitboxPosition, 50);
+    <script src="clickable.js"></script>
 
 
-    </script>
 </body>
 </html>
