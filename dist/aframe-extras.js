@@ -1557,7 +1557,7 @@ module.exports = AFRAME.registerComponent('movement-controls', {
   schema: {
     enabled:            { default: true },
     controls:           { default: ['gamepad', 'trackpad', 'keyboard', 'touch'] },
-    speed:              { default: 0.3, min: 0 },
+    speed:              { default: 0.1, min: 0 },
     fly:                { default: false },
     constrainToNavMesh: { default: false },
     camera:             { default: '[movement-controls] [camera]', type: 'selector' }
