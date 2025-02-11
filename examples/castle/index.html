@@ -69,16 +69,37 @@
 
     <!-- Player. -->
     <a-entity id="rig" movement-controls="constrainToNavMesh: true;
-                                   controls: checkpoint, gamepad, trackpad, keyboard, nipple;" position="10 0 0">
-      <a-entity camera position="0 1.6 0" look-controls="pointerLockEnabled: true">
-        <a-cursor></a-cursor>
-      </a-entity>
-    </a-entity>
+                                   controls: checkpoint, gamepad, trackpad, keyboard, nipple;" position="10 1 0">
+            <a-entity camera position="0 1.5 0" look-controls="pointerLockEnabled: true">
+                <a-entity cursor position="0 0 -0.01" geometry="primitive: sphere; radius: 0.00005"
+                    material="color: #202020; shader: flat">
+                </a-entity>
+            </a-entity>
+            <a-entity id="leftController" oculus-touch-controls="hand: left" thumbstick-move></a-entity>
+            <a-entity id="rightController" oculus-touch-controls="hand: right">
+                <a-entity raycaster="objects: .collidable" cursor></a-entity>
+            </a-entity>
+        </a-entity>
 
 
     <!-- Nav mesh. -->
-    <a-entity nav-mesh normal-material visible="false" position="0 0 -1" gltf-model="#navmesh"></a-entity>
-    <a-entity position="0 0 0" gltf-model="#city">
+    <a-entity nav-mesh normal-material visible="true" position="0 1 -1" gltf-model="#navmesh"></a-entity>
+    
+    <!-- SKY -->
+        <a-sky color="#ADD8E6"></a-sky>
+        <!-- light -->
+        <a-light type="ambient" color="#FFF" intensity="1"></a-light>
+        <a-entity
+            light="intensity: 1.5; castShadow: true; shadowCameraTop: 8.97; shadowCameraRight: 13.66; shadowCameraLeft: -12.71"
+            position="-11.66809 4.066 5.08364">
+        </a-entity>
+
+        <a-box src="#ground" position="-0.02" scale="14 20 0.04" repeat="7 7 0" rotation="-90 0 0"
+            shadow="receive: true" material="roughness: 1" static-body></a-box>
+        <a-plane src="#grass" position="-20 0 0" scale="25 50 1" repeat="5 5 1" rotation="-90 0 0"
+            shadow="receive: true" material="roughness: 1" static-body></a-plane>
+
+    <a-entity visible="false" position="0 0 0" gltf-model="#city">
     </a-entity>
   </a-scene>
 </body>

@@ -24,6 +24,7 @@
     "dist:min": "cross-env NODE_ENV=production webpack"
   },
   "dependencies": {
+    "aframe-extras": "file:",
     "nipplejs": "^0.10.2",
     "three": "^0.164.0",
     "three-pathfinding": "^1.3.0"
