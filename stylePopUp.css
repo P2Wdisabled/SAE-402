@@ -1,70 +1,51 @@
 #dialogue-box {
-    display: none;
     position: fixed;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.8); /* Fond sombre semi-transparent */
+    width: 400px;
+    max-width: 90%;
+    background: rgba(0, 0, 0, 0.85);
     color: white;
     padding: 20px;
-    width: 300px;
     border-radius: 10px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
     text-align: center;
+    font-size: 18px;
     font-family: Arial, sans-serif;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.7);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(7px);
     z-index: 1000;
+    display: none;
+    animation: fadeIn 0.3s ease-out;
 }
 
 #dialogue-text {
-    font-size: 18px;
     margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
-.dialogue-button {
+.dialogue-choice {
     display: block;
     width: 100%;
+    padding: 12px;
     margin: 5px 0;
-    padding: 10px;
-    font-size: 16px;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
+    transition: 0.3s ease-in-out;
 }
 
-#choice1 {
-    background: #4CAF50;
-    color: white;
-}
-
-#choice2 {
-    background: #F44336;
-    color: white;
-}
-
-#choice1:hover {
-    background: #45a049;
+.dialogue-choice:hover {
     transform: scale(1.05);
 }
 
-#choice2:hover {
-    background: #d32f2f;
-    transform: scale(1.05);
-}
 
-#close-button {
-    background: gray;
-    color: white;
-    margin-top: 10px;
-}
-
-#close-button:hover {
-    background: #555;
-    transform: scale(1.05);
-}
 
 #overlay {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -72,4 +53,80 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     z-index: 999;
+    display: none;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, -55%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+#score {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: #FFD700;
+    color: black;
+    padding: 10px 15px;
+    font-size: 18px;
+    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    font-family: Arial, sans-serif;
+}
+
+#feedback-message {
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 15px 25px;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 8px;
+    display: none;
+    font-family: Arial, sans-serif;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Style for feedback correct and incorrect */
+.feedback-correct {
+    border-color: rgba(0, 255, 0, 0.6);
+    background: rgba(0, 255, 0, 0.3);
+    box-shadow: 0px 0px 15px rgba(0, 255, 0, 0.6);
+}
+
+.feedback-wrong {
+    border-color: rgba(255, 0, 0, 0.6);
+    background: rgba(255, 0, 0, 0.3);
+    box-shadow: 0px 0px 15px rgba(255, 0, 0, 0.6);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 480px) {
+    #dialogue-box {
+        width: 90%;
+        padding: 15px;
+    }
+
+    #dialogue-text {
+        font-size: 18px;
+    }
+    
+    .dialogue-choice {
+        font-size: 16px;
+        padding: 10px;
+    }
+    
+    #feedback-message {
+        font-size: 20px;
+        padding: 12px 20px;
+    }
 }

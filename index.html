@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en"></html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,17 +25,17 @@
  
          <a-entity id="npc1-container" position="2 0 -5">
             <a-entity id="npc1-entity" gltf-model="#npc1" scale="0.2 0.2 0.2"></a-entity>
-            <a-box id="npc1-hitbox" class="clickable" position="0 1 0" width="1" height="2" depth="1" opacity="0" transparent="true"></a-box>
+            <a-box id="npc1-hitbox" class="clickable" position="0 0.5 0" width="1" height="1" depth="1" opacity="0" transparent="true"></a-box>
         </a-entity>
         
         <a-entity id="npc2-container" position="-2 0 -5">
             <a-entity id="npc2-entity" gltf-model="#npc2" scale="0.5 0.5 0.5"></a-entity>
-            <a-box id="npc2-hitbox" class="clickable" position="0 1 0" width="1" height="2" depth="1" opacity="0" transparent="true"></a-box>
+            <a-box id="npc2-hitbox" class="clickable" position="0 0.5 0" width="1" height="1" depth="1" opacity="0" transparent="true"></a-box>
         </a-entity>
         
         <a-entity id="npc3-container" position="0 0 -5">
             <a-entity id="npc3-entity" gltf-model="#npc3" scale="0.5 0.5 0.5"></a-entity>
-            <a-box id="npc3-hitbox" class="clickable" position="0 1 0" width="1" height="2" depth="1" opacity="0" transparent="true"></a-box>
+            <a-box id="npc3-hitbox" class="clickable" position="0 0.5 0" width="1" height="1" depth="1" opacity="0" transparent="true"></a-box>
         </a-entity>
         
 
@@ -54,12 +54,16 @@
     <div id="overlay"></div>
     <div id="dialogue-box">
         <p id="dialogue-text">Hi! How can I help you?</p>
-        <button id="choice1" onclick="handleChoice(1)">Where is the bar?</button>
+        <h2 id="difficulty-text">Difficulty: </h2>
+        <p id="remaining-text">Remaining: </p>
+        <button id="choice1" onclick="handleChoice(1)">I don't speak english</button>
         <button id="choice2" onclick="handleChoice(2)">Where is the police station?</button>
         <button onclick="closeDialogue()">Fermer</button>
     </div>
     
     <script src="clickable.js"></script>
+    <div id="score">Score: 0</div>
+    <div id="feedback-message"></div>
 
 
 </body>
