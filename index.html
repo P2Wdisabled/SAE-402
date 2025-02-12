@@ -3,68 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NPC avec A-Frame et Three.js</title>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.aframe.io/releases/1.2.0/aframe-extras.min.js"></script>
-    <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.3.0/dist/aframe-physics-system.min.js"></script>
-    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script>
+    <title>NPC with A-Frame and Three.js</title>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://cdn.aframe.io/releases/1.4.2/aframe-extras.min.js"></script>
+    <!-- <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.3.0/dist/aframe-physics-system.min.js"></script>
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script> -->
     <link rel="stylesheet" href="stylePopUp.css">
+    <script src="clickable.js">
+            
+    </script>
 </head>
 <body>
 
+
+
     <a-scene physics="debug: true">
+
+    
+
+        <!-- <a-camera  look-controls="pointerLockEnabled: true">
+            <a-cursor  position="0 1 5" geometry="primitive: sphere; radius: 0.00005"
+                material="color: #202020; shader: flat">
+            </a-cursor>
+       
+        </a-camera> -->
+    
         <a-assets>
              <a-asset-item id="npc1" src="./NPC/Man.glb"></a-asset-item>
              <a-asset-item id="npc2" src="./NPC/Business%20Man.glb"></a-asset-item>
              <a-asset-item id="npc3" src="./NPC/Hoodie%20Character.glb"></a-asset-item>
          </a-assets>
  
-         <a-entity id="camera-entity" camera look-controls wasd-controls="acceleration: 25" position="0 1.6 5">
-             <a-cursor></a-cursor>
-         </a-entity>
- 
+         
          <a-entity id="npc1-container" position="2 0 -5">
             <a-entity id="npc1-entity" gltf-model="#npc1" scale="0.2 0.2 0.2"></a-entity>
-            <a-box id="npc1-hitbox" class="clickable" position="0 0.5 0" width="1" height="1" depth="1" opacity="0" transparent="true"></a-box>
+            <a-box id="npc1-hitbox" class="clickable" position="0 0.5 0" width="1" height="0.8" depth="1" opacity="0" transparent="true"></a-box>
+           
         </a-entity>
         
         <a-entity id="npc2-container" position="-2 0 -5">
             <a-entity id="npc2-entity" gltf-model="#npc2" scale="0.5 0.5 0.5"></a-entity>
-            <a-box id="npc2-hitbox" class="clickable" position="0 0.5 0" width="1" height="1" depth="1" opacity="0" transparent="true"></a-box>
+            <a-box id="npc2-hitbox" class="clickable" position="0 0.5 0" width="1" height="0.8" depth="1" opacity="0" transparent="true"></a-box>
         </a-entity>
         
         <a-entity id="npc3-container" position="0 0 -5">
             <a-entity id="npc3-entity" gltf-model="#npc3" scale="0.5 0.5 0.5"></a-entity>
-            <a-box id="npc3-hitbox" class="clickable" position="0 0.5 0" width="1" height="1" depth="1" opacity="0" transparent="true"></a-box>
-        </a-entity>
+            <a-box id="npc3-hitbox" class="clickable" position="0 0.5 0" width="1" height="0.8" depth="1" opacity="0" transparent="true"></a-box>
         
+        </a-entity>
 
-        <!-- Lumière -->
+
         <a-light type="directional" position="2 4 3" intensity="0.6"></a-light>
         <a-light type="ambient" intensity="0.4"></a-light>
 
-        <!-- Ajouter le sol -->
         <a-plane rotation="-90 0 0" position="0 0 0" width="20" height="20" color="#7BC8A4" static-body></a-plane>
 
         <a-box position="0 1 -10" width="20" height="2" depth="0.1" visible="true" static-body="shape: box;"></a-box>
         <a-box position="0 1 10" width="20" height="2" depth="0.1" visible="true" static-body="shape: box;"></a-box>
         <a-box position="-10 1 0" width="0.1" height="2" depth="20" visible="true" static-body="shape: box;"></a-box>
         <a-box position="10 1 0" width="0.1" height="2" depth="20" visible="true" static-body="shape: box;"></a-box>
-    </a-scene>
-    <div id="overlay"></div>
-    <div id="dialogue-box">
-        <p id="dialogue-text">Hi! How can I help you?</p>
-        <h2 id="difficulty-text">Difficulty: </h2>
-        <p id="remaining-text">Remaining: </p>
-        <button id="choice1" onclick="handleChoice(1)">I don't speak english</button>
-        <button id="choice2" onclick="handleChoice(2)">Where is the police station?</button>
-        <button onclick="closeDialogue()">Fermer</button>
-    </div>
-    
-    <script src="clickable.js"></script>
-    <div id="score">Score: 0</div>
-    <div id="feedback-message"></div>
+        <a-camera id="camera-entity" camera look-controls wasd-controls="acceleration: 25" position="0 1 5">
+            <a-cursor></a-cursor>
+            <a-text value="Mon HUD en VR"
+            position="-0.5 0 -2.5"
+            
+            color="#FFF"
+            width="4"></a-text>
+            <a-text id="score" position="0 0 -2" >Score: 0</a-text>
+            <a-plane id="dialogue-box">
+                <!-- <a-entity id="dialogue-text" text="value: Hi! How can I help you?"></a-entity> -->
+                <a-text id="difficulty-text"text="value:Difficulty:" ></a-text>
+                <a-text id="remaining-text"text="value:Remaining:" ></a-text>
+                <button id="choice1" onclick="handleChoice(1)"text="value: I don't speak english"></button>
+                <button id="choice2" onclick="handleChoice(2)" text="value:Where is the police station?"></button>
+                <button onclick="closeDialogue()">Fermer</button>
+                <a-entity id="leftController" oculus-touch-controls="hand: left"></a-entity>
+                <a-entity id="rightController" oculus-touch-controls="hand: right">
+                    <a-entity raycaster="showLine:true;objects: .clickable" cursor>
+                 </a-entity>
+            </a-entity>
+            </a-plane>
+        </a-camera>
 
+            <div id="feedback-message"></div>
+            
+        </a-scene>
+        
+        <div id="overlay"></div>
+
+        
 
 </body>
 </html>
