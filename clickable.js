@@ -121,43 +121,43 @@
             }
         
             const randomIndex = Math.floor(Math.random() * questionsList.length);
-            return questionsList.splice(randomIndex, 1)[0]; // Retire et retourne la question
+            const question = questionsList.splice(randomIndex, 1)[0]; // Retire et retourne la question
+            remainingQuestions[npcId] = questionsList.length; // Mise à jour du nombre de questions restantes
+            return question;
         }
         function openDialogue(npcId) {
-            const npcQuestions = dialogues[npcId];
-            if (!npcQuestions || !npcQuestions.length) {
-                console.error(`No dialogue found for ${npcId}`);
-                return;
-            }
+            console.log("Ouverture du dialogue pour :", npcId); // Debug
+        
             const randomQuestion = getRandomQuestion(npcId);
-
-
-    
+        
+            const dialogueBox = document.getElementById('dialogue-box');
+            dialogueBox.setAttribute('visible', 'true');  // Ne pas le cacher immédiatement !
+        
             if (!randomQuestion) {
-                document.getElementById('dialogue-text').innerText = "You have answered all questions";
-                // Optionally: hide choices or further dialogue elements here if needed.
+                document.getElementById('dialogue-text').setAttribute('value', "You have answered all questions");
                 return;
             }
-            
-            remainingQuestions[npcId]--; // Update the remaining questions count
-
-            const questionElement = document.getElementById('dialogue-text');
-
-                questionElement.innerText = randomQuestion.question;
-            
         
-            document.getElementById('difficulty-text').innerText = `Difficulty: ${randomQuestion.difficulty}`;
-            document.getElementById('remaining-text').innerText = `Remaining: ${remainingQuestions[npcId]}`;
+            document.getElementById('dialogue-text').setAttribute('value', randomQuestion.question);
+            document.getElementById('difficulty-text').setAttribute('value', `Difficulty: ${randomQuestion.difficulty}`);
+            document.getElementById('remaining-text').setAttribute('value', `Remaining: ${remainingQuestions[npcId]}`);
         
-            //Update the choices and the click events
-            document.getElementById('choice1').innerText = randomQuestion.choices[0];
-            document.getElementById('choice1').onclick = () => checkAnswer(randomQuestion, 0);
+            document.getElementById('choice1').setAttribute('value', randomQuestion.choices[0]);
+            document.getElementById('choice1').setAttribute('onclick', `checkAnswer(${JSON.stringify(randomQuestion)}, 0)`);
             
-            document.getElementById('choice2').innerText = randomQuestion.choices[1];
-            document.getElementById('choice2').onclick = () => checkAnswer(randomQuestion, 1);
-            
-            document.getElementById('dialogue-box').style.display = 'block';
+            document.getElementById('choice2').setAttribute('value', randomQuestion.choices[1]);
+            document.getElementById('choice2').setAttribute('onclick', `checkAnswer(${JSON.stringify(randomQuestion)}, 1)`);
+            if(remainingQuestions[npcId] == 0) {
+                // document.getElementById('dialogue-box').style.display = 'none';
+                const dialogueBox = document.getElementById('dialogue-box');
+                dialogueBox.setAttribute('visible', 'false');
+                document.getElementById('overlay').setAttribute('visible', 'false');
+            }
         }
+        
+
+            
+        
 
         let score = 0;
 
@@ -212,8 +212,10 @@
         }
 
         function closeDialogue() {
-            document.getElementById('dialogue-box').style.display = 'none';
-            document.getElementById('overlay').style.display = 'none';
+            // document.getElementById('dialogue-box').style.display = 'none';
+            const dialogueBox = document.getElementById('dialogue-box');
+            dialogueBox.setAttribute('visible', 'false');
+            document.getElementById('overlay').setAttribute('visible', 'false');
         }
 
         // Event listeners for the clickable hitboxes
@@ -293,35 +295,35 @@
         }
 
         //arrow that point the next npc to interract
-        const arrow = document.getElementById('arrow');
-        const arrowPosition = arrow.getAttribute('position');
-        let arrowVisible = true;
+        // const arrow = document.getElementById('arrow');
+        // const arrowPosition = arrow.getAttribute('position');
+        // let arrowVisible = true;
 
-        function toggleArrowVisibility() {
-            arrowVisible = !arrowVisible;
-            arrow.setAttribute('visible', arrowVisible);
-        }
+        // function toggleArrowVisibility() {
+        //     arrowVisible = !arrowVisible;
+        //     arrow.setAttribute('visible', arrowVisible);
+        // }
 
         // Move the arrow to the next NPC
 
-        function moveArrowToNPC(npcId) {
-            const npc = document.querySelector(`#${npcId}`);
-            const npcPosition = npc.getAttribute('position');
-            arrow.setAttribute('position', { x: npcPosition.x, y: npcPosition.y + 2, z: npcPosition.z });
-        }
+        // function moveArrowToNPC(npcId) {
+        //     const npc = document.querySelector(`#${npcId}`);
+        //     const npcPosition = npc.getAttribute('position');
+        //     arrow.setAttribute('position', { x: npcPosition.x, y: npcPosition.y + 2, z: npcPosition.z });
+        // }
 
         // Move the arrow to the first NPC
-        moveArrowToNPC('npc1-container');
+        // moveArrowToNPC('npc1-container');
 
-        // Event listener for the arrow click
-        arrow.addEventListener('click', function () {
-            toggleArrowVisibility();
-            if (arrowVisible) {
-                moveArrowToNPC('npc1-container');
-            } else {
-                moveArrowToNPC('npc2-container');
-            }
-        });
+        // // Event listener for the arrow click
+        // arrow.addEventListener('click', function () {
+        //     toggleArrowVisibility();
+        //     if (arrowVisible) {
+        //         moveArrowToNPC('npc1-container');
+        //     } else {
+        //         moveArrowToNPC('npc2-container');
+        //     }
+        // });
 
         // Move the character randomly every 10 seconds
         setInterval(() => {
