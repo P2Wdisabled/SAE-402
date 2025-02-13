@@ -147,7 +147,7 @@ function openDialogue(npcId) {
         document.getElementById('choice2').setAttribute('value', "");
         document.getElementById('choice2').removeAttribute('onclick');
         // Optionally hide the dialogue after 3 seconds
-
+        isDialogueOpen = false; // Réactive l'interaction   
         return;
     }
 
@@ -226,32 +226,19 @@ document.querySelectorAll('.clickable').forEach(hitbox => {
             const dialogueBox = document.getElementById('dialogue-box');
             const overlay = document.getElementById('overlay');
             
-            if (dialogueBox) dialogueBox.setAttribute('visible', 'false');
-            if (overlay) overlay.setAttribute('visible', 'false');
+            dialogueBox.setAttribute('visible', 'false');
+            overlay.setAttribute('visible', 'false');
         
             isDialogueOpen = false; // Réactive l'interaction
         }
         const dialogueBox = document.getElementById('dialogue-box');
-        if (dialogueBox) {
             dialogueBox.addEventListener('click', function(event) {
-                if (event.target && event.target.matches('.close')) {
+                if (event.target.className == 'close') {
                     console.log("Fermeture du dialogue"); // Debug
                     closeDialogue();
                 }
             });
-        }
-        const closeBtn = document.getElementById('close');
-
-        // Vérifier si le bouton est bien sélectionné
-        if (closeBtn) {
-            closeBtn.addEventListener('click', function(event) {
-                event.stopPropagation(); // Empêche la propagation de l'événement
-                console.log("Fermeture du dialogue"); // Message de débogage
-                closeDialogue(); // Appel à la fonction pour fermer le dialogue
-            });
-        } else {
-            console.log("Le bouton de fermeture (#close) n'a pas été trouvé !");
-        }
+     
         
         // Removed redundant event delegation for '.choice' as inline onclick events are already being used.
         // Function to 
@@ -267,7 +254,7 @@ document.querySelectorAll('.clickable').forEach(hitbox => {
             });
         }
 
-        function moveNPCRandomly(npcId, min, max) {
+        async function moveNPCRandomly(npcId, min, max) {
             const npc = document.querySelector(`#${npcId}`);
             
             // Generate a new random position
