@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en"></html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NPC avec A-Frame et Three.js</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.aframe.io/releases/1.2.0/aframe-extras.min.js"></script>
-    <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.3.0/dist/aframe-physics-system.min.js"></script>
-    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script>
+    <!-- <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.3.0/dist/aframe-physics-system.min.js"></script>
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script> -->
     <link rel="stylesheet" href="stylePopUp.css">
 </head>
 <body>
@@ -28,19 +28,20 @@
             color="#FFF"
             width="4"> </a-text> -->
              <a-text id="score" position="0 0 -2" >Score: 0</a-text>
-             <a-plane id="overlay" position="0 0.5 -2" visible ="false"></a-plane>
+             <a-plane id="overlay" position="0 0 -2" visible="false"></a-plane>
              <a-plane id="dialogue-box" 
-         position="0 1.5 -2" 
-         width="2.5" 
-         height="1.5" 
-         visible="false"
-         material="color: black; opacity: 0.8; shader: flat"
-         geometry="primitive: plane; width: 2.5; height: 1.5">
+                      position="0 0 -2" 
+                      width="4" 
+                      height="0.5" 
+                      visible="false"
+                      material="color: black; opacity: 0.8; shader: flat"
+                      geometry="primitive: plane; width:5; height: 1.2">
+
 
 
          <a-text id="dialogue-text" 
          value="Hi! How can I help you?" 
-         position="0 -0.2 0.01" 
+         position="0 0.2 0.01" 
          width="2" 
          align="center"
          text="color: white; wrapCount: 30; font: mozillavr">
@@ -48,14 +49,14 @@
  
  <a-text id="difficulty-text" 
          value="Difficulty:" 
-         position="-1 0.1 0.01" 
+         position="-1.4 0.5 0.01" 
          width="1.5"
          text="color: yellow; wrapCount: 20; font: mozillavr">
  </a-text>
  
  <a-text id="remaining-text" 
          value="Remaining:" 
-         position="1 0.1 0.01" 
+         position="0.6 0.5 0.01" 
          width="1.5"
          text="color: cyan; wrapCount: 20; font: mozillavr">
  </a-text>
@@ -63,38 +64,34 @@
  <!-- Boutons de choix interactifs -->
  <a-text id="choice1" 
          value="I don't speak English" 
-         position="-0.8 -0.4 0.01" 
+         position="-1.2 -0.2 0.01" 
          width="1.5"
-         class="clickable"
+         class="clickableChoice"
          text="color: lightblue; wrapCount: 20; font: mozillavr"
          event-set__mouseenter="_event: mouseenter; text.color: cyan"
          event-set__mouseleave="_event: mouseleave; text.color: lightblue"
-         onclick="handleChoice(1)">
+        >
  </a-text>
  
  <a-text id="choice2" 
          value="Where is the police station?" 
-         position="0.8 -0.4 0.01" 
+         position="0.9 -0.2 0.01" 
          width="1.5"
-         class="clickable"
+         class="clickableChoice"
          text="color: lightgreen; wrapCount: 20; font: mozillavr"
          event-set__mouseenter="_event: mouseenter; text.color: lime"
          event-set__mouseleave="_event: mouseleave; text.color: lightgreen"
-         onclick="handleChoice(2)">
+         >
  </a-text>
  
  <!-- Bouton de fermeture -->
- <a-text id="close" 
-         value="Fermer" 
-         position="0 -0.7 0.01" 
-         width="1"
-         class="clickable"
-         text="color: red; wrapCount: 15; font: mozillavr"
-         event-set__mouseenter="_event: mouseenter; text.color: darkred"
-         event-set__mouseleave="_event: mouseleave; text.color: red"
-         onclick="closeDialogue()">
- </a-text>
- 
+ <a-plane id="close" 
+ position="0 -0.4 0.01" 
+ width="0.6" 
+ height="0.2" 
+ color="red"
+ text="value: Fermer; align: center; color: white; font: mozillavr; width: 2">
+</a-plane>
  <!-- Contrôleurs VR avec Raycaster -->
  <a-entity id="leftController" oculus-touch-controls="hand: left"></a-entity>
  
@@ -103,10 +100,7 @@
  </a-entity>
  
             </a-plane>
-            <a-entity id="leftController" oculus-touch-controls="hand: left"></a-entity>
-            <a-entity id="rightController" oculus-touch-controls="hand: right">
-                <a-entity raycaster="showLine:true;objects: .clickable" cursor></a-entity>
-             </a-entity>
+
          </a-camera>
  
          <a-entity id="npc1-container" position="2 0 -5">

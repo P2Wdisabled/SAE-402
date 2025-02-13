@@ -116,50 +116,60 @@
             if (npcId === 'npc2-hitbox') questionsList = questionsNPC2;
             if (npcId === 'npc3-hitbox') questionsList = questionsNPC3;
             
-            if (questionsList.length === 0) {
-                return null; // Plus de questions
+            if (!questionsList || questionsList.length === 0) {
+                return null; // Plus de questions or invalid npcId
             }
         
             const randomIndex = Math.floor(Math.random() * questionsList.length);
             const question = questionsList.splice(randomIndex, 1)[0]; // Retire et retourne la question
             remainingQuestions[npcId] = questionsList.length; // Mise à jour du nombre de questions restantes
-            return question;
-        }
-        function openDialogue(npcId) {
-            console.log("Ouverture du dialogue pour :", npcId); // Debug
-        
-            const randomQuestion = getRandomQuestion(npcId);
-        
-            const dialogueBox = document.getElementById('dialogue-box');
-            dialogueBox.setAttribute('visible', 'true');  // Ne pas le cacher immédiatement !
-        
-            if (!randomQuestion) {
-                document.getElementById('dialogue-text').setAttribute('value', "You have answered all questions");
-                return;
+             return question;
             }
-        
-            document.getElementById('dialogue-text').setAttribute('value', randomQuestion.question);
-            document.getElementById('difficulty-text').setAttribute('value', `Difficulty: ${randomQuestion.difficulty}`);
-            document.getElementById('remaining-text').setAttribute('value', `Remaining: ${remainingQuestions[npcId]}`);
-        
-            document.getElementById('choice1').setAttribute('value', randomQuestion.choices[0]);
-            document.getElementById('choice1').setAttribute('onclick', `checkAnswer(${JSON.stringify(randomQuestion)}, 0)`);
-            
-            document.getElementById('choice2').setAttribute('value', randomQuestion.choices[1]);
-            document.getElementById('choice2').setAttribute('onclick', `checkAnswer(${JSON.stringify(randomQuestion)}, 1)`);
-            if(remainingQuestions[npcId] == 0) {
-                // document.getElementById('dialogue-box').style.display = 'none';
-                const dialogueBox = document.getElementById('dialogue-box');
-                dialogueBox.setAttribute('visible', 'false');
-                document.getElementById('overlay').setAttribute('visible', 'false');
-            }
-        }
-        
+         // Ajoutez une variable pour vérifier si un dialogue est ouvert
+let isDialogueOpen = false;
 
-            
-        
+function openDialogue(npcId) {
+    if (isDialogueOpen) return; // Empêche l'ouverture d'un nouveau dialogue si déjà un dialogue est ouvert
 
-        let score = 0;
+    isDialogueOpen = true; // Marquer que le dialogue est ouvert
+
+    console.log("Ouverture du dialogue pour :", npcId);
+
+    const randomQuestion = getRandomQuestion(npcId);
+    const dialogueBox = document.getElementById('dialogue-box');
+    dialogueBox.setAttribute('visible', 'true');
+
+    if (!randomQuestion) {
+        document.getElementById('dialogue-text').setAttribute('value', "You have answered all questions");
+        // Clear answer choices when there are no questions left
+        document.getElementById('choice1').setAttribute('value', "");
+        document.getElementById('choice1').removeAttribute('onclick');
+        document.getElementById('choice2').setAttribute('value', "");
+        document.getElementById('choice2').removeAttribute('onclick');
+        // Optionally hide the dialogue after 3 seconds
+
+        return;
+    }
+
+    document.getElementById('dialogue-text').setAttribute('value', randomQuestion.question);
+    document.getElementById('difficulty-text').setAttribute('value', `Difficulty: ${randomQuestion.difficulty}`);
+    document.getElementById('remaining-text').setAttribute('value', `Remaining: ${remainingQuestions[npcId]}`);
+
+    document.getElementById('choice1').setAttribute('value', randomQuestion.choices[0]);
+    document.getElementById('choice1').setAttribute('onclick', `checkAnswer(${JSON.stringify(randomQuestion)}, 0)`);
+
+    document.getElementById('choice2').setAttribute('value', randomQuestion.choices[1]);
+    document.getElementById('choice2').setAttribute('onclick', `checkAnswer(${JSON.stringify(randomQuestion)}, 1)`);
+}
+
+
+// Event listener pour désactiver les clics pendant un dialogue ouvert
+document.querySelectorAll('.clickable').forEach(hitbox => {
+    hitbox.addEventListener('click', function () {
+        if (isDialogueOpen) return; // Empêche les clics si un dialogue est ouvert
+        openDialogue(this.id);
+    });
+});
 
         function updateScore() {
             document.getElementById('score').innerText = `Score: ${score}`;
@@ -201,7 +211,7 @@
 
         // Function to check the answer and display the feedback message
         function checkAnswer(question, selectedIndex) {
-            if (selectedIndex === question.correct) {
+            if ((selectedIndex + 1) === question.correct) {
                 score++;
                 showFeedbackMessage("✅ Correct! +1 Point", true);
             } else {
@@ -210,29 +220,49 @@
             updateScore();
             closeDialogue();
         }
-
         function closeDialogue() {
-            // document.getElementById('dialogue-box').style.display = 'none';
+            console.log("Fermeture du dialogue...");
+            
             const dialogueBox = document.getElementById('dialogue-box');
-            dialogueBox.setAttribute('visible', 'false');
-            document.getElementById('overlay').setAttribute('visible', 'false');
+            const overlay = document.getElementById('overlay');
+            
+            if (dialogueBox) dialogueBox.setAttribute('visible', 'false');
+            if (overlay) overlay.setAttribute('visible', 'false');
+        
+            isDialogueOpen = false; // Réactive l'interaction
         }
-
-        // Event listeners for the clickable hitboxes
-        document.querySelectorAll('.clickable').forEach(hitbox => {
-            hitbox.addEventListener('click', function () {
-                openDialogue(this.id);
+        const dialogueBox = document.getElementById('dialogue-box');
+        if (dialogueBox) {
+            dialogueBox.addEventListener('click', function(event) {
+                if (event.target && event.target.matches('.close')) {
+                    console.log("Fermeture du dialogue"); // Debug
+                    closeDialogue();
+                }
             });
-        });
+        }
+        const closeBtn = document.getElementById('close');
 
-        // Function to update the position of the hitboxes to match the parent NPC position
+        // Vérifier si le bouton est bien sélectionné
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function(event) {
+                event.stopPropagation(); // Empêche la propagation de l'événement
+                console.log("Fermeture du dialogue"); // Message de débogage
+                closeDialogue(); // Appel à la fonction pour fermer le dialogue
+            });
+        } else {
+            console.log("Le bouton de fermeture (#close) n'a pas été trouvé !");
+        }
+        
+        // Removed redundant event delegation for '.choice' as inline onclick events are already being used.
+        // Function to 
+        // update the position of the hitboxes to match the parent NPC position
         function updateHitboxPosition() {
             document.querySelectorAll('.clickable').forEach(hitbox => {
                 let parent = hitbox.parentElement;
                 let position = parent.getAttribute('position');
 
                 if (position) {
-                    hitbox.setAttribute('position', { x: 0, y: 1, z: 0 });
+                    hitbox.setAttribute('position', '0 1 0');
                 }
             });
         }
