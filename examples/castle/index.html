@@ -59,22 +59,23 @@
             <a-entity camera position="0 1.5 0" look-controls="pointerLockEnabled: true">
                 <a-entity cursor position="0 0 -0.01" geometry="primitive: sphere; radius: 0.00005"
                     material="color: #202020; shader: flat">
+                    <a-plane id="score-panel"  position="0.5 0.2 -1" width="0.3" height="0.1" color="#FFD700" material="shader: flat">
+                      <a-text id="score" 
+                                      value="Score: 0" 
+                                      position="0 0.02 0" 
+                                      align="center" 
+                                      color="black" 
+                                      width="1" 
+                                      font="mozillavr">
+                      </a-text>
+                  </a-plane>
                 </a-entity>
             </a-entity>
             <a-entity id="leftController" oculus-touch-controls="hand: left" thumbstick-move></a-entity>
             <a-entity id="rightController" oculus-touch-controls="hand: right">
                 <a-entity raycaster="objects: .collidable" cursor></a-entity>
             </a-entity>
-            <a-plane id="score-panel"  position="1.5 0.7 -1" width="0.3" height="0.1" color="#FFD700" material="shader: flat">
-              <a-text id="score" 
-                              value="Score: 0" 
-                              position="-0.15 -0.05 0.1" 
-                              align="center" 
-                              color="black" 
-                              width="1" 
-                              font="mozillavr">
-              </a-text>
-          </a-plane>
+            
         </a-entity>
 
         <a-plane id="overlay" position="0 3 -2" visible="false"></a-plane>
