@@ -254,15 +254,17 @@ hitbox.addEventListener('click', function () {
 
     // Function to check the answer and display the feedback message
     function checkAnswer(question, selectedIndex) {
-        if (selectedIndex === question.correct) {
-            score++;
-            showFeedbackMessage("✅ Correct! +1 Point", true);
-        } else {
-            showFeedbackMessage("❌ Wrong! Try again.", false);
-        }
-        updateScore();
-        closeDialogue();
-    }       function updateScore() {
+            if (selectedIndex === question.correct) {
+                score++;
+                showFeedbackMessage("✅ Correct! +1 Point", true);
+            } else {
+                showFeedbackMessage("❌ Wrong! Try again.", false);
+            }
+            updateScore();
+            closeDialogue();
+    }
+    
+    function updateScore() {
         document.getElementById('score').setAttribute("value", `Score: ${score}`);
         closeDialogue();
     }
@@ -291,14 +293,6 @@ hitbox.addEventListener('click', function () {
                 console.log("Fermeture du dialogue"); // Debug
                 closeDialogue();
             }
-            if (event.target.id === 'choice1') {
-                const question = JSON.parse(event.target.getAttribute('data-question'));
-                checkAnswer(question, 0);
-            }
-            if (event.target.id === 'choice2') {
-                const question = JSON.parse(event.target.getAttribute('data-question'));
-                checkAnswer(question, 1);
-            }
         });       
     // Removed redundant event delegation for '.choice' as inline onclick events are already being used.
     // Function to 
@@ -314,7 +308,7 @@ hitbox.addEventListener('click', function () {
         });
     }
 
-    async function moveNPCRandomly(npcId, min, max) {
+    /*async function moveNPCRandomly(npcId, min, max) {
         const npc = document.querySelector(`#${npcId}`);
         
         // Generate a new random position
@@ -407,4 +401,4 @@ hitbox.addEventListener('click', function () {
         moveNPCRandomly('npc1-container', -10, 10);
         moveNPCRandomly('npc2-container', -10, 10);
         moveNPCRandomly('npc3-container', -10, 10);
-    }, 10000);
+    }, 10000);*/
