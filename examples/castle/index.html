@@ -5,64 +5,19 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,maximum-scale=1">
   <title>Examples • Castle</title>
-  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdn.aframe.io/releases/1.2.0/aframe-extras.min.js"></script>
   <script src="../../dist/aframe-extras.js?V=1"></script>
   <script
     src="https://cdn.jsdelivr.net/npm/aframe-environment-component@1.3.7/dist/aframe-environment-component.min.js"></script>
-  <script>
-    /**
-     * Basic emissive effect.
-     */
-    AFRAME.registerComponent('glow', {
-      schema: {
-        color: { default: '#ffffff', type: 'color' },
-        intensity: { default: 1.0 }
-      },
-      init: function () {
-        this.el.addEventListener('object3dset', function () {
-          this.update();
-        }.bind(this));
-      },
-      update: function () {
-        var data = this.data;
-        this.el.object3D.traverse(function (node) {
-          if (node.isMesh) {
-            node.material.emissive.copy(new THREE.Color(data.color));
-            node.material.emissiveIntensity = data.intensity;
-          }
-        });
-      }
-    });
-
-    /**
-     * Simple spin-and-levitate animation.
-     */
-    AFRAME.registerComponent('levitate', {
-      tick: function (t, dt) {
-        var mesh = this.el.getObject3D('mesh');
-        if (!mesh) return;
-        mesh.rotation.y += 0.1 * dt / 1000;
-        mesh.position.y = 0.25 * Math.sin(t / 1000);
-      }
-    });
-
-    /**
-     * Removes current element if on a mobile device.
-     */
-    AFRAME.registerComponent('not-mobile', {
-      init: function () {
-        var el = this.el;
-        if (el.sceneEl.isMobile) {
-          el.parentEl.remove(el);
-        }
-      }
-    });
-  </script>
 </head>
 
 <body>
   <a-scene>
     <a-assets>
+      <a-asset-item id="npc1" src="../assets/city/Man.glb"></a-asset-item>
+      <a-asset-item id="npc2" src="../assets/city/Business%20Man.glb"></a-asset-item>
+      <a-asset-item id="npc3" src="../assets/city/Hoodie%20Character.glb"></a-asset-item>
       <a-asset-item id="navmesh" src="../assets/city/navmesh.gltf?V=1"></a-asset-item>
         <a-asset-item id="building1" src="../assets/city/Large Building-JgGLJH2iXj.glb"></a-asset-item> /* batiment vert 2*3 */
         <a-asset-item id="building2" src="../assets/city/Skyscraper2.glb"></a-asset-item> /* gratte ciel */
@@ -92,7 +47,7 @@
         <a-asset-item id="building27" src="../assets/city/Monkeybars.glb"></a-asset-item>
         <a-asset-item id="building28" src="../assets/city/Sandbox.glb"></a-asset-item>
         <a-asset-item id="building29" src="../assets/city/Tree.glb"></a-asset-item>
-        <a-asset-item id="building30" src="../assets/city/Bench.glb"></a-asset-item>
+        <!-- <a-asset-item id="building30" src="../assets/city/Bench.glb"></a-asset-item> -->
         <a-asset-item id="building31" src="../assets/city/Curved road.glb"></a-asset-item>
         <a-asset-item id="building32" src="../assets/city/Trashcan Large.glb"></a-asset-item>
     </a-assets>
@@ -110,8 +65,99 @@
             <a-entity id="rightController" oculus-touch-controls="hand: right">
                 <a-entity raycaster="objects: .collidable" cursor></a-entity>
             </a-entity>
+            <a-plane id="score-panel"  position="1.5 0.7 -1" width="0.3" height="0.1" color="#FFD700" material="shader: flat">
+              <a-text id="score" 
+                              value="Score: 0" 
+                              position="-0.15 -0.05 0.1" 
+                              align="center" 
+                              color="black" 
+                              width="1" 
+                              font="mozillavr">
+              </a-text>
+          </a-plane>
         </a-entity>
 
+        <a-plane id="overlay" position="0 3 -2" visible="false"></a-plane>
+        <a-plane id="dialogue-box" 
+                 position="0 2 -2" 
+                 width="4" 
+                 height="0.5" 
+                 visible="false"
+                 material="color: black; opacity: 0.8; shader: flat"
+                 geometry="primitive: plane; width:5; height: 1.4">
+
+
+
+    <a-text id="dialogue-text" 
+    value="Hi! How can I help you?" 
+    position="0 0.2 0.01" 
+    width="2" 
+    align="center"
+    text="color: white; wrapCount: 30; font: mozillavr">
+</a-text>
+
+<a-text id="difficulty-text" 
+    value="Difficulty:" 
+    position="-1.4 0.5 0.01" 
+    width="1.5"
+    text="color: yellow; wrapCount: 20; font: mozillavr">
+</a-text>
+
+<a-text id="remaining-text" 
+    value="Remaining:" 
+    position="0.6 0.5 0.01" 
+    width="1.5"
+    text="color: cyan; wrapCount: 20; font: mozillavr">
+</a-text>
+
+<!-- Boutons de choix interactifs -->
+<a-text id="choice1" 
+    value="I don't speak English" 
+    position="-1.8 -0.2 0.01" 
+    width="1.5"
+    class="clickableChoice"
+    text="color: lightblue; wrapCount: 20; font: mozillavr; width: 1.5"
+    event-set__mouseenter="_event: mouseenter; text.color: cyan"
+    event-set__mouseleave="_event: mouseleave; text.color: lightblue"
+   >
+</a-text>
+
+<a-text id="choice2" 
+    value="Where is the police station?" 
+    position="1 -0.2 0.01" 
+    width="1.5"
+    class="clickableChoice"
+    text="color: lightgreen; wrapCount: 20; font: mozillavr; width: 1.5"
+    event-set__mouseenter="_event: mouseenter; text.color: lime"
+    event-set__mouseleave="_event: mouseleave; text.color: lightgreen"
+    >
+</a-text>
+
+<!-- Bouton de fermeture -->
+<a-plane id="close" 
+class="close"
+position="0 -0.4 0.01" 
+width="0.6" 
+height="0.2" 
+color="red"
+text="value: Fermer; align: center; color: white; font: mozillavr; width: 2">
+</a-plane>
+        </a-plane>
+
+<a-entity id="npc1-container" position="5 0 50">
+  <a-entity id="npc1-entity" gltf-model="#npc1" scale="0.2 0.2 0.2"></a-entity>
+  <a-box id="npc1-hitbox" class="clickable" position="0 1 0" width="1" height="1.7" depth="1" opacity="0" transparent="true"></a-box>
+</a-entity>
+
+<a-entity id="npc2-container" position="5 0 50">
+  <a-entity id="npc2-entity" gltf-model="#npc2" scale="0.5 0.5 0.5"></a-entity>
+  <a-box id="npc2-hitbox" class="clickable" position="0 1 0" width="1" height="1.7" depth="1" opacity="0" transparent="true"></a-box>
+</a-entity>
+
+<a-entity id="npc3-container" position="5 0 50">
+  <a-entity id="npc3-entity" gltf-model="#npc3" scale="0.5 0.5 0.5"></a-entity>
+  <a-box id="npc3-hitbox" class="clickable" position="0 1 0" width="1" height="1.7" depth="1" opacity="0" transparent="true"></a-box>
+</a-entity>
 
     <!-- Nav mesh. -->
     <a-entity nav-mesh normal-material visible="false" position="0 0 0" gltf-model="#navmesh"></a-entity>
@@ -192,8 +238,8 @@
   <a-entity gltf-model="#building26" position="5 0 50" scale="0.03 0.03 0.03" rotation="0 90 0"></a-entity>
   <a-entity gltf-model="#building27" position="15 0 50" scale="5 5 5" rotation="0 -124 0"></a-entity>
   <a-entity gltf-model="#building28" position="12 1.4 60" scale="17 17 17" rotation="0 90 0"></a-entity>
-  <a-entity gltf-model="#building30" position="0 1 75" scale="5 5 5" rotation="0 270 0"></a-entity>
-  <a-entity gltf-model="#building30" position="15 1 75" scale="5 5 5" rotation="0 270 0"></a-entity>
+  <!-- <a-entity gltf-model="#building30" position="0 1 75" scale="5 5 5" rotation="0 270 0"></a-entity>
+  <a-entity gltf-model="#building30" position="15 1 75" scale="5 5 5" rotation="0 270 0"></a-entity> -->
   <!-- Coté affaire -->
   <a-entity gltf-model="#building17" position="-100 0 100" scale="30 30 30" rotation="0 180 0"></a-entity>
   <a-entity gltf-model="#building18" position="-140 0 40" scale="7 7 7" rotation="0 270 0"></a-entity>
@@ -359,6 +405,9 @@
   
     <a-entity fence="length: 50; width: 10; color: #131e27; dashed: true" position="-40 0 85" rotation="0 90 0"></a-entity>
   </a-scene>
+  
+  <script src="clickable.js"></script>
+  <div id="feedback-message"></div>
 </body>
 
 </html>
