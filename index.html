@@ -19,7 +19,7 @@
              <a-asset-item id="npc3" src="./NPC/Hoodie%20Character.glb"></a-asset-item>
          </a-assets>
  
-         <a-camera id="camera-entity"  wasd-controls="acceleration: 25" position="0 1.6 5">
+         <a-camera id="camera-entity"  wasd-controls="acceleration: 25" position="0 1.2 5">
              <a-cursor></a-cursor>
                 <!-- <a-text
                 value="Hey YO WHAT'S UP ?"
@@ -27,8 +27,18 @@
             
             color="#FFF"
             width="4"> </a-text> -->
+            
+            <a-plane id="score-panel"  position="1.5 0.7 -1" width="0.3" height="0.1" color="#FFD700" material="shader: flat">
+                <a-text id="score" 
+                                value="Score: 0" 
+                                position="-0.15 -0.05 0.1" 
+                                align="center" 
+                                color="black" 
+                                width="1" 
+                                font="mozillavr">
+                </a-text>
+            </a-plane>
         </a-camera>
-        <a-text id="score" position="0 0 -2" >Score: 0</a-text>
         
         <a-plane id="overlay" position="0 3 -2" visible="false"></a-plane>
         <a-plane id="dialogue-box" 
@@ -66,10 +76,10 @@
 <!-- Boutons de choix interactifs -->
 <a-text id="choice1" 
     value="I don't speak English" 
-    position="-1 -0.2 0.01" 
+    position="-1.8 -0.2 0.01" 
     width="1.5"
     class="clickableChoice"
-    text="color: lightblue; wrapCount: 20; font: mozillavr"
+    text="color: lightblue; wrapCount: 20; font: mozillavr; width: 1.5"
     event-set__mouseenter="_event: mouseenter; text.color: cyan"
     event-set__mouseleave="_event: mouseleave; text.color: lightblue"
    >
@@ -77,10 +87,10 @@
 
 <a-text id="choice2" 
     value="Where is the police station?" 
-    position="0.9 -0.2 0.01" 
+    position="1 -0.2 0.01" 
     width="1.5"
     class="clickableChoice"
-    text="color: lightgreen; wrapCount: 20; font: mozillavr"
+    text="color: lightgreen; wrapCount: 20; font: mozillavr; width: 1.5"
     event-set__mouseenter="_event: mouseenter; text.color: lime"
     event-set__mouseleave="_event: mouseleave; text.color: lightgreen"
     >
@@ -106,17 +116,17 @@ text="value: Fermer; align: center; color: white; font: mozillavr; width: 2">
  
          <a-entity id="npc1-container" position="2 0 -5">
             <a-entity id="npc1-entity" gltf-model="#npc1" scale="0.2 0.2 0.2"></a-entity>
-            <a-box id="npc1-hitbox" class="clickable" position="0 0.5 0" width="1" height="1.2" depth="1" opacity="0" transparent="true"></a-box>
+            <a-box id="npc1-hitbox" class="clickable" position="0 1 0" width="1" height="1.7" depth="1" opacity="0" transparent="true"></a-box>
         </a-entity>
         
         <a-entity id="npc2-container" position="-2 0 -5">
             <a-entity id="npc2-entity" gltf-model="#npc2" scale="0.5 0.5 0.5"></a-entity>
-            <a-box id="npc2-hitbox" class="clickable" position="0 0.5 0" width="1" height="1.2" depth="1" opacity="0" transparent="true"></a-box>
+            <a-box id="npc2-hitbox" class="clickable" position="0 1 0" width="1" height="1.7" depth="1" opacity="0" transparent="true"></a-box>
         </a-entity>
         
         <a-entity id="npc3-container" position="0 0 -5">
             <a-entity id="npc3-entity" gltf-model="#npc3" scale="0.5 0.5 0.5"></a-entity>
-            <a-box id="npc3-hitbox" class="clickable" position="0 0.5 0" width="1" height="1.2" depth="1" opacity="0" transparent="true"></a-box>
+            <a-box id="npc3-hitbox" class="clickable" position="0 1 0" width="1" height="1.7" depth="1" opacity="0" transparent="true"></a-box>
         </a-entity>
         
 

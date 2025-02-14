@@ -110,6 +110,8 @@
             'npc2-hitbox': questionsNPC2.length,
             'npc3-hitbox': questionsNPC3.length
         };
+
+        let score = 0;
         function getRandomQuestion(npcId) {
             let questionsList;
             if (npcId === 'npc1-hitbox') questionsList = questionsNPC1;
@@ -171,9 +173,6 @@ document.querySelectorAll('.clickable').forEach(hitbox => {
     });
 });
 
-        function updateScore() {
-            document.getElementById('score').innerText = `Score: ${score}`;
-        }
 
         function showFeedbackMessage(text, isCorrect) {
             const feedback = document.getElementById('feedback-message');
@@ -211,7 +210,7 @@ document.querySelectorAll('.clickable').forEach(hitbox => {
 
         // Function to check the answer and display the feedback message
         function checkAnswer(question, selectedIndex) {
-            if ((selectedIndex + 1) === question.correct) {
+            if (selectedIndex === question.correct) {
                 score++;
                 showFeedbackMessage("✅ Correct! +1 Point", true);
             } else {
@@ -219,7 +218,11 @@ document.querySelectorAll('.clickable').forEach(hitbox => {
             }
             updateScore();
             closeDialogue();
+        }       function updateScore() {
+            document.getElementById('score').setAttribute("value", `Score: ${score}`);
+            closeDialogue();
         }
+
         function closeDialogue() {
             console.log("Fermeture du dialogue...");
             
@@ -238,8 +241,21 @@ document.querySelectorAll('.clickable').forEach(hitbox => {
                     closeDialogue();
                 }
             });
-     
-        
+            const answer = document.getElementById('.clickablechoice');
+            answer.addEventListener('click', function(event) {
+                if (event.target.id === 'close') {
+                    console.log("Fermeture du dialogue"); // Debug
+                    closeDialogue();
+                }
+                if (event.target.id === 'choice1') {
+                    const question = JSON.parse(event.target.getAttribute('data-question'));
+                    checkAnswer(question, 0);
+                }
+                if (event.target.id === 'choice2') {
+                    const question = JSON.parse(event.target.getAttribute('data-question'));
+                    checkAnswer(question, 1);
+                }
+            });       
         // Removed redundant event delegation for '.choice' as inline onclick events are already being used.
         // Function to 
         // update the position of the hitboxes to match the parent NPC position
