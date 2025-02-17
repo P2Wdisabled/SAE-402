@@ -43,7 +43,7 @@ AFRAME.registerComponent('glow', {
     }
   });
 
-const questionsNPC1 = [
+let questionsNPC1 = [
 
     {
         question: "You just arrived in New York. How do you greet the customs officer?",
@@ -71,7 +71,7 @@ const questionsNPC1 = [
     }
     ];
     
-    const questionsNPC2 = [
+    let questionsNPC2 = [
     {
         question: "At a coffee shop, how do you order a coffee politely?",
         choices: ["I want coffee.", "Can I have a coffee, please?"],
@@ -104,7 +104,7 @@ const questionsNPC1 = [
     }
     ];
     
-    const questionsNPC3 = [
+    let questionsNPC3 = [
     {
         question: "A New Yorker tells you 'It's a piece of cake!'. What does it mean?",
         choices: ["It's delicious.", "It's very easy."],
@@ -270,6 +270,7 @@ hitbox.addEventListener('click', function () {
     }
 
     function closeDialogue() {
+        savePlayerThings();
         console.log("Fermeture du dialogue...");
         
         const dialogueBox = document.getElementById('dialogue-box');
@@ -403,20 +404,44 @@ hitbox.addEventListener('click', function () {
         moveNPCRandomly('npc3-container', -10, 10);
     }, 10000);*/
 
-    function loadPlayerThings(){
-        if(localStorage.getItem('playerScore')){
-            score = parseInt(localStorage.getItem('playerScore'), 10);
-            document.getElementById('rig').setAttribute('position', JSON.parse(localStorage.getItem('playerPosition')));
-            remainingQuestions = JSON.parse(localStorage.getItem('NPCs'));
-            dialogues = JSON.parse(localStorage.getItem('dialogues'));
-            updateScore();
-        }
+    async function loadPlayerThings() {
+        if (!localStorage.getItem('playerScore')) { return; }
+        
+        score = parseInt(localStorage.getItem('playerScore'), 10);
+        document.getElementById('rig').setAttribute('position', JSON.parse(localStorage.getItem('playerPosition')));
+        
+        let rx = JSON.parse(localStorage.getItem('playerRotationX'));
+        let ry = JSON.parse(localStorage.getItem('playerRotationY'));
+        let rz = JSON.parse(localStorage.getItem('playerRotationZ'));
+        
+        console.log(rx, ry, rz); // Vérifie les valeurs dans la console
+        
+        // ✅ Appliquer correctement la rotation en utilisant .set()
+        document.querySelector('[camera]').object3D.rotation.set(rx, ry, rz);
+        
+        remainingQuestions = JSON.parse(localStorage.getItem('NPCs'));
+        dialogues = JSON.parse(localStorage.getItem('dialogues'));
+        questionsNPC1 = JSON.parse(localStorage.getItem('PNJ1'));
+        questionsNPC2 = JSON.parse(localStorage.getItem('PNJ2'));
+        questionsNPC3 = JSON.parse(localStorage.getItem('PNJ3'));
+        
+        updateScore();
+        savePlayerThings();
     }
-    function savePlayerThings() {
+    
+    async function savePlayerThings() {
+        console.log("Sauvegarde des données du joueur...");
         localStorage.setItem('playerScore', score);
         localStorage.setItem('playerPosition', JSON.stringify(document.getElementById('rig').getAttribute('position')));
+        localStorage.setItem('playerRotationOrder', JSON.stringify(document.querySelector('[camera]').object3D.rotation._order));
+        localStorage.setItem('playerRotationX', JSON.stringify(document.querySelector('[camera]').object3D.rotation._x));
+        localStorage.setItem('playerRotationY', JSON.stringify(document.querySelector('[camera]').object3D.rotation._y));
+        localStorage.setItem('playerRotationZ', JSON.stringify(document.querySelector('[camera]').object3D.rotation._z));
         localStorage.setItem('NPCs', JSON.stringify(remainingQuestions));
         localStorage.setItem('dialogues', JSON.stringify(dialogues));
+        localStorage.setItem('PNJ1', JSON.stringify(questionsNPC1));
+        localStorage.setItem('PNJ2', JSON.stringify(questionsNPC2));
+        localStorage.setItem('PNJ3', JSON.stringify(questionsNPC3));
     }
 
     setInterval(() => {
