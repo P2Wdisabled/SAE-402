@@ -144,12 +144,12 @@ const questionsNPC1 = [
     // Smooth movement and rotation logic for the character
 
 
-    const dialogues = {
+    let dialogues = {
         'npc1-hitbox': questionsNPC1.map(q => ({ ...q, correct: q.correct + 1 })), // Transforme l'indice 0-based en 1-based
         'npc2-hitbox': questionsNPC2.map(q => ({ ...q, correct: q.correct + 1 })),
         'npc3-hitbox': questionsNPC3.map(q => ({ ...q, correct: q.correct + 1 }))
     };
-    const remainingQuestions = {
+    let remainingQuestions = {
         'npc1-hitbox': questionsNPC1.length,
         'npc2-hitbox': questionsNPC2.length,
         'npc3-hitbox': questionsNPC3.length
@@ -402,3 +402,25 @@ hitbox.addEventListener('click', function () {
         moveNPCRandomly('npc2-container', -10, 10);
         moveNPCRandomly('npc3-container', -10, 10);
     }, 10000);*/
+
+    function loadPlayerThings(){
+        if(localStorage.getItem('playerScore')){
+            score = parseInt(localStorage.getItem('playerScore'), 10);
+            document.getElementById('rig').setAttribute('position', JSON.parse(localStorage.getItem('playerPosition')));
+            remainingQuestions = JSON.parse(localStorage.getItem('NPCs'));
+            dialogues = JSON.parse(localStorage.getItem('dialogues'));
+            updateScore();
+        }
+    }
+    function savePlayerThings() {
+        localStorage.setItem('playerScore', score);
+        localStorage.setItem('playerPosition', JSON.stringify(document.getElementById('rig').getAttribute('position')));
+        localStorage.setItem('NPCs', JSON.stringify(remainingQuestions));
+        localStorage.setItem('dialogues', JSON.stringify(dialogues));
+    }
+
+    setInterval(() => {
+        savePlayerThings();
+    }, 2000);
+
+    loadPlayerThings();
