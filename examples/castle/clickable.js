@@ -451,6 +451,36 @@ hitbox.addEventListener('click', function () {
         localStorage.setItem('playerData', JSON.stringify(playerData));
     }
 
+    function endGame(endType) {
+        if (endType === 'timeout') {
+            alert('Time is up! Game over!');
+        } else if (endType === 'questions') {
+            alert('You have answered all questions!');
+        }
+    }
+
+    let timeRemaining = 600;
+    let chronoString = '';
+    let intervalId = null;
+
+    async function updateChrono() {
+        if (timeRemaining <= 0) {
+            timeRemaining = 0;
+            clearInterval(intervalId);
+            await endGame('timeout');
+            return;
+        }
+        timeRemaining--;
+        let minutes = Math.floor(timeRemaining / 60);
+        let seconds = timeRemaining % 60;
+        chronoString = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+        document.getElementById('time').setAttribute("value", `time left: ${chronoString}`);
+    }
+
+    intervalId = setInterval(async () => {
+        await updateChrono();
+    }, 1000);
+
     setInterval(() => {
         savePlayerThings();
     }, 2000);
