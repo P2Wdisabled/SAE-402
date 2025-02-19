@@ -255,7 +255,7 @@ hitbox.addEventListener('click', function () {
     // Function to check the answer and display the feedback message
     function checkAnswer(question, selectedIndex) {
             if (selectedIndex === question.correct) {
-                score++;
+                (question.difficulty == "easy") ? score++ : (question.difficulty == "medium") ? score += 2 : score += 3;
                 showFeedbackMessage("✅ Correct! +1 Point", true);
             } else {
                 showFeedbackMessage("❌ Wrong! Try again.", false);
