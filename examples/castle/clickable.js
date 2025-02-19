@@ -405,43 +405,50 @@ hitbox.addEventListener('click', function () {
     }, 10000);*/
 
     async function loadPlayerThings() {
-        if (!localStorage.getItem('playerScore')) { return; }
-        
-        score = parseInt(localStorage.getItem('playerScore'), 10);
-        document.getElementById('rig').setAttribute('position', JSON.parse(localStorage.getItem('playerPosition')));
-        
-        let rx = JSON.parse(localStorage.getItem('playerRotationX'));
-        let ry = JSON.parse(localStorage.getItem('playerRotationY'));
-        let rz = JSON.parse(localStorage.getItem('playerRotationZ'));
-        
-        console.log(rx, ry, rz); // Vérifie les valeurs dans la console
-        
-        // ✅ Appliquer correctement la rotation en utilisant .set()
-        document.querySelector('[camera]').object3D.rotation.set(rx, ry, rz);
-        
-        remainingQuestions = JSON.parse(localStorage.getItem('NPCs'));
-        dialogues = JSON.parse(localStorage.getItem('dialogues'));
-        questionsNPC1 = JSON.parse(localStorage.getItem('PNJ1'));
-        questionsNPC2 = JSON.parse(localStorage.getItem('PNJ2'));
-        questionsNPC3 = JSON.parse(localStorage.getItem('PNJ3'));
-        
+        const storedData = localStorage.getItem('playerData');
+        if (!storedData) return;
+
+        const data = JSON.parse(storedData);
+        score = data.score;
+        document.getElementById('rig').setAttribute('position', data.position);
+
+        console.log(data.rotation._x, data.rotation._y, data.rotation._z);
+
+        document.querySelector('[camera]').object3D.rotation.set(
+            data.rotation._x,
+            data.rotation._y,
+            data.rotation._z
+        );
+
+        remainingQuestions = data.remainingQuestions;
+        dialogues = data.dialogues;
+        questionsNPC1 = data.questionsNPC1;
+        questionsNPC2 = data.questionsNPC2;
+        questionsNPC3 = data.questionsNPC3;
+
         updateScore();
         savePlayerThings();
     }
-    
+
     async function savePlayerThings() {
-        console.log("Sauvegarde des données du joueur...");
-        localStorage.setItem('playerScore', score);
-        localStorage.setItem('playerPosition', JSON.stringify(document.getElementById('rig').getAttribute('position')));
-        localStorage.setItem('playerRotationOrder', JSON.stringify(document.querySelector('[camera]').object3D.rotation._order));
-        localStorage.setItem('playerRotationX', JSON.stringify(document.querySelector('[camera]').object3D.rotation._x));
-        localStorage.setItem('playerRotationY', JSON.stringify(document.querySelector('[camera]').object3D.rotation._y));
-        localStorage.setItem('playerRotationZ', JSON.stringify(document.querySelector('[camera]').object3D.rotation._z));
-        localStorage.setItem('NPCs', JSON.stringify(remainingQuestions));
-        localStorage.setItem('dialogues', JSON.stringify(dialogues));
-        localStorage.setItem('PNJ1', JSON.stringify(questionsNPC1));
-        localStorage.setItem('PNJ2', JSON.stringify(questionsNPC2));
-        localStorage.setItem('PNJ3', JSON.stringify(questionsNPC3));
+        const rotation = document.querySelector('[camera]').object3D.rotation;
+        const playerData = {
+            score: score,
+            position: document.getElementById('rig').getAttribute('position'),
+            rotation: {
+                _order: rotation._order,
+                _x: rotation._x,
+                _y: rotation._y,
+                _z: rotation._z
+            },
+            remainingQuestions: remainingQuestions,
+            dialogues: dialogues,
+            questionsNPC1: questionsNPC1,
+            questionsNPC2: questionsNPC2,
+            questionsNPC3: questionsNPC3
+        };
+
+        localStorage.setItem('playerData', JSON.stringify(playerData));
     }
 
     setInterval(() => {
