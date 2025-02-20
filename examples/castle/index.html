@@ -54,23 +54,39 @@
 
     <a-plane position="0 0 0" rotation="-90 0 0" width="300" height="300" color="#777"></a-plane>
     <!-- Player. -->
-    <a-entity scale="" id="rig" movement-controls="constrainToNavMesh: true; controls: checkpoint, gamepad, trackpad, keyboard, nipple;" position="10 0 0">
-      <a-entity camera position="0 1.5 0" look-controls="pointerLockEnabled: true">
-        <a-entity cursor position="0 0 -0.01" geometry="primitive: sphere; radius: 0.00005" material="color: #202020; shader: flat">
-          <a-plane id="score-panel"  position="0.5 0.2 -1" width="0.3" height="0.1" color="#FFD700" material="shader: flat">
-            <a-text id="score" value="Score: 0" position="0 0.02 0" align="center" color="black" width="1" font="mozillavr">
-            </a-text>
-          </a-plane>
-          <a-plane id="time-panel"  position="-0.2 0.2 -1" width="0.4" height="0.1" color="#FFD700" material="shader: flat">
-            <a-text id="time" value="time left: 0" position="0 0.02 0" align="center" color="black" width="1" font="mozillavr">
-            </a-text>
-          </a-plane>
-          <a-entity id="leftController" oculus-touch-controls="hand: left" thumbstick-move></a-entity>
-      <a-entity id="rightController" oculus-touch-controls="hand: right">
-        <a-entity raycaster="objects: .collidable" cursor></a-entity>
-      </a-entity>
-        </a-entity>
-      </a-entity>
+    <a-entity id="rig" 
+          movement-controls="constrainToNavMesh: true; controls: checkpoint, gamepad, trackpad, keyboard, nipple;" 
+          position="10 0 0">
+  
+  <!-- Caméra (enfant du rig) -->
+  <a-entity camera position="0 1.5 0" look-controls="pointerLockEnabled: true">
+    <a-entity cursor
+              position="0 0 -0.01"
+              geometry="primitive: sphere; radius: 0.00005"
+              material="color: #202020; shader: flat">
+      
+      <!-- Panneaux d'affichage (score, temps...) -->
+      <a-plane id="score-panel"  position="0.5 0.2 -1" width="0.3" height="0.1" color="#FFD700" material="shader: flat">
+        <a-text id="score" value="Score: 0" position="0 0.02 0" align="center" color="black" width="1" font="mozillavr"></a-text>
+      </a-plane>
+
+      <a-plane id="time-panel" position="-0.2 0.2 -1" width="0.4" height="0.1" color="#FFD700" material="shader: flat">
+        <a-text id="time" value="time left: 0" position="0 0.02 0" align="center" color="black" width="1" font="mozillavr"></a-text>
+      </a-plane>
+    </a-entity>
+  </a-entity>
+  
+  <!-- Contrôleurs (enfants du rig, en dehors de la caméra) -->
+  <a-entity id="leftController"
+            oculus-touch-controls="hand: left; model: true"
+            thumbstick-move>
+  </a-entity>
+
+  <a-entity id="rightController"
+            oculus-touch-controls="hand: right; model: true">
+    <a-entity raycaster="objects: .collidable" cursor></a-entity>
+  </a-entity>
+
       
       <a-plane id="overlay" position="0 3 -2" visible="false"></a-plane>
       <a-plane id="dialogue-box" position="0 2 -2" width="4" height="0.5" visible="false"material="color: black; opacity: 0.8; shader: flat"geometry="primitive: plane; width:5; height: 1.4">
