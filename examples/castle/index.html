@@ -58,14 +58,12 @@
           movement-controls="constrainToNavMesh: true; controls: checkpoint, gamepad, trackpad, keyboard, nipple;" 
           position="10 0 0">
   
-  <!-- Caméra (enfant du rig) -->
   <a-entity camera position="0 1.5 0" look-controls="pointerLockEnabled: true">
     <a-entity cursor
               position="0 0 -0.01"
               geometry="primitive: sphere; radius: 0.00005"
               material="color: #202020; shader: flat">
       
-      <!-- Panneaux d'affichage (score, temps...) -->
       <a-plane id="score-panel"  position="0.5 0.2 -1" width="0.3" height="0.1" color="#FFD700" material="shader: flat">
         <a-text id="score" value="Score: 0" position="0 0.02 0" align="center" color="black" width="1" font="mozillavr"></a-text>
       </a-plane>
@@ -76,7 +74,6 @@
     </a-entity>
   </a-entity>
   
-  <!-- Contrôleurs (enfants du rig, en dehors de la caméra) -->
   <a-entity id="leftController"
             oculus-touch-controls="hand: left; model: true"
             thumbstick-move>
