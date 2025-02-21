@@ -43,8 +43,8 @@ AFRAME.registerComponent('glow', {
     }
   });
 
-let questionsNPC1 = [
-
+  let questionsNPC1 = [
+    
     {
         question: "You just arrived in New York. How do you greet the customs officer?",
         choices: ["Hi, how are you?", "Yo, what's up?"],
@@ -61,16 +61,20 @@ let questionsNPC1 = [
         question: "At JFK Airport, what do you say to get a taxi?",
         choices: ["Give me a taxi!", "Can I get a taxi, please?"],
         correct: 1,
-        difficulty: "easy"
+        difficulty: "medium"
     },
     {
         question: "You need to go to Manhattan. What do you ask the taxi driver?",
         choices: ["Take me to Manhattan, please.", "Go Manhattan now!"],
         correct: 0,
         difficulty: "easy"
-    }
-    ];
+    },
     
+
+    ];
+    let sentenceNPCSpawn= {
+        question: "Welcome to New York! Take your time to explore. Meet every people and speak with them to learn more about the city. The first one is waiting for you at the end of the street and name Mickael. Good luck!",
+    }
     let questionsNPC2 = [
     {
         question: "At a coffee shop, how do you order a coffee politely?",
@@ -94,13 +98,13 @@ let questionsNPC1 = [
         question: "Which one is a typical New York food?",
         choices: ["Baguette", "Hot dog"],
         correct: 1,
-        difficulty: "medium"
+        difficulty: "easy"
     },
     {
         question: "Which subway line takes you to Central Park?",
-        choices: ["A", "Q"],
-        correct: 1,
-        difficulty: "medium"
+        choices: ["Q", "A"],
+        correct: 0,
+        difficulty: "hard"
     }
     ];
     
@@ -133,7 +137,7 @@ let questionsNPC1 = [
         question: "Someone says 'Let's grab a slice'. What are they talking about?",
         choices: ["Pizza", "Cake"],
         correct: 0,
-        difficulty: "Hard"
+        difficulty: "easy"
     }
     ];
    // Easing function for smoother movement
@@ -173,39 +177,80 @@ let questionsNPC1 = [
         }
      // Ajoutez une variable pour vérifier si un dialogue est ouvert
 let isDialogueOpen = false;
-
+let chronostarted = false;
 function openDialogue(npcId) {
-if (isDialogueOpen) return; // Empêche l'ouverture d'un nouveau dialogue si déjà un dialogue est ouvert
+    if (isDialogueOpen) return;
+    isDialogueOpen = true;
+    if (!chronostarted) {
+        startChrono();
+        chronostarted = true;
+    }
 
-isDialogueOpen = true; // Marquer que le dialogue est ouvert
+    console.log("Opening of the dialog box:", npcId);
 
-console.log("Ouverture du dialogue pour :", npcId);
+    const dialogueBox = document.getElementById('dialogue-box');
+    dialogueBox.setAttribute('visible', 'true');
 
-const randomQuestion = getRandomQuestion(npcId);
-const dialogueBox = document.getElementById('dialogue-box');
-dialogueBox.setAttribute('visible', 'true');
+    if (npcId === 'npcSpawn-hitbox') {
+        // Display only the spawn message
+        document.getElementById('dialogue-text').setAttribute('value', sentenceNPCSpawn.question);
 
-if (!randomQuestion) {
-    document.getElementById('dialogue-text').setAttribute('value', "You have answered all questions");
-    // Clear answer choices when there are no questions left
-    document.getElementById('choice1').setAttribute('value', "");
-    document.getElementById('choice1').removeAttribute('onclick');
-    document.getElementById('choice2').setAttribute('value', "");
-    document.getElementById('choice2').removeAttribute('onclick');
-    // Optionally hide the dialogue after 3 seconds
-    isDialogueOpen = false; // Réactive l'interaction   
-    return;
-}
+        // Hide choices
+        document.getElementById('choice1').setAttribute('visible', 'false');
+        document.getElementById('choice2').setAttribute('visible', 'false');
+        document.getElementById('remaining-text').setAttribute('visible', 'false');
+        document.getElementById('difficulty-text').setAttribute('visible', 'false');
+        return;
+    }
 
-document.getElementById('dialogue-text').setAttribute('value', randomQuestion.question);
-document.getElementById('difficulty-text').setAttribute('value', `Difficulty: ${randomQuestion.difficulty}`);
-document.getElementById('remaining-text').setAttribute('value', `Remaining: ${remainingQuestions[npcId]}`);
+    // If it's a regular NPC, continue with normal question handling
+    const randomQuestion = getRandomQuestion(npcId);
+    if (!randomQuestion) {
 
-document.getElementById('choice1').setAttribute('value', randomQuestion.choices[0]);
-document.getElementById('choice1').setAttribute('onclick', `checkAnswer(${JSON.stringify(randomQuestion)}, 0)`);
+        let nextNPCName = '';
+        switch (npcId) {
+            case 'npc1-hitbox':
+                nextNPCName = 'Luke at the park';
+                break;
+            // case 'npc2-hitbox':
+            //     nextNPCName = 'Greg';
+            //     break;
+            case 'npc2-hitbox':
+                nextNPCName = 'Greg in the middle of the street';
+                break;
+            // default:
+            //     nextNPCName = '';
+        }
+        if(nextNPCName){
+        document.getElementById('dialogue-text').setAttribute('value', "You have answered all the questions. Please go see " + nextNPCName);}
+        else{
+            document.getElementById('dialogue-text').setAttribute('value', "You have answered all the questions. Good Job you are a real New Yorker.");
+        }
+        
+        // Masquer les choix lorsque plus aucune question n'est disponible
+        document.getElementById('choice1').setAttribute('visible', 'false');
+        document.getElementById('choice2').setAttribute('visible', 'false');
+        document.getElementById('remaining-text').setAttribute('visible', 'true');
+        document.getElementById('difficulty-text').setAttribute('visible', 'false');
 
-document.getElementById('choice2').setAttribute('value', randomQuestion.choices[1]);
-document.getElementById('choice2').setAttribute('onclick', `checkAnswer(${JSON.stringify(randomQuestion)}, 1)`);
+        isDialogueOpen = false;
+        return;
+    }
+    document.getElementById('remaining-text').setAttribute('visible', 'true');
+    document.getElementById('difficulty-text').setAttribute('visible', 'true');
+    document.getElementById('choice1').setAttribute('visible', 'true');
+    document.getElementById('choice2').setAttribute('visible', 'true');
+    document.getElementById('dialogue-text').setAttribute('value', randomQuestion.question);
+    document.getElementById('difficulty-text').setAttribute('value', `Difficulty: ${randomQuestion.difficulty}`);
+    document.getElementById('remaining-text').setAttribute('value', `Remaining: ${remainingQuestions[npcId]}`);
+
+    document.getElementById('choice1').style.display = "block";
+    document.getElementById('choice1').setAttribute('text', `value: ${randomQuestion.choices[0]}; color: lightblue;`);
+    document.getElementById('choice1').setAttribute('onclick', `checkAnswer(${JSON.stringify(randomQuestion)}, 0)`);
+
+    document.getElementById('choice2').style.display = "block";
+    document.getElementById('choice2').setAttribute('text', `value: ${randomQuestion.choices[1]}; color: lightgreen;`);
+    document.getElementById('choice2').setAttribute('onclick', `checkAnswer(${JSON.stringify(randomQuestion)}, 1)`);
 }
 
 
@@ -477,9 +522,13 @@ hitbox.addEventListener('click', function () {
         document.getElementById('time').setAttribute("value", `time left: ${chronoString}`);
     }
 
-    intervalId = setInterval(async () => {
-        await updateChrono();
-    }, 1000);
+    async function startChrono() {
+        if (!intervalId) {
+            intervalId = setInterval(async () => {
+                await updateChrono();
+            }, 1000);
+        }
+    }
 
     setInterval(() => {
         savePlayerThings();
