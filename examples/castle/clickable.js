@@ -18,25 +18,25 @@ AFRAME.registerComponent('glow', {
       });
     }
   });
-  AFRAME.registerComponent('cursor-manager', {
-    init: function () {
-        const sceneEl = this.el.sceneEl;
-        const centralCursor = document.getElementById('centralCursor');
-        const mouseCursor = document.getElementById('mouseCursor');
+//   AFRAME.registerComponent('cursor-manager', {
+//     init: function () {
+//         const sceneEl = this.el.sceneEl;
+//         const centralCursor = document.getElementById('centralCursor');
+//         const mouseCursor = document.getElementById('mouseCursor');
 
-        sceneEl.addEventListener('enter-vr', function () {
-            console.log("Mode VR activé");
-            centralCursor.setAttribute('visible', 'false');  // Cacher le curseur central
-            mouseCursor.setAttribute('visible', 'false');    // Cacher le curseur souris
-        });
+//         sceneEl.addEventListener('enter-vr', function () {
+//             console.log("Mode VR activé");
+//             centralCursor.setAttribute('visible', 'false');  // Cacher le curseur central
+//             mouseCursor.setAttribute('visible', 'false');    // Cacher le curseur souris
+//         });
 
-        sceneEl.addEventListener('exit-vr', function () {
-            console.log("Mode PC activé");
-            centralCursor.setAttribute('visible', 'true');   // Afficher le curseur central
-            mouseCursor.setAttribute('visible', 'true');     // Afficher le curseur souris
-        });
-    }
-});
+//         sceneEl.addEventListener('exit-vr', function () {
+//             console.log("Mode PC activé");
+//             centralCursor.setAttribute('visible', 'true');   // Afficher le curseur central
+//             mouseCursor.setAttribute('visible', 'true');     // Afficher le curseur souris
+//         });
+//     }
+// });
 
 // Appliquer le gestionnaire de curseur à la scène
 document.querySelector('a-scene').setAttribute('cursor-manager', '');
@@ -282,49 +282,57 @@ document.querySelectorAll('.clickable').forEach(hitbox => {
 });
 
 
-function showFeedbackMessage(text, isCorrect) {
-    const feedback = document.getElementById('feedback-message');
+// function showFeedbackMessage(text, isCorrect) {
+//     const feedback = document.getElementById('feedback-message');
 
-    // Rendre visible immédiatement
-    feedback.setAttribute('visible', 'true');
+//     // Rendre visible immédiatement
+//     feedback.setAttribute('visible', 'true');
 
-    // S'assurer que le texte et la couleur s'affichent correctement
-    feedback.setAttribute('text', `value: ${text}; color: white; align: center; font: mozillavr; wrapCount: 25;`);
+//     // S'assurer que le texte et la couleur s'affichent correctement
+//     feedback.setAttribute('text', `value: ${text}; color: white; align: center; font: mozillavr; wrapCount: 25;`);
     
-    // Couleur et effet lumineux selon correct/faux
-    const glowColor = isCorrect ? '#00ff00' : '#ff0000';
-    feedback.setAttribute('material', `color: ${glowColor}; opacity: 1; shader: standard; emissive: ${glowColor}; emissiveIntensity: 1; metalness: 0.5`);
+//     // Couleur et effet lumineux selon correct/faux
+//     const glowColor = isCorrect ? '#00ff00' : '#ff0000';
+//     feedback.setAttribute('material', `color: ${glowColor}; opacity: 1; shader: standard; emissive: ${glowColor}; emissiveIntensity: 1; metalness: 0.5`);
 
-    // Déclencher l'animation d'apparition
-    feedback.emit('showFeedback');
+//     // Déclencher l'animation d'apparition
+//     feedback.emit('showFeedback');
 
-    // Cacher après 2 secondes (avec sécurité pour éviter qu'il reste bloqué)
-    setTimeout(() => {
-        feedback.setAttribute('material', 'opacity: 0'); // Réduction progressive
-        setTimeout(() => {
-            feedback.setAttribute('visible', 'false');
-        }, 500); // Donne le temps au fade de s'appliquer
-    }, 2000);
-}
+//     // Cacher après 2 secondes (avec sécurité pour éviter qu'il reste bloqué)
+//     setTimeout(() => {
+//         feedback.setAttribute('material', 'opacity: 0'); // Réduction progressive
+//         setTimeout(() => {
+//             feedback.setAttribute('visible', 'false');
+//         }, 500); // Donne le temps au fade de s'appliquer
+//     }, 2000);
+// }
 function showFeedbackMessage(text, isCorrect) {
     const feedback = document.getElementById('feedback-message');
-
+    const textFeedback = document.getElementById('feedback-text');
     // Rendre visible immédiatement
+    feedback.setAttribute('position','0, 0.5, -1');
     feedback.setAttribute('visible', 'true');
-
+    console.log(feedback);
     // S'assurer que le texte et la couleur s'affichent correctement
-    feedback.setAttribute('text', `value: ${text}; color: white; align: center; font: mozillavr; wrapCount: 25;`);
+    // feedback.setAttribute('text', `value: ${text}; color: white; align: center; font: mozillavr; wrapCount: 25;`);
     
     // Couleur et effet lumineux selon correct/faux
     if(isCorrect){
-        // feedback.setAttribute('material', `color: #00ff00; opacity: 1; shader: standard; emissive: #00ff00; emissiveIntensity: 1; metalness: 0.5`);
-        feedback.setAttribute('text', `value: ${text}; color: #00ff00; align: center; font: mozillavr; wrapCount: 25;`);
+        feedback.setAttribute('material', `color: rgb(41, 45, 41); opacity: 0.5; shader: standard;`);
+        textFeedback.setAttribute('value', ` ${text}; `);
+        textFeedback.setAttribute('color', 'green');
+        textFeedback.setAttribute('font', 'mozillavr');
+        
+
     }else{
-        feedback.setAttribute('material', `color: #ff0000; opacity: 1; shader: standard; emissive: #ff0000; emissiveIntensity: 1; metalness: 0.5`);
+        feedback.setAttribute('material', `color: rgb(41, 45, 41); opacity: 0.5; shader: standard;`);
+        textFeedback.setAttribute('value', ` ${text}; `);
+        textFeedback.setAttribute('color', '#ff0000');
+        textFeedback.setAttribute('font', 'mozillavr');
     }
 
     // Déclencher l'animation d'apparition
-    feedback.emit('showFeedback');
+    // feedback.emit('showFeedback');
 
     // Cacher après 2 secondes (avec sécurité pour éviter qu'il reste bloqué)
     setTimeout(() => {
@@ -350,6 +358,7 @@ function showFeedbackMessage(text, isCorrect) {
             if (selectedIndex === question.correct) {
                 score++;
                 showFeedbackMessage("✅ Correct! +1 Point", true);
+                
             } else {
                 showFeedbackMessage("❌ Wrong! Try again.", false);
             }
