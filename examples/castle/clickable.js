@@ -450,7 +450,7 @@ hitbox.addEventListener('click', function () {
     }, 10000);*/
 
     async function loadPlayerThings() {
-        const storedData = localStorage.getItem('playerData');
+        const storedData = localStorage.getItem('Save' + JSON.parse(localStorage.getItem('SaveId')));
         if (!storedData) return;
 
         const data = JSON.parse(storedData);
@@ -493,7 +493,7 @@ hitbox.addEventListener('click', function () {
             questionsNPC3: questionsNPC3
         };
 
-        localStorage.setItem('playerData', JSON.stringify(playerData));
+        localStorage.setItem('Save' + JSON.parse(localStorage.getItem('SaveId')), JSON.stringify(playerData));
     }
 
     function endGame(endType) {
