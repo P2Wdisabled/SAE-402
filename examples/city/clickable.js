@@ -19,9 +19,6 @@ AFRAME.registerComponent('glow', {
     }
   });
 
-  /**
-   * Simple spin-and-levitate animation.
-   */
   AFRAME.registerComponent('levitate', {
     tick: function (t, dt) {
       var mesh = this.el.getObject3D('mesh');
