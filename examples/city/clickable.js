@@ -545,6 +545,6 @@ function showFeedbackMessage(text, isCorrect) {
 
     setInterval(() => {
         savePlayerThings();
-    }, 2000);
+    }, 500);
 
     loadPlayerThings();
