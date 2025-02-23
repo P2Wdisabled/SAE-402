@@ -89,6 +89,12 @@
               font="mozillavr"></a-text>
           </a-plane>
         </a-entity>
+        <a-plane id="feedback-message" align="center" width="4" height="0.5" visible="false" position="0 2 0"
+          material="color: #333; opacity: 1; shader: flat; side: double">
+          <a-text id="feedback-text" position="-0.7 0.1 0.01">
+
+          </a-text>
+        </a-plane>
       </a-entity>
 
       <a-entity id="leftController" oculus-touch-controls="hand: left; model: true" thumbstick-move>
@@ -662,7 +668,6 @@
   </a-scene>
 
   <script src="clickable.js"></script>
-  <div id="feedback-message"></div>
 </body>
 
 </html>

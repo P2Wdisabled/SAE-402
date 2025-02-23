@@ -260,30 +260,43 @@ hitbox.addEventListener('click', function () {
 });
 
 
-    function showFeedbackMessage(text, isCorrect) {
-        const feedback = document.getElementById('feedback-message');
-        feedback.innerText = text;
+function showFeedbackMessage(text, isCorrect) {
+    const feedback = document.getElementById('feedback-message');
+    const textFeedback = document.getElementById('feedback-text');
+    // Rendre visible immédiatement
+    feedback.setAttribute('position','0, 0.5, -1');
+    feedback.setAttribute('visible', 'true');
+    console.log(feedback);
+    // S'assurer que le texte et la couleur s'affichent correctement
+    // feedback.setAttribute('text', `value: ${text}; color: white; align: center; font: mozillavr; wrapCount: 25;`);
+    
+    // Couleur et effet lumineux selon correct/faux
+    if(isCorrect){
+        feedback.setAttribute('material', `color: rgb(41, 45, 41); opacity: 0.5; shader: standard;`);
+        textFeedback.setAttribute('value', ` ${text}; `);
+        textFeedback.setAttribute('color', 'green');
+        textFeedback.setAttribute('font', 'mozillavr');
+        
 
-        // Add the correct or wrong class to the feedback message
-        if (isCorrect) {
-            feedback.classList.remove("feedback-wrong");
-            feedback.classList.add("feedback-correct");
-        } else {
-            feedback.classList.remove("feedback-correct");
-            feedback.classList.add("feedback-wrong");
-        }
-
-        feedback.style.display = "block";
-
-        // Made the feedback message disappear after 2 seconds
-        setTimeout(() => {
-            feedback.style.animation = "fadeOut 0.5s ease-out";
-            setTimeout(() => {
-                feedback.style.display = "none";
-                feedback.style.animation = "fadeIn 0.3s ease-out"; // Reset the animation
-            }, 500);
-        }, 2000);
+    }else{
+        feedback.setAttribute('material', `color: rgb(41, 45, 41); opacity: 0.5; shader: standard;`);
+        textFeedback.setAttribute('value', ` ${text}; `);
+        textFeedback.setAttribute('color', '#ff0000');
+        textFeedback.setAttribute('font', 'mozillavr');
     }
+
+    // Déclencher l'animation d'apparition
+    // feedback.emit('showFeedback');
+
+    // Cacher après 2 secondes (avec sécurité pour éviter qu'il reste bloqué)
+    setTimeout(() => {
+        feedback.setAttribute('material', 'opacity: 0'); // Réduction progressive
+        setTimeout(() => {
+            feedback.setAttribute('visible', 'false');
+        }, 500); // Donne le temps au fade de s'appliquer
+    }, 2000);
+}
+
 
     // Animation Css for the feedback message
     const fadeOutCSS = document.createElement("style");
@@ -297,8 +310,9 @@ hitbox.addEventListener('click', function () {
     // Function to check the answer and display the feedback message
     function checkAnswer(question, selectedIndex) {
             if (selectedIndex === question.correct) {
-                (question.difficulty == "easy") ? score++ : (question.difficulty == "medium") ? score += 2 : score += 3;
+                score++;
                 showFeedbackMessage("✅ Correct! +1 Point", true);
+                
             } else {
                 showFeedbackMessage("❌ Wrong! Try again.", false);
             }
