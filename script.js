@@ -161,7 +161,7 @@ function useSave(id) {
 
 const dialogueBox = document.getElementById('dialogue-box');
 dialogueBox.addEventListener('click', function(event) {
-    if (event.target.className === 'start') window.location.href = './examples/castle/';
+    if (event.target.className === 'start') window.location.href = './examples/city/';
     if (event.target.className === 'delete') {
         localStorage.setItem("Save" + JSON.parse(localStorage.getItem('SaveId')), JSON.stringify(defaultData));
         console.log(localStorage.getItem('SaveId'));
