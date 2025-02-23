@@ -123,7 +123,8 @@ const defaultData = {
     dialogues: dialogues,
     questionsNPC1: questionsNPC1,
     questionsNPC2: questionsNPC2,
-    questionsNPC3: questionsNPC3
+    questionsNPC3: questionsNPC3,
+    time: 600
 };
 if(localStorage.getItem("Save1") == null) {
     localStorage.setItem("Save1", JSON.stringify(defaultData));

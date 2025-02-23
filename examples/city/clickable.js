@@ -460,6 +460,7 @@ function showFeedbackMessage(text, isCorrect) {
         moveNPCRandomly('npc3-container', -10, 10);
     }, 10000);*/
 
+    let timeRemaining = 600;
     async function loadPlayerThings() {
         const storedData = localStorage.getItem('Save' + JSON.parse(localStorage.getItem('SaveId')));
         if (!storedData) return;
@@ -481,6 +482,7 @@ function showFeedbackMessage(text, isCorrect) {
         questionsNPC1 = data.questionsNPC1;
         questionsNPC2 = data.questionsNPC2;
         questionsNPC3 = data.questionsNPC3;
+        timeRemaining = data.time;
 
         updateScore();
         savePlayerThings();
@@ -501,7 +503,8 @@ function showFeedbackMessage(text, isCorrect) {
             dialogues: dialogues,
             questionsNPC1: questionsNPC1,
             questionsNPC2: questionsNPC2,
-            questionsNPC3: questionsNPC3
+            questionsNPC3: questionsNPC3,
+            time: timeRemaining
         };
 
         localStorage.setItem('Save' + JSON.parse(localStorage.getItem('SaveId')), JSON.stringify(playerData));
@@ -515,7 +518,6 @@ function showFeedbackMessage(text, isCorrect) {
         }
     }
 
-    let timeRemaining = 600;
     let chronoString = '';
     let intervalId = null;
 
