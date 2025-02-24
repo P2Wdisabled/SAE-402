@@ -110,19 +110,37 @@
           text="color: white; wrapCount: 30; font: mozillavr"></a-text>
         <a-text id="difficulty-text" value="Difficulty:" position="-1.4 0.5 0.01" width="1.5"
           text="color: yellow; wrapCount: 20; font: mozillavr"></a-text>
-        <a-text id="remaining-text" value="Remaining:" position="0.6 0.5 0.01" width="1.5"
+          <a-text id="remaining-text" value="Remaining:" position="0.6 0.5 0.01" width="1.5"
           text="color: cyan; wrapCount: 20; font: mozillavr"></a-text>
-        <a-text id="choice1" value="I don't speak English" position="-1.8 -0.2 0.01" width="1.5" class="clickableChoice"
-          text="color: lightblue; wrapCount: 20; font: mozillavr; width: 1.5"
+          <a-plane id="close" class="close" position="-0.5 -0.4 0.1" width="0.6" height="0.2" color="red"
+            text="value: Fermer; align: center; color: white; font: mozillavr; width: 2">
+          </a-plane>
+          <a-plane id="choice1" 
+          align="center"
+          position="-1.1 -0.2 0.01" 
+          width="0.8"
+          height="0.5"
+          class="clickableChoice"
+          material=" color: black; opacity: 0.8; shader: flat"
+          text="value:I don't speak English; color: lightblue; wrapCount: 20; font: mozillavr; width: 1.5"
           event-set__mouseenter="_event: mouseenter; text.color: cyan"
-          event-set__mouseleave="_event: mouseleave; text.color: lightblue"></a-text>
-        <a-text id="choice2" value="Where is the police station?" position="1 -0.2 0.01" width="1.5"
-          class="clickableChoice" text="color: lightgreen; wrapCount: 20; font: mozillavr; width: 1.5"
-          event-set__mouseenter="_event: mouseenter; text.color: lime"
-          event-set__mouseleave="_event: mouseleave; text.color: lightgreen"></a-text>
-        <a-plane id="close" class="close" position="0 -0.4 0.01" width="0.6" height="0.2" color="red"
-          text="value: Fermer; align: center; color: white; font: mozillavr; width: 2">
+          event-set__mouseleave="_event: mouseleave; text.color: lightblue"></a-plane>
+        
+        
+        <a-plane id="choice2" 
+            position="1.6 -0.2 0.01" 
+            width="0.8"
+            height="0.5"
+            class="clickableChoice"
+            material="color: black; opacity: 0.8; shader: flat"
+            text="value:Where is the police station? ; color: lightgreen; wrapCount: 20; font: mozillavr; width: 1.5"
+            event-set__mouseenter="_event: mouseenter; text.color: lime"
+            event-set__mouseleave="_event: mouseleave; text.color: lightgreen">
         </a-plane>
+          <a-plane id="help" class="help" position="0.4 -0.4 0.01" width="0.6" height="0.2" color="blue"clickable
+          text="value: Help; align: center; color: white; font: mozillavr; width: 1.5"> </a-plane>
+
+        
       </a-plane>
     </a-entity>
 
