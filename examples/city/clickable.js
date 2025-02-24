@@ -123,6 +123,7 @@
         }
     ];
 
+
     const translations = {
         "You just arrived in New York. How do you greet the customs officer?": "Vous venez d'arriver à New York. Comment saluez-vous l'agent des douanes ?",
         "What is the English word for 'aéroport'?": "Quel est le mot anglais pour 'aéroport' ?",
@@ -139,6 +140,8 @@
         "A street vendor says 'That'll be ten bucks'. What does 'bucks' mean?": "Un vendeur de rue dit 'That'll be ten bucks'. Que signifie 'bucks' ?",
         "Someone says 'Let's grab a slice'. What are they talking about?": "Quelqu'un dit 'Let's grab a slice'. De quoi parle-t-il ?"
     };
+
+
 
    // Easing function for smoother movement
     function easeInOutQuad(t) {
@@ -264,6 +267,7 @@ function openDialogue(npcId) {
 // });
 
 
+
 function showTranslation() {
     const dialogueText = document.getElementById('dialogue-text');
     const currentText = dialogueText.getAttribute('value');
@@ -277,6 +281,7 @@ function showTranslation() {
 }
 
 document.getElementById('help').addEventListener('click', showTranslation);
+
 
 // Event listener pour désactiver les clics pendant un dialogue ouvert
 document.querySelectorAll('.clickable').forEach(hitbox => {
@@ -392,100 +397,7 @@ function showFeedbackMessage(text, isCorrect) {
         });
     }
 
-    /*async function moveNPCRandomly(npcId, min, max) {
-        const npc = document.querySelector(`#${npcId}`);
-        
-        // Generate a new random position
-        const targetX = Math.random() * (max - min) + min;
-        const targetZ = Math.random() * (max - min) + min;
 
-        // Get the current position
-        const currentPosition = npc.getAttribute('position');
-        const currentX = currentPosition.x;
-        const currentZ = currentPosition.z;
-
-        // Calculate the movement direction
-        const dx = targetX - currentX;
-        const dz = targetZ - currentZ;
-        const targetAngle = Math.atan2(dz, dx) * (180 / Math.PI); // Convert angle to degrees
-
-        // Duration of the movement in milliseconds
-        const duration = 3000; // 3 seconds
-
-        // Smooth animation for rotation and movement
-        let startTime;
-        function animateMovement(time) {
-            if (!startTime) startTime = time;
-            const elapsedTime = time - startTime;
-
-            // Calculate the progress percentage of the movement
-            const progress = Math.min(elapsedTime / duration, 1);
-            const easedProgress = easeInOutQuad(progress);
-
-            // Linear interpolation between the current position and the new position
-            const newX = currentX + dx * easedProgress;
-            const newZ = currentZ + dz * easedProgress;
-
-            // Update the position
-            npc.setAttribute('position', { x: newX, y: currentPosition.y, z: newZ });
-
-            // Retrieve the current angle of the NPC
-            const currentRotation = npc.getAttribute('rotation');
-            const currentAngle = currentRotation.y;
-
-            // Linear interpolation of the rotation for a smooth transition
-            const newRotationY = currentAngle + (targetAngle - currentAngle) * easedProgress;
-
-            npc.setAttribute('rotation', { x: 0, y: newRotationY, z: 0 });
-
-            // Continue the animation until the movement is complete
-            if (progress < 1) {
-                requestAnimationFrame(animateMovement);
-            }
-        }
-
-        // Start the animation
-        requestAnimationFrame(animateMovement);
-        updateHitboxPosition(); // Update the hitbox position to match the NPC
-    }
-
-    //arrow that point the next npc to interract
-    // const arrow = document.getElementById('arrow');
-    // const arrowPosition = arrow.getAttribute('position');
-    // let arrowVisible = true;
-
-    // function toggleArrowVisibility() {
-    //     arrowVisible = !arrowVisible;
-    //     arrow.setAttribute('visible', arrowVisible);
-    // }
-
-    // Move the arrow to the next NPC
-
-    // function moveArrowToNPC(npcId) {
-    //     const npc = document.querySelector(`#${npcId}`);
-    //     const npcPosition = npc.getAttribute('position');
-    //     arrow.setAttribute('position', { x: npcPosition.x, y: npcPosition.y + 2, z: npcPosition.z });
-    // }
-
-    // Move the arrow to the first NPC
-    // moveArrowToNPC('npc1-container');
-
-    // // Event listener for the arrow click
-    // arrow.addEventListener('click', function () {
-    //     toggleArrowVisibility();
-    //     if (arrowVisible) {
-    //         moveArrowToNPC('npc1-container');
-    //     } else {
-    //         moveArrowToNPC('npc2-container');
-    //     }
-    // });
-
-    // Move the character randomly every 10 seconds
-    setInterval(() => {
-        moveNPCRandomly('npc1-container', -10, 10);
-        moveNPCRandomly('npc2-container', -10, 10);
-        moveNPCRandomly('npc3-container', -10, 10);
-    }, 10000);*/
 
     let timeRemaining = 600;
     async function loadPlayerThings() {
