@@ -1,71 +1,4 @@
-AFRAME.registerComponent('glow', {
-    schema: {
-      color: { default: '#ffffff', type: 'color' },
-      intensity: { default: 1.0 }
-    },
-    init: function () {
-      this.el.addEventListener('object3dset', function () {
-        this.update();
-      }.bind(this));
-    },
-    update: function () {
-      var data = this.data;
-      this.el.object3D.traverse(function (node) {
-        if (node.isMesh) {
-          node.material.emissive.copy(new THREE.Color(data.color));
-          node.material.emissiveIntensity = data.intensity;
-        }
-      });
-    }
-  });
-//   AFRAME.registerComponent('cursor-manager', {
-//     init: function () {
-//         const sceneEl = this.el.sceneEl;
-//         const centralCursor = document.getElementById('centralCursor');
-//         const mouseCursor = document.getElementById('mouseCursor');
-
-//         sceneEl.addEventListener('enter-vr', function () {
-//             console.log("Mode VR activé");
-//             centralCursor.setAttribute('visible', 'false');  // Cacher le curseur central
-//             mouseCursor.setAttribute('visible', 'false');    // Cacher le curseur souris
-//         });
-
-//         sceneEl.addEventListener('exit-vr', function () {
-//             console.log("Mode PC activé");
-//             centralCursor.setAttribute('visible', 'true');   // Afficher le curseur central
-//             mouseCursor.setAttribute('visible', 'true');     // Afficher le curseur souris
-//         });
-//     }
-// });
-
-// Appliquer le gestionnaire de curseur à la scène
-document.querySelector('a-scene').setAttribute('cursor-manager', '');
-
-  /**
-   * Simple spin-and-levitate animation.
-   */
-  AFRAME.registerComponent('levitate', {
-    tick: function (t, dt) {
-      var mesh = this.el.getObject3D('mesh');
-      if (!mesh) return;
-      mesh.rotation.y += 0.1 * dt / 1000;
-      mesh.position.y = 0.25 * Math.sin(t / 1000);
-    }
-  });
-
-  /**
-   * Removes current element if on a mobile device.
-   */
-  AFRAME.registerComponent('not-mobile', {
-    init: function () {
-      var el = this.el;
-      if (el.sceneEl.isMobile) {
-        el.parentEl.remove(el);
-      }
-    }
-  });
-
-const questionsNPC1 = [
+  let questionsNPC1 = [
     
     {
         question: "You just arrived in New York. How do you greet the customs officer?",
@@ -94,10 +27,11 @@ const questionsNPC1 = [
     
 
     ];
-    const sentenceNPCSpawn= {
+
+    let sentenceNPCSpawn= {
         question: "Welcome to New York! Take your time to explore. Meet every people and speak with them to learn more about the city. The first one is waiting for you at the end of the street and name Mickael. Good luck!",
     }
-    const questionsNPC2 = [
+    let questionsNPC2 = [
     {
         question: "At a coffee shop, how do you order a coffee politely?",
         choices: ["I want coffee.", "Can I have a coffee, please?"],
@@ -130,7 +64,7 @@ const questionsNPC1 = [
     }
     ];
     
-    const questionsNPC3 = [
+    let questionsNPC3 = [
     {
         question: "A New Yorker tells you 'It's a piece of cake!'. What does it mean?",
         choices: ["It's delicious.", "It's very easy."],
@@ -162,6 +96,34 @@ const questionsNPC1 = [
         difficulty: "easy"
     }
     ];
+    let questionsNPC4 = [
+        { 
+            question: "What is a typical dessert associated with New York?", 
+            choices: ["Cheesecake", "Churros"], 
+            correct: 1, 
+            difficulty: "easy" 
+        },
+        { 
+            question: "Which museum is famous for its modern art collection?", 
+            choices: ["MOMA", "Musee d'Orsay"], 
+            correct: 1, 
+            difficulty: "medium" 
+        },
+        { 
+            question: "Where would you find the famous Apollo Theater?", 
+            choices: ["Harlem", "Wall Street"], 
+            correct: 1, 
+            difficulty: "hard" 
+        },
+        { 
+            question: "What do many New Yorkers call the public transit system?", 
+            choices: ["Underground", "Subway"], 
+            correct: 2, 
+            difficulty: "easy" 
+        }
+    ];
+
+
    // Easing function for smoother movement
     function easeInOutQuad(t) {
         return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
@@ -170,15 +132,17 @@ const questionsNPC1 = [
     // Smooth movement and rotation logic for the character
 
 
-    const dialogues = {
+    let dialogues = {
         'npc1-hitbox': questionsNPC1.map(q => ({ ...q, correct: q.correct + 1 })), // Transforme l'indice 0-based en 1-based
         'npc2-hitbox': questionsNPC2.map(q => ({ ...q, correct: q.correct + 1 })),
-        'npc3-hitbox': questionsNPC3.map(q => ({ ...q, correct: q.correct + 1 }))
+        'npc3-hitbox': questionsNPC3.map(q => ({ ...q, correct: q.correct + 1 })),
+        'npc4-hitbox': questionsNPC4.map(q => ({ ...q, correct: q.correct + 1 }))
     };
-    const remainingQuestions = {
+    let remainingQuestions = {
         'npc1-hitbox': questionsNPC1.length,
         'npc2-hitbox': questionsNPC2.length,
-        'npc3-hitbox': questionsNPC3.length
+        'npc3-hitbox': questionsNPC3.length,
+        'npc4-hitbox': questionsNPC4.length
     };
 
     let score = 0;
@@ -187,6 +151,7 @@ const questionsNPC1 = [
         if (npcId === 'npc1-hitbox') questionsList = questionsNPC1;
         if (npcId === 'npc2-hitbox') questionsList = questionsNPC2;
         if (npcId === 'npc3-hitbox') questionsList = questionsNPC3;
+        if (npcId === 'npc4-hitbox') questionsList = questionsNPC4;
         
         if (!questionsList || questionsList.length === 0) {
             return null; // Plus de questions or invalid npcId
@@ -199,10 +164,14 @@ const questionsNPC1 = [
         }
      // Ajoutez une variable pour vérifier si un dialogue est ouvert
 let isDialogueOpen = false;
-
+let chronostarted = false;
 function openDialogue(npcId) {
     if (isDialogueOpen) return;
     isDialogueOpen = true;
+    if (!chronostarted) {
+        startChrono();
+        chronostarted = true;
+    }
 
     console.log("Opening of the dialog box:", npcId);
 
@@ -234,8 +203,11 @@ function openDialogue(npcId) {
             //     nextNPCName = 'Greg';
             //     break;
             case 'npc2-hitbox':
-                nextNPCName = 'Greg in the middle of the street';
+                nextNPCName = 'Greg in front of the greatest tower of NY';
                 break;
+                case 'npc3-hitbox':
+                    nextNPCName = 'Jack at the biggest statue of NY';
+                    break;
             // default:
             //     nextNPCName = '';
         }
@@ -272,40 +244,15 @@ function openDialogue(npcId) {
 }
 
 
-
-// Event listener to disable clicks while a dialogue is open
+// Event listener pour désactiver les clics pendant un dialogue ouvert
 document.querySelectorAll('.clickable').forEach(hitbox => {
-    hitbox.addEventListener('click', function () {
-        if (isDialogueOpen) return; // Prevent clicks if a dialogue is open
-        openDialogue(this.id);
-    });
+hitbox.addEventListener('click', function () {
+    if (isDialogueOpen) return; // Empêche les clics si un dialogue est ouvert
+    openDialogue(this.id);
+});
 });
 
 
-// function showFeedbackMessage(text, isCorrect) {
-//     const feedback = document.getElementById('feedback-message');
-
-//     // Rendre visible immédiatement
-//     feedback.setAttribute('visible', 'true');
-
-//     // S'assurer que le texte et la couleur s'affichent correctement
-//     feedback.setAttribute('text', `value: ${text}; color: white; align: center; font: mozillavr; wrapCount: 25;`);
-    
-//     // Couleur et effet lumineux selon correct/faux
-//     const glowColor = isCorrect ? '#00ff00' : '#ff0000';
-//     feedback.setAttribute('material', `color: ${glowColor}; opacity: 1; shader: standard; emissive: ${glowColor}; emissiveIntensity: 1; metalness: 0.5`);
-
-//     // Déclencher l'animation d'apparition
-//     feedback.emit('showFeedback');
-
-//     // Cacher après 2 secondes (avec sécurité pour éviter qu'il reste bloqué)
-//     setTimeout(() => {
-//         feedback.setAttribute('material', 'opacity: 0'); // Réduction progressive
-//         setTimeout(() => {
-//             feedback.setAttribute('visible', 'false');
-//         }, 500); // Donne le temps au fade de s'appliquer
-//     }, 2000);
-// }
 function showFeedbackMessage(text, isCorrect) {
     const feedback = document.getElementById('feedback-message');
     const textFeedback = document.getElementById('feedback-text');
@@ -372,6 +319,7 @@ function showFeedbackMessage(text, isCorrect) {
     }
 
     function closeDialogue() {
+        savePlayerThings();
         console.log("Fermeture du dialogue...");
         
         const dialogueBox = document.getElementById('dialogue-box');
@@ -380,7 +328,7 @@ function showFeedbackMessage(text, isCorrect) {
         dialogueBox.setAttribute('visible', 'false');
         overlay.setAttribute('visible', 'false');
     
-        isDialogueOpen = false; // Re-enable interaction
+        isDialogueOpen = false; // Réactive l'interaction
     }
     const dialogueBox = document.getElementById('dialogue-box');
         dialogueBox.addEventListener('click', function(event) {
@@ -504,3 +452,92 @@ function showFeedbackMessage(text, isCorrect) {
         moveNPCRandomly('npc2-container', -10, 10);
         moveNPCRandomly('npc3-container', -10, 10);
     }, 10000);*/
+
+    let timeRemaining = 600;
+    async function loadPlayerThings() {
+        const storedData = localStorage.getItem('Save' + JSON.parse(localStorage.getItem('SaveId')));
+        if (!storedData) return;
+
+        const data = JSON.parse(storedData);
+        score = data.score;
+        document.getElementById('rig').setAttribute('position', data.position);
+
+        console.log(data.rotation._x, data.rotation._y, data.rotation._z);
+
+        document.querySelector('[camera]').object3D.rotation.set(
+            data.rotation._x,
+            data.rotation._y,
+            data.rotation._z
+        );
+
+        remainingQuestions = data.remainingQuestions;
+        dialogues = data.dialogues;
+        questionsNPC1 = data.questionsNPC1;
+        questionsNPC2 = data.questionsNPC2;
+        questionsNPC3 = data.questionsNPC3;
+        timeRemaining = data.time;
+
+        updateScore();
+        savePlayerThings();
+    }
+
+    async function savePlayerThings() {
+        const rotation = document.querySelector('[camera]').object3D.rotation;
+        const playerData = {
+            score: score,
+            position: document.getElementById('rig').getAttribute('position'),
+            rotation: {
+                _order: rotation._order,
+                _x: rotation._x,
+                _y: rotation._y,
+                _z: rotation._z
+            },
+            remainingQuestions: remainingQuestions,
+            dialogues: dialogues,
+            questionsNPC1: questionsNPC1,
+            questionsNPC2: questionsNPC2,
+            questionsNPC3: questionsNPC3,
+            time: timeRemaining
+        };
+
+        localStorage.setItem('Save' + JSON.parse(localStorage.getItem('SaveId')), JSON.stringify(playerData));
+    }
+
+    function endGame(endType) {
+        if (endType === 'timeout') {
+            alert('Time is up! Game over!');
+        } else if (endType === 'questions') {
+            alert('You have answered all questions!');
+        }
+    }
+
+    let chronoString = '';
+    let intervalId = null;
+
+    async function updateChrono() {
+        if (timeRemaining <= 0) {
+            timeRemaining = 0;
+            clearInterval(intervalId);
+            await endGame('timeout');
+            return;
+        }
+        timeRemaining--;
+        let minutes = Math.floor(timeRemaining / 60);
+        let seconds = timeRemaining % 60;
+        chronoString = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+        document.getElementById('time').setAttribute("value", `time left: ${chronoString}`);
+    }
+
+    async function startChrono() {
+        if (!intervalId) {
+            intervalId = setInterval(async () => {
+                await updateChrono();
+            }, 1000);
+        }
+    }
+
+    setInterval(() => {
+        savePlayerThings();
+    }, 500);
+
+    loadPlayerThings();
