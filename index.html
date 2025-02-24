@@ -2,10 +2,58 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="refresh" content="0; url=examples/castle/">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,maximum-scale=1">
+    <title>Examples • Castle</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.aframe.io/releases/1.2.0/aframe-extras.min.js"></script>
 </head>
 
-<body></body>
+<body>
+    <a-scene>
+        <a-entity id="rig" 
+          movement-controls="constrainToNavMesh: true; controls: checkpoint, gamepad, trackpad, keyboard, nipple;" 
+          position="10 0 0">
+  
+  <a-entity camera position="0 1.5 0" look-controls="pointerLockEnabled: true">
+    <a-entity cursor
+              position="0 0 -0.01"
+              geometry="primitive: sphere; radius: 0.00005"
+              material="color: #202020; shader: flat">
+    </a-entity>
+    <a-entity id="leftController"
+            oculus-touch-controls="hand: left; model: true"
+            thumbstick-move>
+  </a-entity>
 
+  <a-entity id="rightController"
+            oculus-touch-controls="hand: right; model: true">
+    <a-entity raycaster="objects: .collidable" cursor></a-entity>
+  </a-entity>
+  </a-entity>
+  
+  
+
+      
+      <a-plane id="overlay" position="0 3 -2" visible="true"></a-plane>
+      <a-plane id="dialogue-box" position="0 2 -1.8" width="4" height="0.5" visible="true"material="color: black; opacity: 0.8; shader: flat"geometry="primitive: plane; width:5; height: 1.4">
+        <a-text id="dialogue-text" value="wich save do you want to use ?" position="0 0.2 0.01" width="2" align="center"text="color: white; wrapCount: 30; font: mozillavr"></a-text>
+        <a-text id="1" value="Save 1" position="-1.6 -0.2 0.01" width="1.5"class="clickableChoice"text="color: lightblue; wrapCount: 20; font: mozillavr; width: 1.5"event-set__mouseenter="_event: mouseenter; text.color: blue"event-set__mouseleave="_event: mouseleave; text.color: lightblue"></a-text>
+        <a-text id="2" value="Save 2" position="-1 -0.2 0.01" width="1.5"class="clickableChoice"text="color: lightgreen; wrapCount: 20; font: mozillavr; width: 1.5"event-set__mouseenter="_event: mouseenter; text.color: lime"event-set__mouseleave="_event: mouseleave; text.color: lightgreen"></a-text>
+        <a-text id="3" value="Save 3" position="-0.2 -0.2 0.01" width="1.5"class="clickableChoice"text="color: lightgreen; wrapCount: 20; font: mozillavr; width: 1.5"event-set__mouseenter="_event: mouseenter; text.color: lime"event-set__mouseleave="_event: mouseleave; text.color: lightgreen"></a-text>
+        <a-text id="4" value="Save 4" position="0.6 -0.2 0.01" width="1.5"class="clickableChoice"text="color: lightgreen; wrapCount: 20; font: mozillavr; width: 1.5"event-set__mouseenter="_event: mouseenter; text.color: lime"event-set__mouseleave="_event: mouseleave; text.color: lightgreen"></a-text>
+        <a-text id="5" value="Save 5" position="1.4 -0.2 0.01" width="1.5"class="clickableChoice"text="color: lightgreen; wrapCount: 20; font: mozillavr; width: 1.5"event-set__mouseenter="_event: mouseenter; text.color: lime"event-set__mouseleave="_event: mouseleave; text.color: lightgreen"></a-text>
+        <a-plane id="start" class="start"position="-0.5 -0.5 0.01" width="0.6" height="0.2" color="green"text="value: Start; align: center; color: white; font: mozillavr; width: 2">
+        </a-plane>
+        <a-plane id="delete" class="delete"position="0.5 -0.5 0.01" width="0.8" height="0.2" color="red"text="value: delete the save; align: center; color: white; font: mozillavr; width: 2">
+        </a-plane>
+      </a-plane>
+    </a-entity>
+    </a-scene>
+
+
+
+</body>
+<script src="./script.js"></script>
 </html>
