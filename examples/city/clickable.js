@@ -122,21 +122,19 @@
             difficulty: "easy" 
         }
     ];
-
-
     const translations = {
         "You just arrived in New York. How do you greet the customs officer?": "Vous venez d'arriver à New York. Comment saluez-vous l'agent des douanes ?",
-        "What is the English word for 'aéroport'?": "Quel est le mot anglais pour 'aéroport' ?",
-        "At JFK Airport, what do you say to get a taxi?": "À l'aéroport JFK, que dites-vous pour obtenir un taxi ?",
+        "What is the English word for 'aéroport'?": "Quel est le mot anglais pour 'aeroport' ?",
+        "At JFK Airport, what do you say to get a taxi?": "À l'aeroport JFK, que dites-vous pour obtenir un taxi ?",
         "You need to go to Manhattan. What do you ask the taxi driver?": "Vous devez aller à Manhattan. Que demandez-vous au chauffeur de taxi ?",
-        "At a coffee shop, how do you order a coffee politely?": "Dans un café, comment commandez-vous un café poliment ?",
-        "You are lost in the subway. What do you ask?": "Vous êtes perdu dans le métro. Que demandez-vous ?",
+        "At a coffee shop, how do you order a coffee politely?": "Dans un cafe, comment commandez-vous un café poliment ?",
+        "You are lost in the subway. What do you ask?": "Vous êtes perdu dans le metro. Que demandez-vous ?",
         "You enter a restaurant. What does 'Takeout or dine-in?' mean?": "Vous entrez dans un restaurant. Que signifie 'À emporter ou sur place ?'",
         "Which one is a typical New York food?": "Lequel est un aliment typique de New York ?",
-        "Which subway line takes you to Central Park?": "Quelle ligne de métro vous emmène à Central Park ?",
+        "Which subway line takes you to Central Park?": "Quelle ligne de metro vous emmène à Central Park ?",
         "A New Yorker tells you 'It's a piece of cake!'. What does it mean?": "Un New-Yorkais vous dit 'It's a piece of cake!'. Que signifie cette phrase ?",
         "Someone says 'I'm in a rush'. What does it mean?": "Quelqu'un dit 'I'm in a rush'. Que signifie cette phrase ?",
-        "You're in Brooklyn and someone says 'The L train is down'. What does it mean?": "Vous êtes à Brooklyn et quelqu'un dit 'The L train is down'. Que signifie cette phrase ?",
+        "You're in Brooklyn and someone says 'The L train is down'. What does it mean?": "Vous etes à Brooklyn et quelqu'un dit 'The L train is down'. Que signifie cette phrase ?",
         "A street vendor says 'That'll be ten bucks'. What does 'bucks' mean?": "Un vendeur de rue dit 'That'll be ten bucks'. Que signifie 'bucks' ?",
         "Someone says 'Let's grab a slice'. What are they talking about?": "Quelqu'un dit 'Let's grab a slice'. De quoi parle-t-il ?"
     };
