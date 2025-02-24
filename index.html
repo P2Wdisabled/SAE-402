@@ -1,83 +1,203 @@
+<html>
 
-<html lang="fr">
-  <head>
-    <meta charset="utf-8">
-    <title>English City in A-Frame .glb</title>
-    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-    <style>
-      body { margin: 0; }
-    </style>
-  </head>
-  <body>
-    <a-scene>
-      <a-assets>
-        <a-asset-item id="building1" src="./models/Medium_wealth_area/Large Building-JgGLJH2iXj.glb"></a-asset-item> <!-- green building 2*3 -->
-        <a-asset-item id="building2" src="./models/Lady_Liberty_area/Dock Wide.glb"></a-asset-item> <!-- dock wide -->
-        <a-asset-item id="building3" src="./models/Medium_wealth_area/Large Building-h7Jaq7bqMq.glb"></a-asset-item> <!-- building with black top floor -->
-        <a-asset-item id="building4" src="./models/Medium_wealth_area/Low_Hide.glb"></a-asset-item> <!-- gray L-shaped building -->
-        <a-asset-item id="building5" src="./models/Business_area/Stone Walkway.glb"></a-asset-item> <!-- stone walkway -->
-        <a-asset-item id="building6" src="./models/Medium_wealth_area/Small Building.glb"></a-asset-item> <!-- building with hidden door -->
-        <a-asset-item id="building7" src="./models/High_wealth_area/Large Building.glb"></a-asset-item> <!-- long green building -->
-        <a-asset-item id="building8" src="./models/High_wealth_area/Large Building-3IhrYZp6tP.glb"></a-asset-item> <!-- green building 4*3 -->
-        <a-asset-item id="building9" src="./models/High_wealth_area/Low_Building.glb"></a-asset-item> <!-- gray and black building -->
-        <a-asset-item id="building10" src="./models/High_wealth_area/Large Building-ppwtREejXg.glb"></a-asset-item> <!-- green building 4*5 -->
-        <a-asset-item id="building11" src="./models/Lady_Liberty_area/Lady Liberty.glb"></a-asset-item> <!-- statue of liberty -->
-        <a-asset-item id="building12" src="./models/Lady_Liberty_area/island.glb"></a-asset-item> <!-- island -->
-        <a-asset-item id="building13" src="./models/Sport_area/Ping Pong table.glb"></a-asset-item> <!-- ping pong table -->
-        <a-asset-item id="building14" src="./models/Sport_area/Basketball court.glb"></a-asset-item> <!-- basketball court -->
-        <a-asset-item id="building15" src="./models/Sport_area/Park Bench.glb"></a-asset-item> <!-- park bench -->
-        <a-asset-item id="building16" src=""></a-asset-item> <!-- empty -->
-        <a-asset-item id="building17" src="./models/Business_area/Empire_State_Building.glb"></a-asset-item> <!-- empire state building -->
-        <a-asset-item id="building18" src="./models/Business_area/Skyscraper1.glb"></a-asset-item> <!-- skyscraper 1 -->
-        <a-asset-item id="building19" src="./models/Business_area/Skyscraper2.glb"></a-asset-item> <!-- skyscraper 2 -->
-        <a-asset-item id="building20" src="./models/Business_area/Parking Lot.glb"></a-asset-item> <!-- parking lot -->
-        <a-asset-item id="building21" src="./models/Road/Road block.glb"></a-asset-item> <!-- road block -->
-        <a-asset-item id="building23" src="./models/Road/Lamp_Post.glb"></a-asset-item> <!-- lamp post -->
-        <a-asset-item id="building24" src="./models/Sport_area/See-saw.glb"></a-asset-item> <!-- see-saw -->
-        <a-asset-item id="building25" src="./models/Sport_area/Slide.glb"></a-asset-item> <!-- slide -->
-        <a-asset-item id="building26" src="./models/Sport_area/Swing set.glb"></a-asset-item> <!-- swing set -->
-        <a-asset-item id="building27" src="./models/Sport_area/Monkeybars.glb"></a-asset-item> <!-- monkey bars -->
-        <a-asset-item id="building28" src="./models/Sport_area/Sandbox.glb"></a-asset-item> <!-- sandbox -->
-        <a-asset-item id="building29" src="./models/Sport_area/Tree.glb"></a-asset-item> <!-- tree -->
-        <a-asset-item id="building30" src="./models/Sport_area/Bench.glb"></a-asset-item> <!-- bench -->
-        <a-asset-item id="building31" src="./models/Road/Curved road.glb"></a-asset-item> <!-- curved road -->
-        <a-asset-item id="building32" src=""></a-asset-item> <!-- empty -->
-        <a-asset-item id="building33" src="./models/Business_area/Trashcan.glb"></a-asset-item> <!-- trashcan -->
-        <a-asset-item id="building34" src="./models/Business_area/Fountain.glb"></a-asset-item> <!-- fountain -->
-        <a-asset-item id="building35" src="./models/Car/Taxi.glb"></a-asset-item> <!-- taxi -->
-        <a-asset-item id="building36" src="./models/Business_area/Tree1.glb"></a-asset-item> <!-- tree 1 -->
-     
-      </a-assets>
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,maximum-scale=1">
+  <title>Examples • Castle</title>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdn.aframe.io/releases/1.2.0/aframe-extras.min.js"></script>
+  <script src="../../dist/aframe-extras.js?V=1"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/aframe-environment-component@1.3.7/dist/aframe-environment-component.min.js"></script>
+</head>
 
-      <a-plane id="ground" position="-60 0 60" rotation="-90 0 0" width="185" height="180"></a-plane>
+<body>
+  <a-scene>
+    <a-assets>
+      <a-asset-item id="npc1" src="../assets/pnj/Man.glb"></a-asset-item>
+      <a-asset-item id="npc2" src="../assets/pnj/Business%20Man.glb"></a-asset-item>
+      <a-asset-item id="npc3" src="../assets/pnj/Hoodie%20Character.glb"></a-asset-item>
+      <a-asset-item id="navmesh" src="../assets/navmesh.gltf"></a-asset-item>
+      <a-asset-item id="building1" src="../assets/Medium_wealth_area/Large Building-JgGLJH2iXj.glb"></a-asset-item>
+      <!-- green building 2*3 -->
+      <a-asset-item id="building2" src="../assets/Lady_Liberty_area/Dock Wide.glb"></a-asset-item> <!-- dock wide -->
+      <a-asset-item id="building3" src="../assets/Medium_wealth_area/Large Building-h7Jaq7bqMq.glb"></a-asset-item>
+      <!-- building with black top floor -->
+      <a-asset-item id="building4" src="../assets/Medium_wealth_area/Low_Hide.glb"></a-asset-item>
+      <!-- gray L-shaped building -->
+      <a-asset-item id="building5" src="../assets/Business_area/Stone Walkway.glb"></a-asset-item>
+      <!-- stone walkway -->
+      <a-asset-item id="building6" src="../assets/Medium_wealth_area/Small Building.glb"></a-asset-item>
+      <!-- building with hidden door -->
+      <a-asset-item id="building7" src="../assets/High_wealth_area/Large Building.glb"></a-asset-item>
+      <!-- long green building -->
+      <a-asset-item id="building8" src="../assets/High_wealth_area/Large Building-3IhrYZp6tP.glb"></a-asset-item>
+      <!-- green building 4*3 -->
+      <a-asset-item id="building9" src="../assets/High_wealth_area/Low_Building.glb"></a-asset-item>
+      <!-- gray and black building -->
+      <a-asset-item id="building10" src="../assets/High_wealth_area/Large Building-ppwtREejXg.glb"></a-asset-item>
+      <!-- green building 4*5 -->
+      <a-asset-item id="building11" src="../assets/Lady_Liberty_area/Lady Liberty.glb"></a-asset-item>
+      <!-- statue of liberty -->
+      <a-asset-item id="building12" src="../assets/Lady_Liberty_area/island.glb"></a-asset-item> <!-- island -->
+      <a-asset-item id="building13" src="../assets/Sport_area/Ping Pong table.glb"></a-asset-item>
+      <!-- ping pong table -->
+      <a-asset-item id="building14" src="../assets/Sport_area/Basketball court.glb"></a-asset-item>
+      <!-- basketball court -->
+      <a-asset-item id="building15" src="../assets/Sport_area/Park Bench.glb"></a-asset-item> <!-- park bench -->
+      <a-asset-item id="building16" src=""></a-asset-item> <!-- empty -->
+      <a-asset-item id="building17" src="../assets/Business_area/Empire_State_Building.glb"></a-asset-item>
+      <!-- empire state building -->
+      <a-asset-item id="building18" src="../assets/Business_area/Skyscraper1.glb"></a-asset-item> <!-- skyscraper 1 -->
+      <a-asset-item id="building19" src="../assets/Business_area/Skyscraper2.glb"></a-asset-item> <!-- skyscraper 2 -->
+      <a-asset-item id="building20" src="../assets/Business_area/Parking Lot.glb"></a-asset-item> <!-- parking lot -->
+      <a-asset-item id="building21" src="../assets/Road/Road block.glb"></a-asset-item> <!-- road block -->
+      <a-asset-item id="building23" src="../assets/Road/Lamp_Post.glb"></a-asset-item> <!-- lamp post -->
+      <a-asset-item id="building24" src="../assets/Sport_area/See-saw.glb"></a-asset-item> <!-- see-saw -->
+      <a-asset-item id="building25" src="../assets/Sport_area/Slide.glb"></a-asset-item> <!-- slide -->
+      <a-asset-item id="building26" src="../assets/Sport_area/Swing set.glb"></a-asset-item> <!-- swing set -->
+      <a-asset-item id="building27" src="../assets/Sport_area/Monkeybars.glb"></a-asset-item> <!-- monkey bars -->
+      <a-asset-item id="building28" src="../assets/Sport_area/Sandbox.glb"></a-asset-item> <!-- sandbox -->
+      <a-asset-item id="building29" src="../assets/Sport_area/Tree.glb"></a-asset-item> <!-- tree -->
+      <a-asset-item id="building30" src="../assets/Sport_area/Bench.glb"></a-asset-item> <!-- bench -->
+      <a-asset-item id="building31" src="../assets/Road/Curved road.glb"></a-asset-item> <!-- curved road -->
+      <a-asset-item id="building32" src=""></a-asset-item> <!-- empty -->
+      <a-asset-item id="building33" src="../assets/Business_area/Trashcan.glb"></a-asset-item> <!-- trashcan -->
+      <a-asset-item id="building34" src="../assets/Business_area/Fountain.glb"></a-asset-item> <!-- fountain -->
+      <a-asset-item id="building35" src="../assets/car/Taxi.glb"></a-asset-item> <!-- taxi -->
+      <a-asset-item id="building36" src="../assets/Business_area/Tree1.glb"></a-asset-item> <!-- tree 1 -->
+    </a-assets>
+
+    <a-sky id="sky" color="#87CEEB"></a-sky>
+
+  
+    
+    <a-entity id="sun" geometry="primitive: sphere; radius: 30" material="color: yellow" position="0 500 0"></a-entity>
+    <a-entity id="moon" geometry="primitive: sphere; radius: 30" material="color: white" position="0 500 0" visible="false"></a-entity>
+    
+    <!-- Player. -->
+    <a-entity id="rig"
+      movement-controls="constrainToNavMesh: true; controls: checkpoint, gamepad, trackpad, keyboard, nipple;"
+      position="10 0 0">
+
+      <a-entity camera position="0 1.5 0" look-controls="pointerLockEnabled: true">
+        <a-entity cursor position="0 0 -0.01" geometry="primitive: sphere; radius: 0.00005"
+          material="color: #202020; shader: flat">
+
+          <a-plane id="score-panel" position="0.5 0.2 -1" width="0.3" height="0.1" color="#FFD700"
+            material="shader: flat">
+            <a-text id="score" value="Score: 0" position="0 0.02 0" align="center" color="black" width="1"
+              font="mozillavr"></a-text>
+          </a-plane>
+
+          <a-plane id="time-panel" position="-0.2 0.2 -1" width="0.4" height="0.1" color="#FFD700"
+            material="shader: flat">
+            <a-text id="time" value="time left: 10:00" position="0 0.02 0" align="center" color="black" width="1"
+              font="mozillavr"></a-text>
+          </a-plane>
+        </a-entity>
+        <a-plane id="feedback-message" align="center" width="4" height="0.5" visible="false" position="0 2 0"
+          material="color: #333; opacity: 1; shader: flat; side: double">
+          <a-text id="feedback-text" position="-0.7 0.1 0.01">
+
+          </a-text>
+        </a-plane>
+      </a-entity>
+
+      <a-entity id="leftController" oculus-touch-controls="hand: left; model: true" thumbstick-move>
+      </a-entity>
+
+      <a-entity id="rightController" oculus-touch-controls="hand: right; model: true">
+        <a-entity raycaster="objects: .collidable" cursor></a-entity>
+      </a-entity>
+
+
+      <a-plane id="overlay" position="0 3 -2" visible="false"></a-plane>
+      <a-plane id="dialogue-box" position="0 2 -2" width="4" height="0.5" visible="false"
+        material="color: black; opacity: 0.8; shader: flat" geometry="primitive: plane; width:5; height: 1.4">
+        <a-text id="dialogue-text" value="Hi! How can I help you?" position="0 0.2 0.01" width="2" align="center"
+          text="color: white; wrapCount: 30; font: mozillavr"></a-text>
+        <a-text id="difficulty-text" value="Difficulty:" position="-1.4 0.5 0.01" width="1.5"
+          text="color: yellow; wrapCount: 20; font: mozillavr"></a-text>
+        <a-text id="remaining-text" value="Remaining:" position="0.6 0.5 0.01" width="1.5"
+          text="color: cyan; wrapCount: 20; font: mozillavr"></a-text>
+        <a-text id="choice1" value="I don't speak English" position="-1.8 -0.2 0.01" width="1.5" class="clickableChoice"
+          text="color: lightblue; wrapCount: 20; font: mozillavr; width: 1.5"
+          event-set__mouseenter="_event: mouseenter; text.color: cyan"
+          event-set__mouseleave="_event: mouseleave; text.color: lightblue"></a-text>
+        <a-text id="choice2" value="Where is the police station?" position="1 -0.2 0.01" width="1.5"
+          class="clickableChoice" text="color: lightgreen; wrapCount: 20; font: mozillavr; width: 1.5"
+          event-set__mouseenter="_event: mouseenter; text.color: lime"
+          event-set__mouseleave="_event: mouseleave; text.color: lightgreen"></a-text>
+        <a-plane id="close" class="close" position="0 -0.4 0.01" width="0.6" height="0.2" color="red"
+          text="value: Fermer; align: center; color: white; font: mozillavr; width: 2">
+        </a-plane>
+      </a-plane>
+    </a-entity>
+
+
+    <a-entity id="npcSpawn-container" position="6.5 0.2 -2.5" rotation="0 45 0">
+      <a-text id="name" value="Steve" position="0 2 0" align="center"></a-text>
+      <a-entity id="npcSpawn-entity" gltf-model="#npc1" scale="0.35 0.35 0.35"></a-entity>
+      <a-box id="npcSpawn-hitbox" class="clickable" position="0 1 0" width="1" height="2" depth="1" opacity="0"
+        transparent="true"></a-box>
+    </a-entity>
+
+
+    <a-entity id="npc1-container" position="-50 0.2 70" rotation="0 180 0">
+      <a-text id="name" value="Greg" position="0 2 0" align="center"></a-text>
+      <a-entity id="npc1-entity" gltf-model="#npc1" scale="0.35 0.35 0.35"></a-entity>
+      <a-box id="npc1-hitbox" class="clickable" position="0 1 0" width="1" height="2" depth="1" opacity="0"
+        transparent="true"></a-box>
+    </a-entity>
+
+    <a-entity id="npc2-container" position="-92 0.1 -1">
+      <a-text id="name" value="Mickael" position="0 2 0" align="center"></a-text>
+      <a-entity id="npc2-entity" gltf-model="#npc2" scale="1 1 0.75"></a-entity>
+      <a-box id="npc2-hitbox" class="clickable" position="0 1.5 0" width="1" height="2" depth="1" opacity="0"
+        transparent="true"></a-box>
+    </a-entity>
+
+    <a-entity id="npc3-container" position="5 0.2 55" rotation="0 -90 0">
+      <a-text id="name" value="Luke" position="0 2 0" align="center"></a-text>
+      <a-entity id="npc3-entity" gltf-model="#npc3" scale="1 1 1"></a-entity>
+      <a-box id="npc3-hitbox" class="clickable" position="0 1 0" width="1" height="2" depth="1" opacity="0"
+        transparent="true"></a-box>
+    </a-entity>
+
+    <a-entity nav-mesh normal-material visible="false" position="0 0 0" gltf-model="#navmesh"></a-entity>
+
+
+    <a-plane id="ground" position="-60 -0.1 60" rotation="-90 0 0" width="185" height="180"></a-plane>
 
 
 
-<!-- medium wealth area -->
-      <a-entity gltf-model="#building1" position="10 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
-      <a-entity gltf-model="#building1" position="5 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
-      <a-entity gltf-model="#building1" position="0 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
-      <a-entity gltf-model="#building1" position="-5 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
-      <a-entity gltf-model="#building1" position="-10 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
-      <a-entity gltf-model="#building1" position="-15 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
-      <a-entity gltf-model="#building1" position="-20 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
-      <a-entity gltf-model="#building1" position="-25 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
-      <a-entity gltf-model="#building6" position="6 0 5" scale="5 5 5"></a-entity>
-      <a-entity gltf-model="#building6" position="2 0 5" scale="5 5 5"></a-entity>
-      <a-entity gltf-model="#building6" position="-2 0 5" scale="5 5 5"></a-entity>
-      <a-entity gltf-model="#building6" position="-6 0 5" scale="5 5 5"></a-entity>
-      <a-entity gltf-model="#building6" position="-10 0 5" scale="5 5 5"></a-entity>
-      <a-entity gltf-model="#building6" position="-14 0 5" scale="5 5 5"></a-entity>
-      <a-entity gltf-model="#building6" position="-22 0 5" scale="5 5 5"></a-entity>
-      <a-entity gltf-model="#building6" position="-18 0 5" scale="5 5 5"></a-entity>
-      <a-entity gltf-model="#building6" position="10 0 5" scale="5 5 5"></a-entity>
-      <a-entity gltf-model="#building19" position="16 0 -0.5" scale="6 6 6" rotation="0 90 0"></a-entity>
-      <a-entity gltf-model="#building3" position="-28 0 10.9" scale="5 5 5"></a-entity>
-      <a-entity gltf-model="#building4" position="-32 -0.8 -6" scale="8 8 8"></a-entity>
-      <a-entity gltf-model="#building4" position="-38 -0.8 -8" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <!-- medium wealth area -->
+    <a-entity gltf-model="#building1" position="10 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building1" position="5 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building1" position="0 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building1" position="-5 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building1" position="-10 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building1" position="-15 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building1" position="-20 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building1" position="-25 0 -6" scale="5 5 5" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building6" position="6 0 5" scale="5 5 5"></a-entity>
+    <a-entity gltf-model="#building6" position="2 0 5" scale="5 5 5"></a-entity>
+    <a-entity gltf-model="#building6" position="-2 0 5" scale="5 5 5"></a-entity>
+    <a-entity gltf-model="#building6" position="-6 0 5" scale="5 5 5"></a-entity>
+    <a-entity gltf-model="#building6" position="-10 0 5" scale="5 5 5"></a-entity>
+    <a-entity gltf-model="#building6" position="-14 0 5" scale="5 5 5"></a-entity>
+    <a-entity gltf-model="#building6" position="-22 0 5" scale="5 5 5"></a-entity>
+    <a-entity gltf-model="#building6" position="-18 0 5" scale="5 5 5"></a-entity>
+    <a-entity gltf-model="#building6" position="10 0 5" scale="5 5 5"></a-entity>
+    <a-entity gltf-model="#building19" position="16 0 -0.5" scale="6 6 6" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building3" position="-28 0 10.9" scale="5 5 5"></a-entity>
+    <a-entity gltf-model="#building4" position="-32 -0.8 -6" scale="8 8 8"></a-entity>
+    <a-entity gltf-model="#building4" position="-38 -0.8 -8" scale="8 8 8" rotation="0 90 0"></a-entity>
 
-     
-<!-- high wealth area -->
+
+    <!-- high wealth area -->
     <a-entity gltf-model="#building10" position="-145 12 2" scale="8 8 8" rotation="0 90 0"></a-entity>
     <a-entity gltf-model="#building10" position="-145 -0.8 2" scale="8 8 8" rotation="0 90 0"></a-entity>
     <a-entity gltf-model="#building8" position="-135 -0.8 -10" scale="8 8 8" rotation="0 180 0"></a-entity>
@@ -95,711 +215,467 @@
     <a-entity gltf-model="#building7" position="-117 -0.8 13" scale="8 8 8" rotation="0 0 0"></a-entity>
     <a-entity gltf-model="#building7" position="-80 -0.8 13" scale="8 8 8" rotation="0 0 0"></a-entity>
     <a-entity gltf-model="#building7" position="-65 -0.8 13" scale="8 8 8" rotation="0 0 0"></a-entity>
-<!-- Lady Liberty -->
-<a-plane position="-60 -1 -90" rotation="-90 0 0" width="185" height="120" color="#0000FF"></a-plane>
+    <!-- Lady Liberty -->
+    <a-plane position="-60 -1 -90" rotation="-90 0 0" width="185" height="120" color="#0000FF"></a-plane>
 
-<a-entity gltf-model="#building11" position="-50 36 -120" scale="16 16 16" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building12" position="-50 3 -118" scale="1.5 1.5 1.5 " rotation="0 230 0"></a-entity>
-<a-entity gltf-model="#building5" position="-144.7 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-144.7 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-135.3 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-135.3 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-125.9 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-125.9 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-116.5 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-116.5 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-107.1 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-107.1 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-97.7 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-97.7 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-88.3 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-88.3 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-78.9 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-78.9 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-69.5 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-69.5 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-60.1 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-60.1 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-50.7 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-50.7 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-41.3 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-41.3 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-31.9 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-31.9 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-22.5 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-22.5 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-13.1 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-13.1 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-3.7 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-3.7 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="5.6 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="5.6 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="15 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="15 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="24.4 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="24.4 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building30" position="-97.7 1.05 -13.8" scale="3 3 3" rotation="0 270 0"></a-entity>
-<a-entity gltf-model="#building30" position="-67.7 1.05 -13.8" scale="3 3 3" rotation="0 270 0"></a-entity>
-<a-entity gltf-model="#building30" position="-127.7 1.05 -13.8" scale="3 3 3" rotation="0 270 0"></a-entity>
-<a-entity gltf-model="#building30" position="-25 1.05 -10" scale="5 5 5" rotation="0 270 0"></a-entity>
-<a-entity gltf-model="#building33" position="-35 0.1 -10" scale="1.3 1.3 1.3" rotation="0 270 0"></a-entity>
-<a-entity gltf-model="#building30" position="16 1.05 -10" scale="3 3 3" rotation="0 270 0"></a-entity>
-<a-entity gltf-model="#building2" position="-50 -1 -33" scale="0.3 0.3 0.3" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building2" position="-50 -1 -38.5" scale="0.3 0.3 0.3" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building2" position="-50 -1 -44" scale="0.3 0.3 0.3" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building2" position="-50 -1 -49.5" scale="0.3 0.3 0.3" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building2" position="-50 -1 -55" scale="0.3 0.3 0.3" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building2" position="-50 -1 -60.5" scale="0.3 0.3 0.3" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building2" position="-50 -1 -66" scale="0.3 0.3 0.3" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building2" position="-50 -1 -71.5" scale="0.3 0.3 0.3" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building2" position="-50 -1 -77" scale="0.3 0.3 0.3" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building2" position="-50 -1 -82.5" scale="0.3 0.3 0.3" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building2" position="-50 -1 -88" scale="0.3 0.3 0.3" rotation="0 180 0"></a-entity>
-<!-- Sports area -->
-<a-plane position="-5 0.2 85" rotation="-90 0 0" width="70" height="100" color="green"></a-plane>
-<a-entity gltf-model="#building29" position="-35 0 40" scale="1 1 1" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building29" position="-2 0 70" scale="1 1 1" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building29" position="20 0 40" scale="1 1 1" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building29" position="-35 0 60" scale="1 1 1" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building29" position="-35 0 100" scale="1 1 1" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building29" position="10 0 80" scale="1 1 1" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building29" position="24 0 60" scale="1 1 1" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building29" position="25 0 95" scale="1 1 1" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building29" position="25 0 115" scale="1 1 1" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building29" position="-32 0 86" scale="1 1 1" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building29" position="-10 0 86" scale="1 1 1" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building29" position="-5 0 110" scale="1 1 1" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building13" position="-20 0.2 85" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building13" position="0 0.2 85" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building14" position="-20 -0 115" scale="1.3 1.3 1.3" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building14" position="-20 0.3 60" scale="1.3 1.3 1.3" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building14" position="10 0.3 115" scale="1.3 1.3 1.3" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building24" position="0 0 60" scale="0.7 0.7 0.7" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building25" position="10 0 70" scale="1 1 1" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building26" position="0 0 50" scale="0.03 0.03 0.03" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building26" position="5 0 50" scale="0.03 0.03 0.03" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building27" position="15 0 50" scale="5 5 5" rotation="0 -124 0"></a-entity>
-<a-entity gltf-model="#building28" position="12 1.4 60" scale="17 17 17" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building30" position="0 1.05 75" scale="3 3 3" rotation="0 270 0"></a-entity>
-<a-entity gltf-model="#building30" position="15 1.05 75" scale="3 3 3" rotation="0 270 0"></a-entity>
-<a-entity gltf-model="#building30" position="29 1.05 75" scale="3 3 3" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building30" position="29 1.05 110" scale="3 3 3" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building30" position="-39 1.05 80" scale="3 3 3" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building15" position="20 1 85" scale="1.2 1.2 1.2" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building15" position="-28 1 85" scale="1.2 1.2 1.2" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building11" position="-50 36 -120" scale="16 16 16" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building12" position="-50 3 -118" scale="1.5 1.5 1.5 " rotation="0 230 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-144.7 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-144.7 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-135.3 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-135.3 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-125.9 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-125.9 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-116.5 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-116.5 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-107.1 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-107.1 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-97.7 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-97.7 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-88.3 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-88.3 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-78.9 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-78.9 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-69.5 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-69.5 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-60.1 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-60.1 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-50.7 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-50.7 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-41.3 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-41.3 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-31.9 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-31.9 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-22.5 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-22.5 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-13.1 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-13.1 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-3.7 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-3.7 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="5.6 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="5.6 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="15 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="15 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="24.4 0.1 -25" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="24.4 0.1 -16.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building30" position="-97.7 1.05 -13.8" scale="3 3 3" rotation="0 270 0"></a-entity>
+    <a-entity gltf-model="#building30" position="-67.7 1.05 -13.8" scale="3 3 3" rotation="0 270 0"></a-entity>
+    <a-entity gltf-model="#building30" position="-127.7 1.05 -13.8" scale="3 3 3" rotation="0 270 0"></a-entity>
+    <a-entity gltf-model="#building30" position="-25 1.05 -10" scale="5 5 5" rotation="0 270 0"></a-entity>
+    <a-entity gltf-model="#building33" position="-35 0.1 -10" scale="1.3 1.3 1.3" rotation="0 270 0"></a-entity>
+    <a-entity gltf-model="#building30" position="16 1.05 -10" scale="3 3 3" rotation="0 270 0"></a-entity>
+    <a-entity gltf-model="#building2" position="-50 -1 -33" scale="0.3 0.3 0.3" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building2" position="-50 -1 -38.5" scale="0.3 0.3 0.3" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building2" position="-50 -1 -44" scale="0.3 0.3 0.3" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building2" position="-50 -1 -49.5" scale="0.3 0.3 0.3" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building2" position="-50 -1 -55" scale="0.3 0.3 0.3" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building2" position="-50 -1 -60.5" scale="0.3 0.3 0.3" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building2" position="-50 -1 -66" scale="0.3 0.3 0.3" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building2" position="-50 -1 -71.5" scale="0.3 0.3 0.3" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building2" position="-50 -1 -77" scale="0.3 0.3 0.3" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building2" position="-50 -1 -82.5" scale="0.3 0.3 0.3" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building2" position="-50 -1 -88" scale="0.3 0.3 0.3" rotation="0 180 0"></a-entity>
+    <!-- Sports area -->
+    <a-plane position="-5 0.2 85" rotation="-90 0 0" width="70" height="100" color="green"></a-plane>
+    <a-entity gltf-model="#building29" position="-35 0 40" scale="1 1 1" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building29" position="-2 0 70" scale="1 1 1" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building29" position="20 0 40" scale="1 1 1" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building29" position="-35 0 60" scale="1 1 1" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building29" position="-35 0 100" scale="1 1 1" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building29" position="10 0 80" scale="1 1 1" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building29" position="24 0 60" scale="1 1 1" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building29" position="25 0 95" scale="1 1 1" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building29" position="25 0 115" scale="1 1 1" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building29" position="-32 0 86" scale="1 1 1" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building29" position="-10 0 86" scale="1 1 1" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building29" position="-5 0 110" scale="1 1 1" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building13" position="-20 0.2 85" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building13" position="0 0.2 85" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building14" position="-20 -0 115" scale="1.3 1.3 1.3" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building14" position="-20 -0 60" scale="1.3 1.3 1.3" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building14" position="10 -0 115" scale="1.3 1.3 1.3" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building24" position="0 0 60" scale="0.7 0.7 0.7" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building25" position="10 0 70" scale="1 1 1" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building26" position="0 0 50" scale="0.03 0.03 0.03" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building26" position="5 0 50" scale="0.03 0.03 0.03" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building27" position="15 0 50" scale="5 5 5" rotation="0 -124 0"></a-entity>
+    <a-entity gltf-model="#building28" position="12 1.4 60" scale="17 17 17" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building30" position="0 1.05 75" scale="3 3 3" rotation="0 270 0"></a-entity>
+    <a-entity gltf-model="#building30" position="15 1.05 75" scale="3 3 3" rotation="0 270 0"></a-entity>
+    <a-entity gltf-model="#building30" position="29 1.05 75" scale="3 3 3" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building30" position="29 1.05 110" scale="3 3 3" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building30" position="-39 1.05 80" scale="3 3 3" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building15" position="20 1 85" scale="1.2 1.2 1.2" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building15" position="-28 1 85" scale="1.2 1.2 1.2" rotation="0 90 0"></a-entity>
 
-<!-- Business area -->
-<a-entity gltf-model="#building5" position=" -45.6 0.005 144.4" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -45.6 0.005 135.1" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -45.6 0.005 125.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -45.6 0.005 116.5" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -45.6 0.005 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -45.6 0.005 97.9" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -45.6 0.005 88.6" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -45.6 0.005 79.3" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -45.6 0.005 70" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -45.6 0.005 60.7" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -45.6 0.005 51.4" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -45.6 0.005 42.1" scale="5 1 5" rotation="0 0 0"></a-entity>
- 
-<a-entity gltf-model="#building5" position=" -54.9 0.1 144.4" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -54.9 0.03 135.1" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -54.9 0.03 125.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -54.9 0.1 116.5" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -54.9 0.1 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -54.9 0.1 97.9" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -54.9 0.1 88.6" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -54.9 0.1 79.3" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -54.9 0.1 70" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -54.9 0.1 60.7" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -54.9 0.1 51.4" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -54.9 0.1 42.1" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -64.2 0.1 144.4" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -64.2 0.01 135.1" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -64.2 0.01 125.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -64.2 0.1 116.5" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -64.2 0.1 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -64.2 0.1 97.9" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -64.2 0.1 88.6" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -64.2 0.1 79.3" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -64.2 0.1 70" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -64.2 0.1 60.7" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -64.2 0.1 51.4" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -64.2 0.1 42.1" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -147.9 0.1 144.4" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -147.9 0.1 135.1" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -147.9 0.1 125.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -147.9 0.1 116.5" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -147.9 0.1 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -147.9 0.1 97.9" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -147.9 0.1 88.6" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -147.9 0.1 79.3" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -147.9 0.1 70" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -147.9 0.1 60.7" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -147.9 0.1 51.4" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -147.9 0.1 42.1" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -138.6 0.1 144.4" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -138.6 0.1 135.1" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -138.6 0.1 125.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -138.6 0.1 116.5" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -138.6 0.1 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -138.6 0.1 97.9" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -138.6 0.1 88.6" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -138.6 0.1 79.3" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -138.6 0.1 70" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -138.6 0.1 60.7" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -138.6 0.1 51.4" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -138.6 0.1 42.1" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -129.3 0.1 144.4" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -129.3 0.1 135.1" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -129.3 0.1 125.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -129.3 0.1 116.5" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -129.3 0.1 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -129.3 0.1 97.9" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -129.3 0.1 88.6" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -129.3 0.1 79.3" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -129.3 0.1 70" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -129.3 0.1 60.7" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -129.3 0.1 51.4" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -129.3 0.1 42.1" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -120 0.1 144.4" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -120 0.03 135.1" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -120 0.03 125.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -120 0.03 116.5" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -120 0.03 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -110.7 0.1 144.4" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -110.7 0.03 135.1" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -110.7 0.03 125.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -110.7 0.03 116.5" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -110.7 0.03 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -101.4 0.1 144.4" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -101.4 0.03 135.1" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -101.4 0.03 125.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -101.4 0.03 116.5" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -101.4 0.03 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -92.1 0.1 144.4" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -92.1 0.03 135.1" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -92.1 0.03 125.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -92.1 0.03 116.5" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -92.1 0.03 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -82.8 0.1 144.4" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -82.8 0.03 135.1" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -82.8 0.03 125.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -82.8 0.03 116.5" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -82.8 0.03 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -73.5 0.1 144.4" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -73.5 0.03 135.1" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -73.5 0.03 125.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -73.5 0.03 116.5" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -73.5 0.03 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-101.4 0.1 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -92.1 0.1 97.9" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-101.4 0.1  97.9"scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-92.1 0.1 42.1" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-101.4 0.1 42.1" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-101.4 0.1 51.4" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-92.1 0.1 51.4" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-101.4 0.1 60.7" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-92.1 0.1 60.7" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-120 0.1 70" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-110.7 0.1 70" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-101.4 0.1 70" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-92.1 0.1 70" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-82.8 0.1 70" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-73.5 0.1 70" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-120 0.1 79.3" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-110.7 0.1 79.3" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-101.4 0.1 79.3" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-92.1 0.1 79.3" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-82.8 0.1 79.3" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-73.5 0.1 79.3" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-120 0.1 88.6" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-110.7 0.1 88.6" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-101.4 0.1 88.6" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-92.1 0.1 88.6" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-82.8 0.1 88.6" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-73.5 0.1 88.6" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-73.5 0.1 97.9" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-73.5 0.1 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-82.8 0.1 97.9" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-82.8 0.1 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-110.7 0.1 97.9" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-110.7 0.1 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-120 0.1 97.9" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position="-120 0.1 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -110.7 0.1 60.7" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -110.7 0.1 51.4" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -110.7 0.1 42.1" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -120 0.1 60.7" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -120 0.1 51.4" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -120 0.1 42.1" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -82.8 0.1 60.7" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -82.8 0.1 51.4" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -82.8 0.1 42.1" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -73.5 0.1 60.7" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -73.5 0.1 51.4" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -73.5 0.1 42.1" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -147.9 0.001 32.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -138.6 0.001 32.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -129.3 0.001 32.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -120 0.001 32.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -110.7 0.001 32.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -101.4 0.001 32.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -92.1 0.001 32.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -82.8 0.001 32.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -73.5 0.001 32.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -64.2 0.001 32.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -54.9 0.001 32.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building5" position=" -45.6 0.001 32.8" scale="5 1 5" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building30" position="-85 1.0 81" scale="3 3 3" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building30" position="-109 1.05 90" scale="3 3 3" rotation="0 270 0"></a-entity>
-<a-entity gltf-model="#building30" position="-115 1.05 79.5" scale="3 3 3" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building30" position="-91 1.05 90" scale="3 3 3" rotation="0 270 0"></a-entity>
-<a-entity gltf-model="#building30" position="-109 1.05 90" scale="3 3 3" rotation="0 270 0"></a-entity>
-<a-entity gltf-model="#building30" position="-91 1.05 70" scale="3 3 3" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building30" position="-109 1.05 70" scale="3 3 3" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building36" position="-82 4 80" scale="10 10 10" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building36" position="-82 4 90" scale="10 10 10" rotation="0 0 0"></a-entity> 
-<a-entity gltf-model="#building36" position="-118 4 90" scale="10 10 10" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building36" position="-118 4 80" scale="10 10 10" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building36" position="-100 4 70" scale="10 10 10" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building36" position="-90 4 50" scale="10 10 10" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building36" position="-130 4 50" scale="10 10 10" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building36" position="-110 4 50" scale="10 10 10" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building36" position="-70 4 50" scale="10 10 10" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building17" position="-98 0.4 103" scale="2.5 2.5 2.5" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building18" position="-140 0 40" scale="7 7 7" rotation="0 270 0"></a-entity>
-<a-entity gltf-model="#building19" position="-140 0 60" scale="7 7 7" rotation="0 270 0"></a-entity>
-<a-entity gltf-model="#building18" position="-140 0 80" scale="7 7 7" rotation="0 270 0"></a-entity>
-<a-entity gltf-model="#building19" position="-140 0 100" scale="7 7 7" rotation="0 270 0"></a-entity>
-<a-entity gltf-model="#building18" position="-140 0 120" scale="7 7 7" rotation="0 270 0"></a-entity>
-<a-entity gltf-model="#building19" position="-140 0 140" scale="7 7 7" rotation="0 270 0"></a-entity>
-<a-entity gltf-model="#building18" position="-60 0 40" scale="7 7 7" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building19" position="-60 0 60" scale="7 7 7" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building18" position="-60 0 80" scale="7 7 7" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building19" position="-60 0 100" scale="7 7 7" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building18" position="-60 0 120" scale="7 7 7" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building19" position="-60 0 140" scale="7 7 7" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building20" position="-85 0 125.5" scale="7 7 7" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building20" position="-110 0 125.5" scale="7 7 7" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building36" position="-120 4 145" scale="10 10 10" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building36" position="-110 4 145" scale="10 10 10" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building36" position="-100 4 145" scale="10 10 10" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building36" position="-90 4 145" scale="10 10 10" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building36" position="-80 4 145" scale="10 10 10" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building18" position="-82 0 60" scale="7 7 7" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building19" position="-82 0 40" scale="7 7 7" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building18" position="-118 0 60" scale="7 7 7" rotation="0 270 0"></a-entity>
-<a-entity gltf-model="#building19" position="-118 0 40" scale="7 7 7" rotation="0 270 0"></a-entity>
-<a-entity gltf-model="#building34" position="-100 0.9 80" scale="10 10 10" rotation="0 270 0"></a-entity>
+    <!-- Business area -->
+    <a-entity gltf-model="#building5" position=" -45.6 0.005 144.4" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -45.6 0.005 135.1" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -45.6 0.005 125.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -45.6 0.005 116.5" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -45.6 0.005 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -45.6 0.005 97.9" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -45.6 0.005 88.6" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -45.6 0.005 79.3" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -45.6 0.005 70" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -45.6 0.005 60.7" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -45.6 0.005 51.4" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -45.6 0.005 42.1" scale="5 1 5" rotation="0 0 0"></a-entity>
 
-<!-- car -->
-<a-entity gltf-model="#building35" position="-82.5 0 134" scale="0.04 0.04 0.04" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building35" position="8 0 -1.5" scale="0.04 0.04 0.04" rotation="0 270 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -54.9 0.1 144.4" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -54.9 0.03 135.1" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -54.9 0.03 125.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -54.9 0.1 116.5" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -54.9 0.1 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -54.9 0.1 97.9" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -54.9 0.1 88.6" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -54.9 0.1 79.3" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -54.9 0.1 70" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -54.9 0.1 60.7" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -54.9 0.1 51.4" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -54.9 0.1 42.1" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -64.2 0.1 144.4" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -64.2 0.01 135.1" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -64.2 0.01 125.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -64.2 0.1 116.5" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -64.2 0.1 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -64.2 0.1 97.9" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -64.2 0.1 88.6" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -64.2 0.1 79.3" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -64.2 0.1 70" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -64.2 0.1 60.7" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -64.2 0.1 51.4" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -64.2 0.1 42.1" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -147.9 0.1 144.4" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -147.9 0.1 135.1" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -147.9 0.1 125.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -147.9 0.1 116.5" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -147.9 0.1 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -147.9 0.1 97.9" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -147.9 0.1 88.6" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -147.9 0.1 79.3" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -147.9 0.1 70" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -147.9 0.1 60.7" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -147.9 0.1 51.4" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -147.9 0.1 42.1" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -138.6 0.1 144.4" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -138.6 0.1 135.1" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -138.6 0.1 125.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -138.6 0.1 116.5" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -138.6 0.1 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -138.6 0.1 97.9" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -138.6 0.1 88.6" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -138.6 0.1 79.3" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -138.6 0.1 70" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -138.6 0.1 60.7" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -138.6 0.1 51.4" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -138.6 0.1 42.1" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -129.3 0.1 144.4" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -129.3 0.1 135.1" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -129.3 0.1 125.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -129.3 0.1 116.5" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -129.3 0.1 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -129.3 0.1 97.9" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -129.3 0.1 88.6" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -129.3 0.1 79.3" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -129.3 0.1 70" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -129.3 0.1 60.7" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -129.3 0.1 51.4" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -129.3 0.1 42.1" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -120 0.1 144.4" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -120 0.03 135.1" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -120 0.03 125.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -120 0.03 116.5" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -120 0.03 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -110.7 0.1 144.4" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -110.7 0.03 135.1" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -110.7 0.03 125.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -110.7 0.03 116.5" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -110.7 0.03 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -101.4 0.1 144.4" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -101.4 0.03 135.1" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -101.4 0.03 125.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -101.4 0.03 116.5" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -101.4 0.03 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -92.1 0.1 144.4" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -92.1 0.03 135.1" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -92.1 0.03 125.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -92.1 0.03 116.5" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -92.1 0.03 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -82.8 0.1 144.4" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -82.8 0.03 135.1" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -82.8 0.03 125.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -82.8 0.03 116.5" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -82.8 0.03 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -73.5 0.1 144.4" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -73.5 0.03 135.1" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -73.5 0.03 125.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -73.5 0.03 116.5" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -73.5 0.03 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-101.4 0.1 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -92.1 0.1 97.9" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-101.4 0.1  97.9" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-92.1 0.1 42.1" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-101.4 0.1 42.1" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-101.4 0.1 51.4" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-92.1 0.1 51.4" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-101.4 0.1 60.7" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-92.1 0.1 60.7" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-120 0.1 70" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-110.7 0.1 70" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-101.4 0.1 70" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-92.1 0.1 70" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-82.8 0.1 70" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-73.5 0.1 70" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-120 0.1 79.3" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-110.7 0.1 79.3" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-101.4 0.1 79.3" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-92.1 0.1 79.3" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-82.8 0.1 79.3" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-73.5 0.1 79.3" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-120 0.1 88.6" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-110.7 0.1 88.6" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-101.4 0.1 88.6" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-92.1 0.1 88.6" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-82.8 0.1 88.6" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-73.5 0.1 88.6" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-73.5 0.1 97.9" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-73.5 0.1 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-82.8 0.1 97.9" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-82.8 0.1 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-110.7 0.1 97.9" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-110.7 0.1 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-120 0.1 97.9" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position="-120 0.1 107.2" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -110.7 0.1 60.7" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -110.7 0.1 51.4" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -110.7 0.1 42.1" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -120 0.1 60.7" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -120 0.1 51.4" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -120 0.1 42.1" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -82.8 0.1 60.7" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -82.8 0.1 51.4" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -82.8 0.1 42.1" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -73.5 0.1 60.7" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -73.5 0.1 51.4" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -73.5 0.1 42.1" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -147.9 0.001 32.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -138.6 0.001 32.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -129.3 0.001 32.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -120 0.001 32.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -110.7 0.001 32.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -101.4 0.001 32.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -92.1 0.001 32.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -82.8 0.001 32.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -73.5 0.001 32.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -64.2 0.001 32.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -54.9 0.001 32.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building5" position=" -45.6 0.001 32.8" scale="5 1 5" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building30" position="-85 1.0 81" scale="3 3 3" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building30" position="-109 1.05 90" scale="3 3 3" rotation="0 270 0"></a-entity>
+    <a-entity gltf-model="#building30" position="-115 1.05 79.5" scale="3 3 3" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building30" position="-91 1.05 90" scale="3 3 3" rotation="0 270 0"></a-entity>
+    <a-entity gltf-model="#building30" position="-109 1.05 90" scale="3 3 3" rotation="0 270 0"></a-entity>
+    <a-entity gltf-model="#building30" position="-91 1.05 70" scale="3 3 3" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building30" position="-109 1.05 70" scale="3 3 3" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building36" position="-82 4 80" scale="10 10 10" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building36" position="-82 4 90" scale="10 10 10" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building36" position="-118 4 90" scale="10 10 10" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building36" position="-118 4 80" scale="10 10 10" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building36" position="-100 4 70" scale="10 10 10" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building36" position="-90 4 50" scale="10 10 10" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building36" position="-130 4 50" scale="10 10 10" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building36" position="-110 4 50" scale="10 10 10" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building36" position="-70 4 50" scale="10 10 10" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building17" position="-98 0.4 103" scale="2.5 2.5 2.5" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building18" position="-140 0 40" scale="7 7 7" rotation="0 270 0"></a-entity>
+    <a-entity gltf-model="#building19" position="-140 0 60" scale="7 7 7" rotation="0 270 0"></a-entity>
+    <a-entity gltf-model="#building18" position="-140 0 80" scale="7 7 7" rotation="0 270 0"></a-entity>
+    <a-entity gltf-model="#building19" position="-140 0 100" scale="7 7 7" rotation="0 270 0"></a-entity>
+    <a-entity gltf-model="#building18" position="-140 0 120" scale="7 7 7" rotation="0 270 0"></a-entity>
+    <a-entity gltf-model="#building19" position="-140 0 140" scale="7 7 7" rotation="0 270 0"></a-entity>
+    <a-entity gltf-model="#building18" position="-60 0 40" scale="7 7 7" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building19" position="-60 0 60" scale="7 7 7" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building18" position="-60 0 80" scale="7 7 7" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building19" position="-60 0 100" scale="7 7 7" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building18" position="-60 0 120" scale="7 7 7" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building19" position="-60 0 140" scale="7 7 7" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building20" position="-85 0 125.5" scale="7 7 7" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building20" position="-110 0 125.5" scale="7 7 7" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building36" position="-120 4 145" scale="10 10 10" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building36" position="-110 4 145" scale="10 10 10" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building36" position="-100 4 145" scale="10 10 10" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building36" position="-90 4 145" scale="10 10 10" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building36" position="-80 4 145" scale="10 10 10" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building18" position="-82 0 60" scale="7 7 7" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building19" position="-82 0 40" scale="7 7 7" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building18" position="-118 0 60" scale="7 7 7" rotation="0 270 0"></a-entity>
+    <a-entity gltf-model="#building19" position="-118 0 40" scale="7 7 7" rotation="0 270 0"></a-entity>
+    <a-entity gltf-model="#building34" position="-100 0.9 80" scale="10 10 10" rotation="0 270 0"></a-entity>
 
-
-<!-- Trash  -->
- <a-entity gltf-model="#building33" position="-5 0 134" scale="1.3 1.3 1.3" rotation="0 180 0"></a-entity>
- <a-entity gltf-model="#building33" position="-39 0 65" scale="1.3 1.3 1.3" rotation="0 180 0"></a-entity>
- <a-entity gltf-model="#building33" position="-18 0 36" scale="1.3 1.3 1.3" rotation="0 180 0"></a-entity>
- <a-entity gltf-model="#building33" position="-115 0 77" scale="1.3 1.3 1.3" rotation="0 270 0"></a-entity>
-
-<!-- lamp post -->
-<a-entity gltf-model="#building23" position="5 5 33" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-10 5 33" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-25 5 33" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-40 5 33" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-55 5 33" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-70 5 33" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-85 5 33" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="2 5 2" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-10 5 2" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-25 5 2" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-40 5 2" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-55 5 4" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-70 5 4" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-85 5 4" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-100 5 4" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-115 5 4" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-130 5 4" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-43 5 10" scale="2 2 2" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building23" position="-43 5 25" scale="2 2 2" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building23" position="-43 5 40" scale="2 2 2" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building23" position="-43 5 55" scale="2 2 2" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building23" position="-43 5 70" scale="2 2 2" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building23" position="-43 5 85" scale="2 2 2" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building23" position="-43 5 100" scale="2 2 2" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building23" position="-43 5 115" scale="2 2 2" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building23" position="-43 5 130" scale="2 2 2" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building23" position="-43 5 145" scale="2 2 2" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building23" position="-95 5 10" scale="2 2 2" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building23" position="-95 5 25" scale="2 2 2" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building23" position="-10 5 33" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-25 5 33" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-40 5 33" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-55 5 33" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-70 5 33" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-85 5 33" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="2 5 2" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-10 5 2" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-25 5 2" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-40 5 2" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-55 5 4" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-70 5 4" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-85 5 4" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-100 5 4" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-115 5 4" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-130 5 4" scale="2 2 2" rotation="0 0 0"></a-entity>
-<a-entity gltf-model="#building23" position="-43 5 10" scale="2 2 2" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building23" position="-43 5 25" scale="2 2 2" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building23" position="-43 5 40" scale="2 2 2" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building23" position="-43 5 55" scale="2 2 2" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building23" position="-43 5 70" scale="2 2 2" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building23" position="-43 5 85" scale="2 2 2" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building23" position="-43 5 100" scale="2 2 2" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building23" position="-43 5 115" scale="2 2 2" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building23" position="-43 5 130" scale="2 2 2" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building23" position="-43 5 145" scale="2 2 2" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building23" position="-95 5 10" scale="2 2 2" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building23" position="-95 5 25" scale="2 2 2" rotation="0 90 0"></a-entity>
-
-<!-- Road  -->
-<a-entity gltf-model="#building21" position="8 0 -0.5" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="3 0 -0.5" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-2 0 -0.5" scale="8 8 8" rotation="0 181 0"></a-entity>
-<a-entity gltf-model="#building21" position="-7 0 -0.5" scale="8 8 8" rotation="0 181.5 0"></a-entity>
-<a-entity gltf-model="#building21" position="-12 0 -0.5" scale="8 8 8" rotation="0 182 0"></a-entity>
-<a-entity gltf-model="#building21" position="-17 0 -0.5" scale="8 8 8" rotation="0 182.5 0"></a-entity>
-<a-entity gltf-model="#building21" position="-22 0 -0.5" scale="8 8 8" rotation="0 183 0"></a-entity>
-<a-entity gltf-model="#building21" position="-27 0 -0.5" scale="8 8 8" rotation="0 183.5 0"></a-entity>
-<a-entity gltf-model="#building21" position="-32 0 -0.5" scale="8 8 8" rotation="0 184 0"></a-entity>
-<a-entity gltf-model="#building21" position="-37 0 -0.5" scale="8 8 8" rotation="0 184.5 0"></a-entity>
-<a-entity gltf-model="#building21" position="-42 0 -0.5" scale="8 8 8" rotation="0 185 0"></a-entity>
-<a-entity gltf-model="#building21" position="-52 0 0.5" scale="8 8 8" rotation="0 185 0"></a-entity>
-<a-entity gltf-model="#building21" position="-57 0 0.6" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-62 0 0.7" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-67 0 0.8" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-64.5 0.05 130" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-59.5 0.05 130" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-54.5 0.05 130" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-49.5 0.05 130" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-69.5 0.05 130" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-72 0 0.9" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-77 0 1" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-82 0 1.1" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-87 0 1.2" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-92 0 1.3" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-102 0 1.4" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-107 0 1.5" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-112 0 1.5" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-117 0 1.5" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-122 0 1.5" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-127 0 1.5" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-132 0 1.5" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building31" position="-97 0 30" scale="0.2 0.2 0.2" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-97 0 26" scale="8 8 8" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building21" position="-97 0 21" scale="8 8 8" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building21" position="-97 0 16" scale="8 8 8" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building21" position="-97 0 11" scale="8 8 8" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building21" position="-97 0 6" scale="8 8 8" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building21" position="-45 0 20" scale="8 8 8" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building21" position="-45 0 25" scale="8 8 8" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building21" position="-46.5 0 4.5" scale="8 8 8" rotation="0 95 0"></a-entity>
-<a-entity gltf-model="#building21" position="-46 0 9.5" scale="8 8 8" rotation="0 94.5 0"></a-entity>
-<a-entity gltf-model="#building21" position="-45.5 0 14.5" scale="8 8 8" rotation="0 94 0"></a-entity>
-<a-entity gltf-model="#building21" position="-45 0 19.5" scale="8 8 8" rotation="0 93.5 0"></a-entity>
+    <!-- car -->
+    <a-entity gltf-model="#building35" position="-82.5 0 134" scale="0.04 0.04 0.04" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building35" position="8 0 -1.5" scale="0.04 0.04 0.04" rotation="0 270 0"></a-entity>
 
 
-<a-entity gltf-model="#building21" position="-45 0 35" scale="8 8 8" rotation="0 92 0"></a-entity>
-<a-entity gltf-model="#building21" position="-45 0 40" scale="8 8 8" rotation="0 91.5 0"></a-entity>
-<a-entity gltf-model="#building21" position="-45 0 45" scale="8 8 8" rotation="0 91 0"></a-entity>
-<a-entity gltf-model="#building21" position="-45 0 50" scale="8 8 8" rotation="0 90.5 0"></a-entity>
-<a-entity gltf-model="#building21" position="-45 0 55" scale="8 8 8" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building21" position="-45 0 60" scale="8 8 8" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building21" position="-45 0 65" scale="8 8 8" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building21" position="-45 0 70" scale="8 8 8" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building21" position="-45 0 75" scale="8 8 8" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building21" position="-45 0 80" scale="8 8 8" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building21" position="-45 0 85" scale="8 8 8" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building21" position="-45 0 90" scale="8 8 8" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building21" position="-45 0 95" scale="8 8 8" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building21" position="-45 0 100" scale="8 8 8" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building21" position="-45 0 105" scale="8 8 8" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building21" position="-45 0 110" scale="8 8 8" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building21" position="-45 0 115" scale="8 8 8" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building21" position="-45 0 120" scale="8 8 8" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building21" position="-45 0 125" scale="8 8 8" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building21" position="-45 0 135" scale="8 8 8" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building21" position="-45 0 140" scale="8 8 8" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building21" position="-45 0 145" scale="8 8 8" rotation="0 90 0"></a-entity>
-<a-entity gltf-model="#building21" position="9.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="4.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-0.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-5.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-10.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-15.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-20.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-25.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-30.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-35.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-40.6 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-49.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-54.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-59.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-64.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-69.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-74.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-79.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-84.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-89.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="#building21" position="-94.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
-<!-- Tree -->
+    <!-- Trash  -->
+    <a-entity gltf-model="#building33" position="-5 0 134" scale="1.3 1.3 1.3" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building33" position="-39 0 65" scale="1.3 1.3 1.3" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building33" position="-18 0 36" scale="1.3 1.3 1.3" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building33" position="-115 0 77" scale="1.3 1.3 1.3" rotation="0 270 0"></a-entity>
 
-      <a-entity id="cameraRig" position="-50 1.5 -80" custom-controls>
-        <a-entity camera look-controls wasd-controls="enabled: false"></a-entity>
-      </a-entity>
+    <!-- lamp post -->
+    <a-entity gltf-model="#building23" position="5 5 33" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-10 5 33" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-25 5 33" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-40 5 33" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-55 5 33" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-70 5 33" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-85 5 33" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="2 5 2" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-10 5 2" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-25 5 2" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-40 5 2" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-55 5 4" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-70 5 4" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-85 5 4" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-100 5 4" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-115 5 4" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-130 5 4" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-43 5 10" scale="2 2 2" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-43 5 25" scale="2 2 2" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-43 5 40" scale="2 2 2" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-43 5 55" scale="2 2 2" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-43 5 70" scale="2 2 2" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-43 5 85" scale="2 2 2" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-43 5 100" scale="2 2 2" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-43 5 115" scale="2 2 2" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-43 5 130" scale="2 2 2" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-43 5 145" scale="2 2 2" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-95 5 10" scale="2 2 2" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-95 5 25" scale="2 2 2" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-10 5 33" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-25 5 33" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-40 5 33" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-55 5 33" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-70 5 33" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-85 5 33" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="2 5 2" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-10 5 2" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-25 5 2" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-40 5 2" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-55 5 4" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-70 5 4" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-85 5 4" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-100 5 4" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-115 5 4" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-130 5 4" scale="2 2 2" rotation="0 0 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-43 5 10" scale="2 2 2" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-43 5 25" scale="2 2 2" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-43 5 40" scale="2 2 2" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-43 5 55" scale="2 2 2" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-43 5 70" scale="2 2 2" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-43 5 85" scale="2 2 2" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-43 5 100" scale="2 2 2" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-43 5 115" scale="2 2 2" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-43 5 130" scale="2 2 2" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-43 5 145" scale="2 2 2" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-95 5 10" scale="2 2 2" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building23" position="-95 5 25" scale="2 2 2" rotation="0 90 0"></a-entity>
 
-      <script>
-     AFRAME.registerComponent('custom-material', {
-        init: function () {
-          let el = this.el;
-          let mesh = el.getObject3D('mesh');
-          
-          if (mesh) {
-            let uniforms = {
-              u_time: { value: 0.0 }
-            };
-
-            let material = new THREE.ShaderMaterial({
-              uniforms: uniforms,
-              vertexShader: `
-                varying vec3 vPosition;
-                void main() {
-                  vPosition = position;
-                  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-                }
-              `,
-              fragmentShader: `
-                varying vec3 vPosition;
-                void main() {
-                  float gridSize = 3.0;
-                  float lines = mod(vPosition.x, gridSize) < 0.1 || mod(vPosition.z, gridSize) < 0.1 ? 0.2 : 1.0;
-                  vec3 color = mix(vec3(0.2, 0.2, 0.2), vec3(0.3, 0.3, 0.3), lines);
-                  gl_FragColor = vec4(color, 1.0);
-                }
-              `
-            });
-
-            mesh.material = material;
-          }
-        }
-      });
-
-      document.querySelector("#ground").setAttribute("custom-material", "");
-
-        const material_sun = new THREE.MeshPhongMaterial({
-          emissive: 0xFFFF00,
-          emissiveIntensity: 1, // Increase the emissive intensity for a brighter glow
-        
-        });
-
-    
-        const material_moon = new THREE.MeshPhongMaterial({
-          emissive: 0xFFFFFF,
-          emissiveIntensity: 0, // Lower emissive intensity for the moon
-       
-        });
-
-    
-
-      var sunSphere = document.createElement('a-sphere');
-      sunSphere.setAttribute('position', '0 450 0');
-      sunSphere.setAttribute('radius', '30');
-      sunSphere.setAttribute('material', material_sun);
-      sunSphere.setAttribute('visible', 'false'); // Initially hide the sun
-  
-      document.querySelector('a-scene').appendChild(sunSphere);
-
-      var moonSphere = document.createElement('a-sphere');
-      moonSphere.setAttribute('position', '0 450 0');
-      moonSphere.setAttribute('radius', '30');
-      moonSphere.setAttribute('material', material_moon);
-      moonSphere.setAttribute('visible', 'false'); // Initially hide the moon
-  
-      document.querySelector('a-scene').appendChild(moonSphere);
-
-        var sky = document.createElement('a-sky');
-        sky.setAttribute('theta-length', '360');
-        sky.setAttribute('radius', '5000');
-        sky.setAttribute('color', '#87CEEB');
-        document.querySelector('a-scene').appendChild(sky);
-
-    
- 
-
-        var isDay = true;
-        var transitionDuration = 120000; // 2 minutes
-        var transitionStep = 0.01; // step size for transition
-        var currentIntensity = 1;
-        var targetIntensity = 1;
-        var currentColor = new THREE.Color('#87CEEB');
-        var targetColor = new THREE.Color('#87CEEB');
-
-        function updateLighting() {
-          if (isDay) {
-            targetIntensity = 1;
-            targetColor.set('#87CEEB');
-            sunSphere.setAttribute('visible', 'true');
-            moonSphere.setAttribute('visible', 'false');
-          } else {
-            targetIntensity = 0.1;
-            targetColor.set('#000022');
-            sunSphere.setAttribute('visible', 'false');
-            moonSphere.setAttribute('visible', 'true');
-          }
-
-          currentColor.lerp(targetColor, transitionStep);
-          sky.setAttribute('color', `#${currentColor.getHexString()}`);
-
-          requestAnimationFrame(updateLighting);
-        }
-
-        setInterval(function () {
-          isDay = !isDay;
-        }, transitionDuration);
-
-        updateLighting();
-
-        AFRAME.registerComponent('custom-controls', {
-          schema: { speed: { type: 'number', default: 20 } },
-          init: function () {
-        this.keys = {};
-        this.onKeyDown = this.onKeyDown.bind(this);
-        this.onKeyUp = this.onKeyUp.bind(this);
-        window.addEventListener('keydown', this.onKeyDown);
-        window.addEventListener('keyup', this.onKeyUp);
-          },
-          remove: function () {
-        window.removeEventListener('keydown', this.onKeyDown);
-        window.removeEventListener('keyup', this.onKeyUp);
-          },
-          onKeyDown: function (e) {
-        this.keys[e.key.toLowerCase()] = true;
-          },
-          onKeyUp: function (e) {
-        this.keys[e.key.toLowerCase()] = false;
-          },
-          tick: function (time, deltaTime) {
-        var delta = deltaTime / 1000;
-        var distance = this.data.speed * delta;
-        var rig = this.el.object3D;
-        var cameraEl = this.el.querySelector('[camera]');
-        var cameraObj = cameraEl.object3D;
-        var moveDir = new THREE.Vector3();
-        var forward = new THREE.Vector3(0, 0, -1);
-        forward.applyQuaternion(cameraObj.quaternion).normalize();
-        var up = new THREE.Vector3(0, 1, 0);
-        var right = new THREE.Vector3().crossVectors(forward, up).normalize();
-
-        if (this.keys['z']) { moveDir.add(forward); }
-        if (this.keys['s']) { moveDir.add(forward.clone().negate()); }
-        if (this.keys['d']) { moveDir.add(right); }
-        if (this.keys['q']) { moveDir.add(right.clone().negate()); }
-        if (this.keys[' ']) { moveDir.add(up); }
-        if (this.keys['control']) { moveDir.add(up.clone().negate()); }
-
-        if (moveDir.length() > 0) {
-          moveDir.normalize();
-          rig.position.add(moveDir.multiplyScalar(distance));
-        }
-          }
-        });
-      AFRAME.registerComponent('fence', {
-        schema: {
-          length: { type: 'number', default: 1 },
-          height: { type: 'number', default: 2.5 },
-          color: { type: 'color', default: '#8B4513' }
-        },
-        init: function () {
-          var data = this.data;
-          var el = this.el;
-
-          var geometry = new THREE.BoxGeometry(data.length, data.height, 0.1);
-          var material = new THREE.MeshStandardMaterial({ color: data.color });
-          var mesh = new THREE.Mesh(geometry, material);
-
-          el.setObject3D('mesh', mesh);
-        }
-      });
-  AFRAME.registerComponent('road', {
-    schema: {
-      length: { type: 'number', default: 5 },
-      width: { type: 'number', default: 5 },
-      color: { type: 'color', default: '#000000' },
-      dashed: { type: 'boolean', default: true }
-    },
-    init: function () {
-      var data = this.data;
-      var el = this.el;
-
-      var geometry = new THREE.PlaneGeometry(data.width, data.length);
-      var material = new THREE.MeshStandardMaterial({ color: data.color });
-      var mesh = new THREE.Mesh(geometry, material);
-
-      mesh.rotation.x = -Math.PI / 2;
-      el.setObject3D('mesh', mesh);
-
-      if (data.dashed) {
-        var dashLength = 0.5;
-        var dashWidth = 0.1;
-        var dashColor = '#FFFFFF';
-        var dashMaterial = new THREE.MeshStandardMaterial({ color: dashColor });
-        var dashGeometry = new THREE.PlaneGeometry(dashWidth, dashLength);
-
-        for (var i = -data.length / 2; i < data.length / 2; i += dashLength * 2) {
-          var dash = new THREE.Mesh(dashGeometry, dashMaterial);
-          dash.position.set(0, 0.01, i + dashLength / 2);
-          dash.rotation.x = -Math.PI / 2;
-          el.object3D.add(dash);
-        }
+    <!-- Road  -->
+    <a-entity gltf-model="#building21" position="8 0 -0.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="3 0 -0.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-2 0 -0.5" scale="8 8 8" rotation="0 181 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-7 0 -0.5" scale="8 8 8" rotation="0 181.5 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-12 0 -0.5" scale="8 8 8" rotation="0 182 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-17 0 -0.5" scale="8 8 8" rotation="0 182.5 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-22 0 -0.5" scale="8 8 8" rotation="0 183 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-27 0 -0.5" scale="8 8 8" rotation="0 183.5 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-32 0 -0.5" scale="8 8 8" rotation="0 184 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-37 0 -0.5" scale="8 8 8" rotation="0 184.5 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-42 0 -0.5" scale="8 8 8" rotation="0 185 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-52 0 0.5" scale="8 8 8" rotation="0 185 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-57 0 0.6" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-62 0 0.7" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-67 0 0.8" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-64.5 0.05 130" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-59.5 0.05 130" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-54.5 0.05 130" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-49.5 0.05 130" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-69.5 0.05 130" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-72 0 0.9" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-77 0 1" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-82 0 1.1" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-87 0 1.2" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-92 0 1.3" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-102 0 1.4" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-107 0 1.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-112 0 1.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-117 0 1.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-122 0 1.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-127 0 1.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-132 0 1.5" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building31" position="-97 0 30" scale="0.2 0.2 0.2" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-97 0 26" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-97 0 21" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-97 0 16" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-97 0 11" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-97 0 6" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-45 0 20" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-45 0 25" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-46.5 0 4.5" scale="8 8 8" rotation="0 95 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-46 0 9.5" scale="8 8 8" rotation="0 94.5 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-45.5 0 14.5" scale="8 8 8" rotation="0 94 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-45 0 19.5" scale="8 8 8" rotation="0 93.5 0"></a-entity>
 
 
+    <a-entity gltf-model="#building21" position="-45 0 35" scale="8 8 8" rotation="0 92 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-45 0 40" scale="8 8 8" rotation="0 91.5 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-45 0 45" scale="8 8 8" rotation="0 91 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-45 0 50" scale="8 8 8" rotation="0 90.5 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-45 0 55" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-45 0 60" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-45 0 65" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-45 0 70" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-45 0 75" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-45 0 80" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-45 0 85" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-45 0 90" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-45 0 95" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-45 0 100" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-45 0 105" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-45 0 110" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-45 0 115" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-45 0 120" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-45 0 125" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-45 0 135" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-45 0 140" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-45 0 145" scale="8 8 8" rotation="0 90 0"></a-entity>
+    <a-entity gltf-model="#building21" position="9.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="4.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-0.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-5.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-10.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-15.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-20.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-25.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-30.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-35.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-40.6 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-49.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-54.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-59.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-64.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-69.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-74.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-79.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-84.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-89.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+    <a-entity gltf-model="#building21" position="-94.5 0 30" scale="8 8 8" rotation="0 180 0"></a-entity>
+  </a-scene>
 
-        // Add dashed line in the middle horizontally
-        var sideDashLength = 0.1;
-        var sideDashWidth = 0.5;
-        var sideDashGeometry = new THREE.PlaneGeometry(sideDashWidth, sideDashLength);
+  <script src="clickable.js"></script>
+</body>
 
-        for (var j = -data.width / 2; j < data.width / 2; j += sideDashWidth * 2) {
-          var sideDash = new THREE.Mesh(sideDashGeometry, dashMaterial);
-          sideDash.position.set(j + sideDashWidth / 2, 0.01, 0);
-          sideDash.rotation.x = -Math.PI / 2;
-          el.object3D.add(sideDash);
-        }
-      }
-    }
-
-  });
-  </script>
-
-  <a-entity road="length: 5; width: 3.6; color: #131e27; dashed: true" position="-45 0.1 30"></a-entity>
-  <a-entity road="length: 5; width: 3.6; color: #131e27; dashed: true" position="-97 0.1 1.5" rotation="0 90 0"></a-entity>
-  <a-entity road="length: 5; width: 3.6; color: #131e27; dashed: true" position="-45 0.1 130" rotation="0 0 0"></a-entity>
-  <a-entity road="length: 5; width: 3.6; color: #131e27; dashed: true" position="-47 0.1 -0" rotation="0 95 0"></a-entity>
-  <a-entity fence="length: 32; width: 10; color: #131e27; dashed: true" position="20 1 60" rotation="0 90 0"></a-entity>
-  <a-entity fence="length: 32; width: 10; color: #131e27; dashed: true" position="-5 1 60" rotation="0 90 0"></a-entity>
-  <a-entity fence="length: 10; width: 10; color: #131e27; dashed: true" position="0 1 44" rotation="0 0 0"></a-entity>
-  <a-entity fence="length: 10; width: 10; color: #131e27; dashed: true" position="15 1 44" rotation="0 0 0"></a-entity>
-  <a-entity fence="length: 10; width: 10; color: #131e27; dashed: true" position="0 1 76" rotation="0 0 0"></a-entity>
-  <a-entity fence="length: 10; width: 10; color: #131e27; dashed: true" position="15 1 76" rotation="0 0 0"></a-entity>
-  <a-entity fence="length: 100; width: 10; color: #131e27; dashed: true" position="30 1 85" rotation="0 90 0"></a-entity>
-  <a-entity fence="length: 70; width: 10; color: #131e27; dashed: true" position="-5 1 135" rotation="0 0 0"></a-entity>
-  <a-entity fence="length: 25; width: 10; color: #131e27; dashed: true" position="17.5 1 35" rotation="0 0 0"></a-entity>
-  <a-entity fence="length: 25; width: 10; color: #131e27; dashed: true" position="-27.5 1 35" rotation="0 0 0"></a-entity>
-  <a-entity fence="length: 50; width: 10; color: #131e27; dashed: true" position="-41 1 85" rotation="0 90 0"></a-entity>
-  <a-entity fence="length: 100.5; width: 4; color: #131e27; dashed: true" position="-102.3 1 -30" rotation="0 0 0"></a-entity>
-  <a-entity fence="length: 80.5; width: 4; color: #131e27; dashed: true" position="-7.8 1 -30" rotation="0 0 0"></a-entity>
-  <a-entity fence="length: 185; width: 4; height:5; color: #131e27; dashed: true" position="-60 -2.5 -30" rotation="0 0 0"></a-entity>
-</a-scene>
-  </body>
 </html>
