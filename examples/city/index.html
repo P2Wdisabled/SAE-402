@@ -70,29 +70,26 @@
       movement-controls="constrainToNavMesh: true; controls: checkpoint, gamepad, trackpad, keyboard, nipple;"
       position="10 0 0">
 
-      <a-entity camera position="0 1.5 0" look-controls="pointerLockEnabled: true">
-        <a-entity cursor position="0 0 -0.01" geometry="primitive: sphere; radius: 0.00005"
-          material="color: #202020; shader: flat">
+      <a-entity camera="fov: 100" position="0 1.5 0" look-controls="pointerLockEnabled: true">
+  <a-entity cursor position="0 0 -0.01" geometry="primitive: sphere; radius: 0.00005"
+    material="color: #202020; shader: flat">
+    <a-plane id="score-panel" position="0.5 0.2 -1" width="0.3" height="0.1" color="#FFD700"
+      material="shader: flat">
+      <a-text id="score" value="Score: 0" position="0 0.02 0" align="center" color="black" width="1"
+        font="mozillavr"></a-text>
+    </a-plane>
+    <a-plane id="time-panel" position="-0.2 0.2 -1" width="0.4" height="0.1" color="#FFD700"
+      material="shader: flat">
+      <a-text id="time" value="time left: 10:00" position="0 0.02 0" align="center" color="black" width="1"
+        font="mozillavr"></a-text>
+    </a-plane>
+  </a-entity>
+  <a-plane id="feedback-message" align="center" width="4" height="0.5" visible="false" position="0 2 0"
+    material="color: #333; opacity: 1; shader: flat; side: double">
+    <a-text id="feedback-text" position="-0.7 0.1 0.01"></a-text>
+  </a-plane>
+</a-entity>
 
-          <a-plane id="score-panel" position="0.5 0.2 -1" width="0.3" height="0.1" color="#FFD700"
-            material="shader: flat">
-            <a-text id="score" value="Score: 0" position="0 0.02 0" align="center" color="black" width="1"
-              font="mozillavr"></a-text>
-          </a-plane>
-
-          <a-plane id="time-panel" position="-0.2 0.2 -1" width="0.4" height="0.1" color="#FFD700"
-            material="shader: flat">
-            <a-text id="time" value="time left: 10:00" position="0 0.02 0" align="center" color="black" width="1"
-              font="mozillavr"></a-text>
-          </a-plane>
-        </a-entity>
-        <a-plane id="feedback-message" align="center" width="4" height="0.5" visible="false" position="0 2 0"
-          material="color: #333; opacity: 1; shader: flat; side: double">
-          <a-text id="feedback-text" position="-0.7 0.1 0.01">
-
-          </a-text>
-        </a-plane>
-      </a-entity>
 
       <a-entity id="leftController" oculus-touch-controls="hand: left; model: true" thumbstick-move>
       </a-entity>
