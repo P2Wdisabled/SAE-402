@@ -137,21 +137,21 @@
 
     <a-entity id="npc1-container" position="-50 0.2 70" rotation="0 180 0">
       <a-text id="name" value="Greg" position="0 2 0" align="center"></a-text>
-      <a-entity id="npc1-entity" gltf-model="#npc1" scale="0.35 0.35 0.35"></a-entity>
-      <a-box id="npc1-hitbox" class="clickable" position="0 1 0" width="1" height="2" depth="1" opacity="0"
+      <a-entity id="npc1-entity" gltf-model="#npc1" scale="0.35 0.35 0.35 "animation-mixer="clip:CharacterArmature|Wave; loop: repeat" ></a-entity>
+      <a-box id="npc1-hitbox"  class="clickable" position="0 1 0" width="1" height="2" depth="1" opacity="0"
         transparent="true"></a-box>
     </a-entity>
 
     <a-entity id="npc2-container" position="-92 0.1 -1">
       <a-text id="name" value="Mickael" position="0 2 0" align="center"></a-text>
-      <a-entity id="npc2-entity" gltf-model="#npc2" scale="1 1 0.75"></a-entity>
+      <a-entity id="npc2-entity" gltf-model="#npc2"scale="1 1 0.75" animation-mixer="clip:CharacterArmature|Wave; loop: repeat"></a-entity>
       <a-box id="npc2-hitbox" class="clickable" position="0 1.5 0" width="1" height="2" depth="1" opacity="0"
         transparent="true"></a-box>
     </a-entity>
 
     <a-entity id="npc3-container" position="5 0.2 55" rotation="0 -90 0">
       <a-text id="name" value="Luke" position="0 2 0" align="center"></a-text>
-      <a-entity id="npc3-entity" gltf-model="#npc3" scale="1 1 1"></a-entity>
+      <a-entity id="npc3-entity" gltf-model="#npc3" scale="1 1 1" animation-mixer="clip:CharacterArmature|Wave; loop: repeat"></a-entity>
       <a-box id="npc3-hitbox" class="clickable" position="0 1 0" width="1" height="2" depth="1" opacity="0"
         transparent="true"></a-box>
     </a-entity>
@@ -700,6 +700,8 @@
   </a-scene>
 
   <script src="clickable.js"></script>
+  <script src="./animation.js"></script>
+  <script src="./components.js"></script>
 </body>
 
 </html>
