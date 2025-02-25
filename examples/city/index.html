@@ -68,9 +68,10 @@
 
     <a-entity id="rig"
       movement-controls="constrainToNavMesh: true; controls: checkpoint, gamepad, trackpad, keyboard, nipple;"
-      position="10 0 0">
-
-      <a-entity camera="zoom: 0.5" position="0 1.5 0" look-controls="pointerLockEnabled: true"></a-entity>
+      position="10 0 0"
+      event-set__entervr="_event: entered-vr; _target: #camera; camera.zoom: 0.5"
+      event-set__exitvr="_event: exit-vr; _target: #camera; camera.zoom: 1">
+      <a-entity id="camera" camera position="0 1.5 0" look-controls="pointerLockEnabled: true">
   <a-entity cursor position="0 0 -0.01" geometry="primitive: sphere; radius: 0.00005"
     material="color: #202020; shader: flat">
     <a-entity id="leftController" oculus-touch-controls="hand: left; model: true" thumbstick-move>
