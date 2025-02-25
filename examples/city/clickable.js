@@ -59,115 +59,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-AFRAME.registerComponent('glow', {
-    schema: {
-      color: { default: '#ffffff', type: 'color' },
-      intensity: { default: 1.0 }
-    },
-    init: function () {
-      this.el.addEventListener('object3dset', function () {
-        this.update();
-      }.bind(this));
-    },
-    update: function () {
-      var data = this.data;
-      this.el.object3D.traverse(function (node) {
-        if (node.isMesh) {
-          node.material.emissive.copy(new THREE.Color(data.color));
-          node.material.emissiveIntensity = data.intensity;
-        }
-      });
-    }
-  });
-
-  AFRAME.registerComponent('levitate', {
-    tick: function (t, dt) {
-      var mesh = this.el.getObject3D('mesh');
-      if (!mesh) return;
-      mesh.rotation.y += 0.1 * dt / 1000;
-      mesh.position.y = 0.25 * Math.sin(t / 1000);
-    }
-  });
-
-  /**
-   * Removes current element if on a mobile device.
-   */
-  AFRAME.registerComponent('not-mobile', {
-    init: function () {
-      var el = this.el;
-      if (el.sceneEl.isMobile) {
-        el.parentEl.remove(el);
-      }
-    }
-  });
-
-  AFRAME.registerComponent('fence', {
-    schema: {
-      length: { type: 'number', default: 1 },
-      height: { type: 'number', default: 1 },
-      color: { type: 'color', default: '#8B4513' }
-    },
-    init: function () {
-      var data = this.data;
-      var el = this.el;
-
-      var geometry = new THREE.BoxGeometry(data.length, data.height, 0.1);
-      var material = new THREE.MeshStandardMaterial({ color: data.color });
-      var mesh = new THREE.Mesh(geometry, material);
-
-      el.setObject3D('mesh', mesh);
-    }
-  });
-
-  AFRAME.registerComponent('road', {
-    schema: {
-      length: { type: 'number', default: 5 },
-      width: { type: 'number', default: 5 },
-      color: { type: 'color', default: '#000000' },
-      dashed: { type: 'boolean', default: true }
-    },
-    init: function () {
-      var data = this.data;
-      var el = this.el;
-
-      var geometry = new THREE.PlaneGeometry(data.width, data.length);
-      var material = new THREE.MeshStandardMaterial({ color: data.color });
-      var mesh = new THREE.Mesh(geometry, material);
-
-      mesh.rotation.x = -Math.PI / 2;
-      el.setObject3D('mesh', mesh);
-
-      if (data.dashed) {
-        var dashLength = 0.5;
-        var dashWidth = 0.1;
-        var dashColor = '#FFFFFF';
-        var dashMaterial = new THREE.MeshStandardMaterial({ color: dashColor });
-        var dashGeometry = new THREE.PlaneGeometry(dashWidth, dashLength);
-
-        for (var i = -data.length / 2; i < data.length / 2; i += dashLength * 2) {
-          var dash = new THREE.Mesh(dashGeometry, dashMaterial);
-          dash.position.set(0, 0.01, i + dashLength / 2);
-          dash.rotation.x = -Math.PI / 2;
-          el.object3D.add(dash);
-        }
 
 
-
-        // Add dashed line in the middle horizontally
-        var sideDashLength = 0.1;
-        var sideDashWidth = 0.5;
-        var sideDashGeometry = new THREE.PlaneGeometry(sideDashWidth, sideDashLength);
-
-        for (var j = -data.width / 2; j < data.width / 2; j += sideDashWidth * 2) {
-          var sideDash = new THREE.Mesh(sideDashGeometry, dashMaterial);
-          sideDash.position.set(j + sideDashWidth / 2, 0.01, 0);
-          sideDash.rotation.x = -Math.PI / 2;
-          el.object3D.add(sideDash);
-        }
-      }
-    }
-
-  });
+ 
   let questionsNPC1 = [
     
     {
@@ -197,6 +91,7 @@ AFRAME.registerComponent('glow', {
     
 
     ];
+
     let sentenceNPCSpawn= {
         question: "Welcome to New York! Take your time to explore. Meet every people and speak with them to learn more about the city. The first one is waiting for you at the end of the street and name Mickael. Good luck!",
     }
@@ -265,6 +160,51 @@ AFRAME.registerComponent('glow', {
         difficulty: "easy"
     }
     ];
+    let questionsNPC4 = [
+        { 
+            question: "What is a typical dessert associated with New York?", 
+            choices: ["Cheesecake", "Churros"], 
+            correct: 1, 
+            difficulty: "easy" 
+        },
+        { 
+            question: "Which museum is famous for its modern art collection?", 
+            choices: ["MOMA", "Musee d'Orsay"], 
+            correct: 1, 
+            difficulty: "medium" 
+        },
+        { 
+            question: "Where would you find the famous Apollo Theater?", 
+            choices: ["Harlem", "Wall Street"], 
+            correct: 1, 
+            difficulty: "hard" 
+        },
+        { 
+            question: "What do many New Yorkers call the public transit system?", 
+            choices: ["Underground", "Subway"], 
+            correct: 2, 
+            difficulty: "easy" 
+        }
+    ];
+    const translations = {
+        "You just arrived in New York. How do you greet the customs officer?": "Vous venez d'arriver à New York. Comment saluez-vous l'agent des douanes ?",
+        "What is the English word for 'aéroport'?": "Quel est le mot anglais pour 'aeroport' ?",
+        "At JFK Airport, what do you say to get a taxi?": "À l'aeroport JFK, que dites-vous pour obtenir un taxi ?",
+        "You need to go to Manhattan. What do you ask the taxi driver?": "Vous devez aller à Manhattan. Que demandez-vous au chauffeur de taxi ?",
+        "At a coffee shop, how do you order a coffee politely?": "Dans un cafe, comment commandez-vous un café poliment ?",
+        "You are lost in the subway. What do you ask?": "Vous êtes perdu dans le metro. Que demandez-vous ?",
+        "You enter a restaurant. What does 'Takeout or dine-in?' mean?": "Vous entrez dans un restaurant. Que signifie 'À emporter ou sur place ?'",
+        "Which one is a typical New York food?": "Lequel est un aliment typique de New York ?",
+        "Which subway line takes you to Central Park?": "Quelle ligne de metro vous emmène à Central Park ?",
+        "A New Yorker tells you 'It's a piece of cake!'. What does it mean?": "Un New-Yorkais vous dit 'It's a piece of cake!'. Que signifie cette phrase ?",
+        "Someone says 'I'm in a rush'. What does it mean?": "Quelqu'un dit 'I'm in a rush'. Que signifie cette phrase ?",
+        "You're in Brooklyn and someone says 'The L train is down'. What does it mean?": "Vous etes à Brooklyn et quelqu'un dit 'The L train is down'. Que signifie cette phrase ?",
+        "A street vendor says 'That'll be ten bucks'. What does 'bucks' mean?": "Un vendeur de rue dit 'That'll be ten bucks'. Que signifie 'bucks' ?",
+        "Someone says 'Let's grab a slice'. What are they talking about?": "Quelqu'un dit 'Let's grab a slice'. De quoi parle-t-il ?"
+    };
+
+
+
    // Easing function for smoother movement
     function easeInOutQuad(t) {
         return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
@@ -276,12 +216,14 @@ AFRAME.registerComponent('glow', {
     let dialogues = {
         'npc1-hitbox': questionsNPC1.map(q => ({ ...q, correct: q.correct + 1 })), // Transforme l'indice 0-based en 1-based
         'npc2-hitbox': questionsNPC2.map(q => ({ ...q, correct: q.correct + 1 })),
-        'npc3-hitbox': questionsNPC3.map(q => ({ ...q, correct: q.correct + 1 }))
+        'npc3-hitbox': questionsNPC3.map(q => ({ ...q, correct: q.correct + 1 })),
+        'npc4-hitbox': questionsNPC4.map(q => ({ ...q, correct: q.correct + 1 }))
     };
     let remainingQuestions = {
         'npc1-hitbox': questionsNPC1.length,
         'npc2-hitbox': questionsNPC2.length,
-        'npc3-hitbox': questionsNPC3.length
+        'npc3-hitbox': questionsNPC3.length,
+        'npc4-hitbox': questionsNPC4.length
     };
 
     let score = 0;
@@ -290,6 +232,7 @@ AFRAME.registerComponent('glow', {
         if (npcId === 'npc1-hitbox') questionsList = questionsNPC1;
         if (npcId === 'npc2-hitbox') questionsList = questionsNPC2;
         if (npcId === 'npc3-hitbox') questionsList = questionsNPC3;
+        if (npcId === 'npc4-hitbox') questionsList = questionsNPC4;
         
         if (!questionsList || questionsList.length === 0) {
             return null; // Plus de questions or invalid npcId
@@ -341,8 +284,11 @@ function openDialogue(npcId) {
             //     nextNPCName = 'Greg';
             //     break;
             case 'npc2-hitbox':
-                nextNPCName = 'Greg in the middle of the street';
+                nextNPCName = 'Greg in front of the greatest tower of NY';
                 break;
+                case 'npc3-hitbox':
+                    nextNPCName = 'Jack at the biggest statue of NY';
+                    break;
             // default:
             //     nextNPCName = '';
         }
@@ -377,6 +323,26 @@ function openDialogue(npcId) {
     document.getElementById('choice2').setAttribute('text', `value: ${randomQuestion.choices[1]}; color: lightgreen;`);
     document.getElementById('choice2').setAttribute('onclick', `checkAnswer(${JSON.stringify(randomQuestion)}, 1)`);
 }
+// Make sure “choice1” has a click event listener:
+// document.getElementById('choice1').addEventListener('click', () => {
+//     checkAnswer(randomQuestion, 0);
+// });
+
+
+
+function showTranslation() {
+    const dialogueText = document.getElementById('dialogue-text');
+    const currentText = dialogueText.getAttribute('value');
+
+    // Vérifier si la phrase a une traduction disponible
+    if (translations[currentText]) {
+        dialogueText.setAttribute('value', translations[currentText]);
+    } else {
+        dialogueText.setAttribute('value', "Traduction non disponible.");
+    }
+}
+
+document.getElementById('help').addEventListener('click', showTranslation);
 
 
 // Event listener pour désactiver les clics pendant un dialogue ouvert
@@ -492,6 +458,8 @@ function showFeedbackMessage(text, isCorrect) {
             }
         });
     }
+
+
 
     let timeRemaining = 600;
     async function loadPlayerThings() {
