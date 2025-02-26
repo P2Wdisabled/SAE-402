@@ -1,145 +1,37 @@
-  let questionsNPC1 = [
+import { questionsNPC1, questionsNPC2, questionsNPC3, questionsNPC4 } from "./data/QuestionData.js";
+import { sentenceNPCSpawn } from "./data/QuestionData.js";
+import { helper } from "./data/HelperData.js";
+import { missions } from "./data/MissionData.js";
+import { getRandomQuestion, remainingQuestions, dialogues } from "./data/QuestionData.js";
+let localQuestionsNPC1 = [...questionsNPC1];
+let localQuestionsNPC2 = [...questionsNPC2];
+let localQuestionsNPC3 = [...questionsNPC3];
+let localQuestionsNPC4 = [...questionsNPC4];
+let localDialogues = { ...dialogues };
+let localRemainingQuestions = { ...remainingQuestions };
+document.addEventListener("DOMContentLoaded", () => {
+    let isDay = true;
+    const sky = document.getElementById("sky");
+    const sun = document.getElementById("sun");
+    const moon = document.getElementById("moon");
     
-    {
-        question: "You just arrived in New York. How do you greet the customs officer?",
-        choices: ["Hi, how are you?", "Yo, what's up?"],
-        correct: 0,
-        difficulty: "easy"
-    },
-    {
-        question: "What is the English word for 'aéroport'?",
-        choices: ["Train station", "Airport"],
-        correct: 1,
-        difficulty: "easy"
-    },
-    {
-        question: "At JFK Airport, what do you say to get a taxi?",
-        choices: ["Give me a taxi!", "Can I get a taxi, please?"],
-        correct: 1,
-        difficulty: "medium"
-    },
-    {
-        question: "You need to go to Manhattan. What do you ask the taxi driver?",
-        choices: ["Take me to Manhattan, please.", "Go Manhattan now!"],
-        correct: 0,
-        difficulty: "easy"
-    },
-    
-
-    ];
-
-    let sentenceNPCSpawn= {
-        question: "Welcome to New York! Take your time to explore. Meet every people and speak with them to learn more about the city. The first one is waiting for you at the end of the street and name Mickael. Good luck!",
-    }
-    let questionsNPC2 = [
-    {
-        question: "At a coffee shop, how do you order a coffee politely?",
-        choices: ["I want coffee.", "Can I have a coffee, please?"],
-        correct: 1,
-        difficulty: "medium"
-    },
-    {
-        question: "You are lost in the subway. What do you ask?",
-        choices: ["Where is the metro?", "How do I get to Times Square?"],
-        correct: 1,
-        difficulty: "medium"
-    },
-    {
-        question: "You enter a restaurant. What does 'Takeout or dine-in?' mean?",
-        choices: ["Eat here or take away?", "Cash or credit card?"],
-        correct: 0,
-        difficulty: "medium"
-    },
-    {
-        question: "Which one is a typical New York food?",
-        choices: ["Baguette", "Hot dog"],
-        correct: 1,
-        difficulty: "easy"
-    },
-    {
-        question: "Which subway line takes you to Central Park?",
-        choices: ["Q", "A"],
-        correct: 0,
-        difficulty: "hard"
-    }
-    ];
-    
-    let questionsNPC3 = [
-    {
-        question: "A New Yorker tells you 'It's a piece of cake!'. What does it mean?",
-        choices: ["It's delicious.", "It's very easy."],
-        correct: 1,
-        difficulty: "Hard"
-    },
-    {
-        question: "Someone says 'I'm in a rush'. What does it mean?",
-        choices: ["They are relaxing.", "They are in a hurry."],
-        correct: 1,
-        difficulty: "Hard"
-    },
-    {
-        question: "You're in Brooklyn and someone says 'The L train is down'. What does it mean?",
-        choices: ["The train is underground.", "The train is not working."],
-        correct: 1,
-        difficulty: "Hard"
-    },
-    {
-        question: "A street vendor says 'That'll be ten bucks'. What does 'bucks' mean?",
-        choices: ["Dollars", "Cents"],
-        correct: 0,
-        difficulty: "Hard"
-    },
-    {
-        question: "Someone says 'Let's grab a slice'. What are they talking about?",
-        choices: ["Pizza", "Cake"],
-        correct: 0,
-        difficulty: "easy"
-    }
-    ];
-    let questionsNPC4 = [
-        { 
-            question: "What is a typical dessert associated with New York?", 
-            choices: ["Cheesecake", "Churros"], 
-            correct: 1, 
-            difficulty: "easy" 
-        },
-        { 
-            question: "Which museum is famous for its modern art collection?", 
-            choices: ["MOMA", "Musee d'Orsay"], 
-            correct: 1, 
-            difficulty: "medium" 
-        },
-        { 
-            question: "Where would you find the famous Apollo Theater?", 
-            choices: ["Harlem", "Wall Street"], 
-            correct: 1, 
-            difficulty: "hard" 
-        },
-        { 
-            question: "What do many New Yorkers call the public transit system?", 
-            choices: ["Underground", "Subway"], 
-            correct: 2, 
-            difficulty: "easy" 
-        }
-    ];
-    const translations = {
-        "You just arrived in New York. How do you greet the customs officer?": "Vous venez d'arriver à New York. Comment saluez-vous l'agent des douanes ?",
-        "What is the English word for 'aéroport'?": "Quel est le mot anglais pour 'aeroport' ?",
-        "At JFK Airport, what do you say to get a taxi?": "À l'aeroport JFK, que dites-vous pour obtenir un taxi ?",
-        "You need to go to Manhattan. What do you ask the taxi driver?": "Vous devez aller à Manhattan. Que demandez-vous au chauffeur de taxi ?",
-        "At a coffee shop, how do you order a coffee politely?": "Dans un cafe, comment commandez-vous un café poliment ?",
-        "You are lost in the subway. What do you ask?": "Vous êtes perdu dans le metro. Que demandez-vous ?",
-        "You enter a restaurant. What does 'Takeout or dine-in?' mean?": "Vous entrez dans un restaurant. Que signifie 'À emporter ou sur place ?'",
-        "Which one is a typical New York food?": "Lequel est un aliment typique de New York ?",
-        "Which subway line takes you to Central Park?": "Quelle ligne de metro vous emmène à Central Park ?",
-        "A New Yorker tells you 'It's a piece of cake!'. What does it mean?": "Un New-Yorkais vous dit 'It's a piece of cake!'. Que signifie cette phrase ?",
-        "Someone says 'I'm in a rush'. What does it mean?": "Quelqu'un dit 'I'm in a rush'. Que signifie cette phrase ?",
-        "You're in Brooklyn and someone says 'The L train is down'. What does it mean?": "Vous etes à Brooklyn et quelqu'un dit 'The L train is down'. Que signifie cette phrase ?",
-        "A street vendor says 'That'll be ten bucks'. What does 'bucks' mean?": "Un vendeur de rue dit 'That'll be ten bucks'. Que signifie 'bucks' ?",
-        "Someone says 'Let's grab a slice'. What are they talking about?": "Quelqu'un dit 'Let's grab a slice'. De quoi parle-t-il ?"
-    };
+    setInterval(() => {
+      isDay = !isDay;
+      if (isDay) {
+        sky.setAttribute("color", "#87CEEB"); 
+        sun.setAttribute("visible", "true");
+        moon.setAttribute("visible", "false");
+      } else {
+        sky.setAttribute("color", "#1a1a2e");
+        sun.setAttribute("visible", "false");
+        moon.setAttribute("visible", "true");
+      }
+    }, 500000); 
+  });
 
 
+
+    let currentNpcId = null;
 
    // Easing function for smoother movement
     function easeInOutQuad(t) {
@@ -149,41 +41,33 @@
     // Smooth movement and rotation logic for the character
 
 
-    let dialogues = {
-        'npc1-hitbox': questionsNPC1.map(q => ({ ...q, correct: q.correct + 1 })), // Transforme l'indice 0-based en 1-based
-        'npc2-hitbox': questionsNPC2.map(q => ({ ...q, correct: q.correct + 1 })),
-        'npc3-hitbox': questionsNPC3.map(q => ({ ...q, correct: q.correct + 1 })),
-        'npc4-hitbox': questionsNPC4.map(q => ({ ...q, correct: q.correct + 1 }))
-    };
-    let remainingQuestions = {
-        'npc1-hitbox': questionsNPC1.length,
-        'npc2-hitbox': questionsNPC2.length,
-        'npc3-hitbox': questionsNPC3.length,
-        'npc4-hitbox': questionsNPC4.length
-    };
+
 
     let score = 0;
-    function getRandomQuestion(npcId) {
-        let questionsList;
-        if (npcId === 'npc1-hitbox') questionsList = questionsNPC1;
-        if (npcId === 'npc2-hitbox') questionsList = questionsNPC2;
-        if (npcId === 'npc3-hitbox') questionsList = questionsNPC3;
-        if (npcId === 'npc4-hitbox') questionsList = questionsNPC4;
-        
-        if (!questionsList || questionsList.length === 0) {
-            return null; // Plus de questions or invalid npcId
-        }
-    
-        const randomIndex = Math.floor(Math.random() * questionsList.length);
-        const question = questionsList.splice(randomIndex, 1)[0]; // Retire et retourne la question
-        remainingQuestions[npcId] = questionsList.length; // Mise à jour du nombre de questions restantes
-         return question;
-        }
-     // Ajoutez une variable pour vérifier si un dialogue est ouvert
+   
+
 let isDialogueOpen = false;
 let chronostarted = false;
+let currentQuestion = {}; 
+
 function openDialogue(npcId) {
+    if (npcId === 'npcSpawn-hitbox') {
+        document.getElementById('mission-panel').setAttribute('visible', 'true');
+        updateMission(1); 
+    }
+    console.log("📢 Ouverture du dialogue avec :", npcId);
+
+    // Cacher le panneau des missions
+    document.getElementById('mission-panel').setAttribute('visible', 'false');
+
+    // Stocker le dernier NPC contacté
+    currentNpcId = npcId;
+
+    // Vérifier si une mission doit être validée
+    validateMission(npcId);
+
     if (isDialogueOpen) return;
+    
     isDialogueOpen = true;
     if (!chronostarted) {
         startChrono();
@@ -206,9 +90,12 @@ function openDialogue(npcId) {
         document.getElementById('difficulty-text').setAttribute('visible', 'false');
         return;
     }
+    if (!currentQuestion[npcId]) {
+        currentQuestion[npcId] = getRandomQuestion(npcId);
+    }
+    
+    const randomQuestion = currentQuestion[npcId];
 
-    // If it's a regular NPC, continue with normal question handling
-    const randomQuestion = getRandomQuestion(npcId);
     if (!randomQuestion) {
 
         let nextNPCName = '';
@@ -216,11 +103,8 @@ function openDialogue(npcId) {
             case 'npc1-hitbox':
                 nextNPCName = 'Luke at the park';
                 break;
-            // case 'npc2-hitbox':
-            //     nextNPCName = 'Greg';
-            //     break;
             case 'npc2-hitbox':
-                nextNPCName = 'Greg in front of the greatest tower of NY';
+                nextNPCName = 'Greg near some food truck';
                 break;
                 case 'npc3-hitbox':
                     nextNPCName = 'Jack at the biggest statue of NY';
@@ -259,26 +143,54 @@ function openDialogue(npcId) {
     document.getElementById('choice2').setAttribute('text', `value: ${randomQuestion.choices[1]}; color: lightgreen;`);
     document.getElementById('choice2').setAttribute('onclick', `checkAnswer(${JSON.stringify(randomQuestion)}, 1)`);
 }
-// Make sure “choice1” has a click event listener:
-// document.getElementById('choice1').addEventListener('click', () => {
-//     checkAnswer(randomQuestion, 0);
-// });
+function updateMissionDisplay() {
+    const missionPanel = document.getElementById('mission-panel');
+
+
+    missionPanel.querySelectorAll('.mission-text').forEach(el => el.remove());
+
+    missions.forEach((mission, index) => {
+        const missionText = document.createElement('a-text');
+        missionText.setAttribute('value', (mission.completed ? "✅ " : "❌ ") + mission.text);
+        missionText.setAttribute('align', 'center');
+        missionText.setAttribute('color', mission.completed ? 'green' : 'white'); // ✅ VERT SI VALIDÉ
+        missionText.setAttribute('font', 'mozillavr');
+        missionText.setAttribute('width', '1.7');
+        missionText.setAttribute('position', `0 ${0.8 - index * 0.2} 0.01`);
+        missionText.classList.add('mission-text');
+
+        missionPanel.appendChild(missionText);
+    });
+}
 
 
 
-function showTranslation() {
+function showHelp() {
     const dialogueText = document.getElementById('dialogue-text');
+    // Check if we've stored the original question text
+    let originalText = dialogueText.getAttribute('data-original');
     const currentText = dialogueText.getAttribute('value');
 
-    // Vérifier si la phrase a une traduction disponible
-    if (translations[currentText]) {
-        dialogueText.setAttribute('value', translations[currentText]);
+    // If no original text is stored, save the current as the original question 
+    if (!originalText) {
+        dialogueText.setAttribute('data-original', currentText);
+        originalText = currentText;
+    }
+
+    // Toggle: if current text is not the original, revert back to the question
+    if (currentText !== originalText) {
+        dialogueText.setAttribute('value', originalText);
     } else {
-        dialogueText.setAttribute('value', "Traduction non disponible.");
+        // Otherwise, display help if available
+        if (helper[originalText]) {
+            dialogueText.setAttribute('value', helper[originalText]);
+        } else {
+            dialogueText.setAttribute('value', "Max help use.");
+        }
     }
 }
 
-document.getElementById('help').addEventListener('click', showTranslation);
+document.getElementById('help').addEventListener('click', showHelp);
 
 
 // Event listener pour désactiver les clics pendant un dialogue ouvert
@@ -288,19 +200,16 @@ hitbox.addEventListener('click', function () {
     openDialogue(this.id);
 });
 });
-
+console.log(document.getElementById('npc2-container'));
 
 function showFeedbackMessage(text, isCorrect) {
     const feedback = document.getElementById('feedback-message');
     const textFeedback = document.getElementById('feedback-text');
-    // Rendre visible immédiatement
+
     feedback.setAttribute('position','0, 0.5, -1');
     feedback.setAttribute('visible', 'true');
     console.log(feedback);
-    // S'assurer que le texte et la couleur s'affichent correctement
-    // feedback.setAttribute('text', `value: ${text}; color: white; align: center; font: mozillavr; wrapCount: 25;`);
-    
-    // Couleur et effet lumineux selon correct/faux
+   
     if(isCorrect){
         feedback.setAttribute('material', `color: rgb(41, 45, 41); opacity: 0.5; shader: standard;`);
         textFeedback.setAttribute('value', ` ${text}; `);
@@ -315,41 +224,94 @@ function showFeedbackMessage(text, isCorrect) {
         textFeedback.setAttribute('font', 'mozillavr');
     }
 
-    // Déclencher l'animation d'apparition
-    // feedback.emit('showFeedback');
 
-    // Cacher après 2 secondes (avec sécurité pour éviter qu'il reste bloqué)
     setTimeout(() => {
-        feedback.setAttribute('material', 'opacity: 0'); // Réduction progressive
+        feedback.setAttribute('material', 'opacity: 0'); 
         setTimeout(() => {
             feedback.setAttribute('visible', 'false');
-        }, 500); // Donne le temps au fade de s'appliquer
+        }, 500); 
     }, 2000);
 }
 
 
-    // Animation Css for the feedback message
-    const fadeOutCSS = document.createElement("style");
-    fadeOutCSS.innerHTML = `
-    @keyframes fadeOut {
-        from { opacity: 1; transform: translate(-50%, -50%); }
-        to { opacity: 0; transform: translate(-50%, -55%); }
-    }`;
-    document.head.appendChild(fadeOutCSS);
+    function updateMission(missionId) {
+        let mission = missions.find(m => m.id === missionId);
+        if (mission) {
+            mission.completed = true;
+            updateMissionDisplay();
+        } 
 
+
+    }
+
+    document.getElementById('mission-panel').setAttribute('visible', 'false');
+
+
+    document.getElementById('mission-panel').setAttribute('visible', 'true');
+    updateMissionDisplay();
+function validateMission(npcId) {
+    console.log(`🔎 Validation des missions pour ${npcId}`);
+
+    const missionMapping = {
+        'npcSpawn-hitbox': 1,
+        'npc1-hitbox': 2,    
+        'npc2-hitbox': 4,    
+        'npc3-hitbox': 6,     
+        'npc4-hitbox': 8      
+    };
+
+    const questionMissionMapping = {
+        'npc1-hitbox': 3,     
+        'npc2-hitbox': 5,     
+        'npc3-hitbox': 7,    
+        'npc4-hitbox': 9     
+    };
+
+
+    if (missionMapping[npcId] && !missions[missionMapping[npcId] - 1].completed) {
+        console.log(`🎯 Mission de dialogue validée pour ${npcId}`);
+        updateMission(missionMapping[npcId]);
+    }
+
+    if (questionMissionMapping[npcId]) {
+        if (remainingQuestions[npcId] === 0) {
+            console.log(`🎯 Mission de questions validée pour ${npcId}`);
+            updateMission(questionMissionMapping[npcId]);
+        } else {
+            console.log(`⚠ Il reste ${remainingQuestions[npcId]} questions à répondre.`);
+        }
+    }
+}
+
+    
+    function isTalkingTo(npcId) {
+        return remainingQuestions[npcId] > 0; 
+    }
+    window.isTalkingTo = isTalkingTo;
     // Function to check the answer and display the feedback message
     function checkAnswer(question, selectedIndex) {
-            if (selectedIndex === question.correct) {
-                score++;
-                showFeedbackMessage("✅ Correct! +1 Point", true);
-                
-            } else {
-                showFeedbackMessage("❌ Wrong! Try again.", false);
+        if (selectedIndex === question.correct) {
+            score++;
+            showFeedbackMessage("✅ Correct! +1 Point", true);
+    
+            // Supprime la question actuelle pour passer à la suivante
+            delete currentQuestion[currentNpcId];
+    
+            // Vérifier si toutes les questions sont terminées avant de valider la mission
+            remainingQuestions[currentNpcId]--;
+            if (remainingQuestions[currentNpcId] === 0) {
+                validateMission(currentNpcId);
             }
-            updateScore();
-            closeDialogue();
+        } else {
+            showFeedbackMessage("❌ Wrong! Try again.", false);
+        }
+    
+        updateScore();
+        closeDialogue();
     }
     
+    
+    window.checkAnswer = checkAnswer;
     function updateScore() {
         document.getElementById('score').setAttribute("value", `Score: ${score}`);
         closeDialogue();
@@ -358,7 +320,7 @@ function showFeedbackMessage(text, isCorrect) {
     function closeDialogue() {
         savePlayerThings();
         console.log("Fermeture du dialogue...");
-        
+        document.getElementById('mission-panel').setAttribute('visible', 'true');
         const dialogueBox = document.getElementById('dialogue-box');
         const overlay = document.getElementById('overlay');
         
@@ -395,14 +357,14 @@ function showFeedbackMessage(text, isCorrect) {
         });
     }
 
-
+    window.updateHitboxPosition = updateHitboxPosition;
 
     let timeRemaining = 600;
     async function loadPlayerThings() {
-        const storedData = localStorage.getItem('Save' + JSON.parse(localStorage.getItem('SaveId')));
+        let storedData = localStorage.getItem('Save' + JSON.parse(localStorage.getItem('SaveId')));
         if (!storedData) return;
 
-        const data = JSON.parse(storedData);
+        let data = JSON.parse(storedData);
         score = data.score;
         document.getElementById('rig').setAttribute('position', data.position);
 
@@ -414,11 +376,13 @@ function showFeedbackMessage(text, isCorrect) {
             data.rotation._z
         );
 
-        remainingQuestions = data.remainingQuestions;
-        dialogues = data.dialogues;
-        questionsNPC1 = data.questionsNPC1;
-        questionsNPC2 = data.questionsNPC2;
-        questionsNPC3 = data.questionsNPC3;
+        localRemainingQuestions = { ...data.remainingQuestions };
+        localDialogues = { ...data.dialogues };
+        localQuestionsNPC1 = [...data.questionsNPC1];
+        localQuestionsNPC2 = [...data.questionsNPC2];
+        localQuestionsNPC3 = [...data.questionsNPC3];
+        localQuestionsNPC4 = [...data.questionsNPC4];
+        
         timeRemaining = data.time;
 
         updateScore();
@@ -441,6 +405,7 @@ function showFeedbackMessage(text, isCorrect) {
             questionsNPC1: questionsNPC1,
             questionsNPC2: questionsNPC2,
             questionsNPC3: questionsNPC3,
+            questionsNPC4: questionsNPC4,
             time: timeRemaining
         };
 
