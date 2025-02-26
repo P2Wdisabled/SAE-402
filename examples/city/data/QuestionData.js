@@ -158,6 +158,32 @@ let questionsNPC1 = [
             difficulty: "hard" 
         }
     ];
+    function getRandomQuestion(npcId) {
+        let questionsList;
+        if (npcId === 'npc1-hitbox') questionsList = questionsNPC1;
+        if (npcId === 'npc2-hitbox') questionsList = questionsNPC2;
+        if (npcId === 'npc3-hitbox') questionsList = questionsNPC3;
+        if (npcId === 'npc4-hitbox') questionsList = questionsNPC4;
+        
+        if (!questionsList || questionsList.length === 0) {
+            return null;
+        }
     
-
-export { questionsNPC1 , questionsNPC2, questionsNPC3, questionsNPC4, sentenceNPCSpawn };
+        const randomIndex = Math.floor(Math.random() * questionsList.length);
+        const question = questionsList.splice(randomIndex, 1)[0];
+        remainingQuestions[npcId] = questionsList.length; 
+         return question;
+        }
+        let dialogues = {
+            'npc1-hitbox': questionsNPC1.map(q => ({ ...q, correct: q.correct + 1 })), // Transforme l'indice 0-based en 1-based
+            'npc2-hitbox': questionsNPC2.map(q => ({ ...q, correct: q.correct + 1 })),
+            'npc3-hitbox': questionsNPC3.map(q => ({ ...q, correct: q.correct + 1 })),
+            'npc4-hitbox': questionsNPC4.map(q => ({ ...q, correct: q.correct + 1 }))
+        };
+        let remainingQuestions = {
+            'npc1-hitbox': questionsNPC1.length,
+            'npc2-hitbox': questionsNPC2.length,
+            'npc3-hitbox': questionsNPC3.length,
+            'npc4-hitbox': questionsNPC4.length
+        };
+export { questionsNPC1 , questionsNPC2, questionsNPC3, questionsNPC4, sentenceNPCSpawn, getRandomQuestion, dialogues, remainingQuestions};
