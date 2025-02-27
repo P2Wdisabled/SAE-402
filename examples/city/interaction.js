@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    let score = 0;
+let score = 0;
    
 
 let isDialogueOpen = false;
@@ -92,7 +92,7 @@ function openDialogue(npcId) {
         return;
     }
     if (!currentQuestion[npcId]) {
-        currentQuestion[npcId] = getRandomQuestion(npcId);
+        currentQuestion[npcId] = questionData.getRandomQuestion(npcId);
     }
     
     const randomQuestion = currentQuestion[npcId];
@@ -201,7 +201,7 @@ hitbox.addEventListener('click', function () {
     openDialogue(this.id);
 });
 });
-console.log(document.getElementById('npc2-container'));
+//console.log(document.getElementById('npc2-container'));
 
 function showFeedbackMessage(text, isCorrect) {
     const feedback = document.getElementById('feedback-message');
@@ -402,4 +402,18 @@ function validateMission(npcId) {
         playerData.savePlayerThings(remainingQuestions, questionsNPC1, questionsNPC2, questionsNPC3, questionsNPC4, dialogues, missions, timeRemaining, score, document.getElementById('rig').getAttribute('position'));
     }, 500);
 
-    playerData.loadPlayerThings();
+    let data = await playerData.loadPlayerThings();
+    score = data.score;
+    document.getElementById('rig').setAttribute('position', data.position);
+
+    remainingQuestions = data.remainingQuestions
+    dialogues = data.dialogues
+    missions = data.missions
+    questionsNPC1 = data.questionsNPC1
+    questionsNPC2 = data.questionsNPC2
+    questionsNPC3 = data.questionsNPC3
+    questionsNPC4 = data.questionsNPC4
+    
+    timeRemaining = data.time;
+    updateScore();
+    playerData.savePlayerThings(remainingQuestions, questionsNPC1, questionsNPC2, questionsNPC3, questionsNPC4, dialogues, missions, timeRemaining, score, document.getElementById('rig').getAttribute('position'));
