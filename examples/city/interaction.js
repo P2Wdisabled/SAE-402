@@ -1,6 +1,7 @@
 import * as questionData from "./data/QuestionData.js";
 import { helper } from "./data/HelperData.js";
 import * as missionData from "./data/MissionData.js";
+import * as playerData from "./Save.js";
 let questionsNPC1 = questionData.questionsNPC1;
 let questionsNPC2 = questionData.questionsNPC2;
 let questionsNPC3 = questionData.questionsNPC3;
@@ -318,7 +319,7 @@ function validateMission(npcId) {
     }
 
     function closeDialogue() {
-        savePlayerThings();
+        playerData.savePlayerThings(remainingQuestions, questionsNPC1, questionsNPC2, questionsNPC3, questionsNPC4, dialogues, missions, timeRemaining, score, document.getElementById('rig').getAttribute('position'));
         console.log("Fermeture du dialogue...");
         document.getElementById('mission-panel').setAttribute('visible', 'true');
         const dialogueBox = document.getElementById('dialogue-box');
@@ -360,59 +361,9 @@ function validateMission(npcId) {
     window.updateHitboxPosition = updateHitboxPosition;
 
     let timeRemaining = 600;
-    async function loadPlayerThings() {
-        let storedData = localStorage.getItem('Save' + JSON.parse(localStorage.getItem('SaveId')));
-        if (!storedData) return;
+    
 
-        let data = JSON.parse(storedData);
-        score = data.score;
-        document.getElementById('rig').setAttribute('position', data.position);
-
-        console.log(data.rotation._x, data.rotation._y, data.rotation._z);
-
-        document.querySelector('[camera]').object3D.rotation.set(
-            data.rotation._x,
-            data.rotation._y,
-            data.rotation._z
-        );
-
-        remainingQuestions = data.remainingQuestions
-        dialogues = data.dialogues
-        missions = data.missions
-        questionsNPC1 = data.questionsNPC1
-        questionsNPC2 = data.questionsNPC2
-        questionsNPC3 = data.questionsNPC3
-        questionsNPC4 = data.questionsNPC4
-        
-        timeRemaining = data.time;
-
-        updateScore();
-        savePlayerThings();
-    }
-
-    async function savePlayerThings() {
-        const rotation = document.querySelector('[camera]').object3D.rotation;
-        const playerData = {
-            score: score,
-            position: document.getElementById('rig').getAttribute('position'),
-            rotation: {
-                _order: rotation._order,
-                _x: rotation._x,
-                _y: rotation._y,
-                _z: rotation._z
-            },
-            remainingQuestions: remainingQuestions,
-            dialogues: dialogues,
-            missions: missions,
-            questionsNPC1: questionsNPC1,
-            questionsNPC2: questionsNPC2,
-            questionsNPC3: questionsNPC3,
-            questionsNPC4: questionsNPC4,
-            time: timeRemaining
-        };
-
-        localStorage.setItem('Save' + JSON.parse(localStorage.getItem('SaveId')), JSON.stringify(playerData));
-    }
+    
 
     function endGame(endType) {
         if (endType === 'timeout') {
@@ -448,7 +399,7 @@ function validateMission(npcId) {
     }
 
     setInterval(() => {
-        savePlayerThings();
+        playerData.savePlayerThings(remainingQuestions, questionsNPC1, questionsNPC2, questionsNPC3, questionsNPC4, dialogues, missions, timeRemaining, score, document.getElementById('rig').getAttribute('position'));
     }, 500);
 
-    loadPlayerThings();
+    playerData.loadPlayerThings();
