@@ -1,4 +1,4 @@
-let missions = [
+export let missions = [
     { id: 1, text: "Talk to Steve (Spawn NPC)", completed: false },
     { id: 2, text: "Talk to Greg", completed: false },
     { id: 3, text: "Ask Greg food", completed: false },
@@ -9,4 +9,3 @@ let missions = [
     { id: 8, text: "Talk to Jack", completed: false },
     { id: 9, text: "Speak about tourism with Jack", completed: false }
 ];
-export { missions };

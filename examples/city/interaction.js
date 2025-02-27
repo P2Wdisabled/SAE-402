@@ -1,12 +1,21 @@
-import { questionsNPC1, questionsNPC2, questionsNPC3, questionsNPC4 } from "./data/QuestionData.js";
-import { sentenceNPCSpawn } from "./data/QuestionData.js";
+import * as questionData from "./data/QuestionData.js";
 import { helper } from "./data/HelperData.js";
-import { missions } from "./data/MissionData.js";
-let localQuestionsNPC1 = [...questionsNPC1];
-let localQuestionsNPC2 = [...questionsNPC2];
-let localQuestionsNPC3 = [...questionsNPC3];
-let localQuestionsNPC4 = [...questionsNPC4];
 
+import * as playerData from "./Save.js";
+import { endGame, startChrono, updateChrono } from "./Timer/timer.js";
+import {addScore} from "./Score/ModelScore.js";
+import { updateScore } from "./Score/viewScore.js";
+import {updateMission, missionData} from "./Mission/ModelMission.js";
+import { updateMissionDisplay } from "./Mission/ViewMission.js";
+let questionsNPC1 = questionData.questionsNPC1;
+let questionsNPC2 = questionData.questionsNPC2;
+let questionsNPC3 = questionData.questionsNPC3;
+let questionsNPC4 = questionData.questionsNPC4;
+let dialogues = questionData.dialogues;
+let remainingQuestions = questionData.remainingQuestions;
+let sentenceNPCSpawn = questionData.sentenceNPCSpawn;
+// let missions = missionData.missions;
+// let timeRemaining = timer.timeRemaining
 document.addEventListener("DOMContentLoaded", () => {
     let isDay = true;
     const sky = document.getElementById("sky");
@@ -28,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-
+  console.log(questionData.totalQuestions);
     let currentNpcId = null;
 
    // Easing function for smoother movement
@@ -39,36 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Smooth movement and rotation logic for the character
 
 
-    let dialogues = {
-        'npc1-hitbox': questionsNPC1.map(q => ({ ...q, correct: q.correct + 1 })), // Transforme l'indice 0-based en 1-based
-        'npc2-hitbox': questionsNPC2.map(q => ({ ...q, correct: q.correct + 1 })),
-        'npc3-hitbox': questionsNPC3.map(q => ({ ...q, correct: q.correct + 1 })),
-        'npc4-hitbox': questionsNPC4.map(q => ({ ...q, correct: q.correct + 1 }))
-    };
-    let remainingQuestions = {
-        'npc1-hitbox': questionsNPC1.length,
-        'npc2-hitbox': questionsNPC2.length,
-        'npc3-hitbox': questionsNPC3.length,
-        'npc4-hitbox': questionsNPC4.length
-    };
 
-    let score = 0;
-    function getRandomQuestion(npcId) {
-        let questionsList;
-        if (npcId === 'npc1-hitbox') questionsList = questionsNPC1;
-        if (npcId === 'npc2-hitbox') questionsList = questionsNPC2;
-        if (npcId === 'npc3-hitbox') questionsList = questionsNPC3;
-        if (npcId === 'npc4-hitbox') questionsList = questionsNPC4;
-        
-        if (!questionsList || questionsList.length === 0) {
-            return null;
-        }
-    
-        const randomIndex = Math.floor(Math.random() * questionsList.length);
-        const question = questionsList.splice(randomIndex, 1)[0];
-        remainingQuestions[npcId] = questionsList.length; 
-         return question;
-        }
+
 
 let isDialogueOpen = false;
 let chronostarted = false;
@@ -88,7 +69,7 @@ function openDialogue(npcId) {
     currentNpcId = npcId;
 
     // Vérifier si une mission doit être validée
-    validateMission(npcId);
+    // validateMission(npcId);
 
     if (isDialogueOpen) return;
     
@@ -115,7 +96,7 @@ function openDialogue(npcId) {
         return;
     }
     if (!currentQuestion[npcId]) {
-        currentQuestion[npcId] = getRandomQuestion(npcId);
+        currentQuestion[npcId] = questionData.getRandomQuestion(npcId);
     }
     
     const randomQuestion = currentQuestion[npcId];
@@ -167,26 +148,6 @@ function openDialogue(npcId) {
     document.getElementById('choice2').setAttribute('text', `value: ${randomQuestion.choices[1]}; color: lightgreen;`);
     document.getElementById('choice2').setAttribute('onclick', `checkAnswer(${JSON.stringify(randomQuestion)}, 1)`);
 }
-function updateMissionDisplay() {
-    const missionPanel = document.getElementById('mission-panel');
-
-
-    missionPanel.querySelectorAll('.mission-text').forEach(el => el.remove());
-
-    missions.forEach((mission, index) => {
-        const missionText = document.createElement('a-text');
-        missionText.setAttribute('value', (mission.completed ? "✅ " : "❌ ") + mission.text);
-        missionText.setAttribute('align', 'center');
-        missionText.setAttribute('color', mission.completed ? 'green' : 'white'); // ✅ VERT SI VALIDÉ
-        missionText.setAttribute('font', 'mozillavr');
-        missionText.setAttribute('width', '1.7');
-        missionText.setAttribute('position', `0 ${0.8 - index * 0.2} 0.01`);
-        missionText.classList.add('mission-text');
-
-        missionPanel.appendChild(missionText);
-    });
-}
-
 
 
 function showHelp() {
@@ -224,7 +185,7 @@ hitbox.addEventListener('click', function () {
     openDialogue(this.id);
 });
 });
-
+//console.log(document.getElementById('npc2-container'));
 
 function showFeedbackMessage(text, isCorrect) {
     const feedback = document.getElementById('feedback-message');
@@ -258,21 +219,6 @@ function showFeedbackMessage(text, isCorrect) {
 }
 
 
-    function updateMission(missionId) {
-        let mission = missions.find(m => m.id === missionId);
-        if (mission) {
-            mission.completed = true;
-            updateMissionDisplay();
-        } 
-
-
-    }
-
-    document.getElementById('mission-panel').setAttribute('visible', 'false');
-
-
-    document.getElementById('mission-panel').setAttribute('visible', 'true');
-    updateMissionDisplay();
 function validateMission(npcId) {
     console.log(`🔎 Validation des missions pour ${npcId}`);
 
@@ -295,17 +241,25 @@ function validateMission(npcId) {
     if (missionMapping[npcId] && !missions[missionMapping[npcId] - 1].completed) {
         console.log(`🎯 Mission de dialogue validée pour ${npcId}`);
         updateMission(missionMapping[npcId]);
-    }
+        
+    }   
 
     if (questionMissionMapping[npcId]) {
         if (remainingQuestions[npcId] === 0) {
             console.log(`🎯 Mission de questions validée pour ${npcId}`);
             updateMission(questionMissionMapping[npcId]);
+            // updateMissionDisplay(missionData);
         } else {
             console.log(`⚠ Il reste ${remainingQuestions[npcId]} questions à répondre.`);
         }
     }
 }
+window.validateMission = validateMission;
+    document.getElementById('mission-panel').setAttribute('visible', 'false');
+    updateMissionDisplay(missionData);
+
+    document.getElementById('mission-panel').setAttribute('visible', 'true');
+    
 
     
     function isTalkingTo(npcId) {
@@ -315,13 +269,13 @@ function validateMission(npcId) {
     // Function to check the answer and display the feedback message
     function checkAnswer(question, selectedIndex) {
         if (selectedIndex === question.correct) {
-            score++;
             showFeedbackMessage("✅ Correct! +1 Point", true);
-    
-            // Supprime la question actuelle pour passer à la suivante
+            updateScore(addScore());
+            console.log(questionData.totalQuestions);
+            // Remove the current question to get the next one on subsequent calls
             delete currentQuestion[currentNpcId];
-    
-            // Vérifier si toutes les questions sont terminées avant de valider la mission
+            
+            // Decrement remaining questions and validate mission if done
             remainingQuestions[currentNpcId]--;
             if (remainingQuestions[currentNpcId] === 0) {
                 validateMission(currentNpcId);
@@ -329,20 +283,15 @@ function validateMission(npcId) {
         } else {
             showFeedbackMessage("❌ Wrong! Try again.", false);
         }
-    
-        updateScore();
+        
         closeDialogue();
     }
-    
     
     window.checkAnswer = checkAnswer;
-    function updateScore() {
-        document.getElementById('score').setAttribute("value", `Score: ${score}`);
-        closeDialogue();
-    }
+    
 
-    function closeDialogue() {
-        savePlayerThings();
+    export function closeDialogue() {
+        playerData.savePlayerThings(remainingQuestions, questionsNPC1, questionsNPC2, questionsNPC3, questionsNPC4, dialogues,  document.getElementById('rig').getAttribute('position'));
         console.log("Fermeture du dialogue...");
         document.getElementById('mission-panel').setAttribute('visible', 'true');
         const dialogueBox = document.getElementById('dialogue-box');
@@ -382,95 +331,31 @@ function validateMission(npcId) {
     }
 
     window.updateHitboxPosition = updateHitboxPosition;
+    if(remainingQuestions==0){endGame('questions', currentScore);}
+    // startChrono();
 
-    let timeRemaining = 600;
-    async function loadPlayerThings() {
-        let storedData = localStorage.getItem('Save' + JSON.parse(localStorage.getItem('SaveId')));
-        if (!storedData) return;
+    // setInterval(() => {
+    //     playerData.savePlayerThings(remainingQuestions, questionsNPC1, questionsNPC2, questionsNPC3, questionsNPC4, dialogues, missions, timeRemaining, currentScore, document.getElementById('rig').getAttribute('position'));
+    // }, 500);
 
-        let data = JSON.parse(storedData);
-        score = data.score;
-        document.getElementById('rig').setAttribute('position', data.position);
+    // let data = await playerData.loadPlayerThings();
+    // currentScore = data.score;
+    // document.getElementById('rig').setAttribute('position', data.position);
 
-        console.log(data.rotation._x, data.rotation._y, data.rotation._z);
+    // remainingQuestions = data.remainingQuestions
+    // dialogues = data.dialogues
+    // missions = data.missions
+    // questionsNPC1 = data.questionsNPC1
+    // questionsNPC2 = data.questionsNPC2
+    // questionsNPC3 = data.questionsNPC3
+    // questionsNPC4 = data.questionsNPC4
+    // timeRemaining = data.time;
+    // score.updateScore(currentScore);
+    // timer.updateChrono()
+    // playerData.savePlayerThings(remainingQuestions, questionsNPC1, questionsNPC2, questionsNPC3, questionsNPC4, dialogues, missions, timeRemaining, currentScore, document.getElementById('rig').getAttribute('position'));
 
-        document.querySelector('[camera]').object3D.rotation.set(
-            data.rotation._x,
-            data.rotation._y,
-            data.rotation._z
-        );
-
-        remainingQuestions = { ...data.remainingQuestions };
-        dialogues = { ...data.dialogues };
-        localQuestionsNPC1 = [...data.questionsNPC1];
-        localQuestionsNPC2 = [...data.questionsNPC2];
-        localQuestionsNPC3 = [...data.questionsNPC3];
-        localQuestionsNPC4 = [...data.questionsNPC4];
-        
-        timeRemaining = data.time;
-
-        updateScore();
-        savePlayerThings();
-    }
-
-    async function savePlayerThings() {
-        const rotation = document.querySelector('[camera]').object3D.rotation;
-        const playerData = {
-            score: score,
-            position: document.getElementById('rig').getAttribute('position'),
-            rotation: {
-                _order: rotation._order,
-                _x: rotation._x,
-                _y: rotation._y,
-                _z: rotation._z
-            },
-            remainingQuestions: remainingQuestions,
-            dialogues: dialogues,
-            questionsNPC1: questionsNPC1,
-            questionsNPC2: questionsNPC2,
-            questionsNPC3: questionsNPC3,
-            questionsNPC4: questionsNPC4,
-            time: timeRemaining
-        };
-
-        localStorage.setItem('Save' + JSON.parse(localStorage.getItem('SaveId')), JSON.stringify(playerData));
-    }
-
-    function endGame(endType) {
-        if (endType === 'timeout') {
-            alert('Time is up! Game over!');
-        } else if (endType === 'questions') {
-            alert('You have answered all questions!');
-        }
-    }
-
-    let chronoString = '';
-    let intervalId = null;
-
-    async function updateChrono() {
-        if (timeRemaining <= 0) {
-            timeRemaining = 0;
-            clearInterval(intervalId);
-            await endGame('timeout');
-            return;
-        }
-        timeRemaining--;
-        let minutes = Math.floor(timeRemaining / 60);
-        let seconds = timeRemaining % 60;
-        chronoString = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
-        document.getElementById('time').setAttribute("value", `time left: ${chronoString}`);
-    }
-
-    async function startChrono() {
-        if (!intervalId) {
-            intervalId = setInterval(async () => {
-                await updateChrono();
-            }, 1000);
-        }
-    }
-
-    setInterval(() => {
-        savePlayerThings();
-    }, 500);
-
-    loadPlayerThings();
+    // missions.forEach(mission => {
+    //     if (mission.completed) {
+    //         updateMission(mission.id);
+    //     }
+    // });
