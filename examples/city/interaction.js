@@ -413,7 +413,13 @@ function validateMission(npcId) {
     questionsNPC2 = data.questionsNPC2
     questionsNPC3 = data.questionsNPC3
     questionsNPC4 = data.questionsNPC4
-    
+    console.log(missions)
     timeRemaining = data.time;
     updateScore();
     playerData.savePlayerThings(remainingQuestions, questionsNPC1, questionsNPC2, questionsNPC3, questionsNPC4, dialogues, missions, timeRemaining, score, document.getElementById('rig').getAttribute('position'));
+
+    missions.forEach(mission => {
+        if (mission.completed) {
+            updateMission(mission.id);
+        }
+    });
