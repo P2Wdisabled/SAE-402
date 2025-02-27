@@ -1,4 +1,4 @@
-let questionsNPC1 = [
+export let questionsNPC1 = [
     {
         question: "Which dish is a New York classic often sold by street vendors?",
         choices: ["Hot dog", "Croissant"],
@@ -38,10 +38,10 @@ let questionsNPC1 = [
 ];
 
 
-    let sentenceNPCSpawn= {
+    export let sentenceNPCSpawn= {
         question: "Welcome to New York! Take your time to explore. Meet every people and speak with them to learn more about the city. The first one is waiting for you at the busness district and name Mickael. Good luck!",
     }
-    let questionsNPC2 = [
+    export let questionsNPC2 = [
         {
             question: "Which area in New York is known as the financial hub of the city?",
             choices: ["Wall Street", "Broadway"],
@@ -81,7 +81,7 @@ let questionsNPC1 = [
     ];
     
     
-    let questionsNPC3 = [
+    export let questionsNPC3 = [
         {
             question: "Which park is popular for outdoor activities like jogging and cycling?",
             choices: ["Central Park", "Madison Square Park"],
@@ -120,7 +120,7 @@ let questionsNPC1 = [
         }
     ];
     
-    let questionsNPC4 = [
+    export let questionsNPC4 = [
         { 
             question: "Which landmark offers the best panoramic view of New York City?", 
             choices: ["Empire State Building", "Statue of Liberty"], 
@@ -158,7 +158,7 @@ let questionsNPC1 = [
             difficulty: "hard" 
         }
     ];
-    function getRandomQuestion(npcId) {
+    export function getRandomQuestion(npcId) {
         let questionsList;
         if (npcId === 'npc1-hitbox') questionsList = questionsNPC1;
         if (npcId === 'npc2-hitbox') questionsList = questionsNPC2;
@@ -174,16 +174,15 @@ let questionsNPC1 = [
         remainingQuestions[npcId] = questionsList.length; 
          return question;
         }
-        let dialogues = {
+        export let dialogues = {
             'npc1-hitbox': questionsNPC1.map(q => ({ ...q, correct: q.correct + 1 })), // Transforme l'indice 0-based en 1-based
             'npc2-hitbox': questionsNPC2.map(q => ({ ...q, correct: q.correct + 1 })),
             'npc3-hitbox': questionsNPC3.map(q => ({ ...q, correct: q.correct + 1 })),
             'npc4-hitbox': questionsNPC4.map(q => ({ ...q, correct: q.correct + 1 }))
         };
-        let remainingQuestions = {
+        export let remainingQuestions = {
             'npc1-hitbox': questionsNPC1.length,
             'npc2-hitbox': questionsNPC2.length,
             'npc3-hitbox': questionsNPC3.length,
             'npc4-hitbox': questionsNPC4.length
         };
-export { questionsNPC1 , questionsNPC2, questionsNPC3, questionsNPC4, sentenceNPCSpawn, getRandomQuestion, dialogues, remainingQuestions};

@@ -1,4 +1,4 @@
-const helper = {
+export const helper = {
     "Which dish is a New York classic often sold by street vendors?": "Think about what you see people eating on the streets near Central Park or Times Square.",
     "Which New York deli sandwich is famous for its layers of pastrami?": "A famous sandwich from Katz's Delicatessen, made with lots of meat on rye bread.",
     "Which dessert is considered a New York specialty?": "This creamy dessert is often served in diners and has 'New York' in its name!",
@@ -27,5 +27,3 @@ const helper = {
     "What is the name of the famous street known for high-end shopping?": "Luxury brands like Gucci and Prada have stores on this avenue.",
     "Where can you take a free ferry ride with a great view of the Statue of Liberty?": "This ferry takes you to Staten Island and offers a great view of Lady Liberty."
 };
-
-export {helper};

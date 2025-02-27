@@ -1,14 +1,14 @@
-import { questionsNPC1, questionsNPC2, questionsNPC3, questionsNPC4 } from "./data/QuestionData.js";
-import { sentenceNPCSpawn } from "./data/QuestionData.js";
+import * as questionData from "./data/QuestionData.js";
 import { helper } from "./data/HelperData.js";
-import { missions } from "./data/MissionData.js";
-import { getRandomQuestion, remainingQuestions, dialogues } from "./data/QuestionData.js";
-let localQuestionsNPC1 = [...questionsNPC1];
-let localQuestionsNPC2 = [...questionsNPC2];
-let localQuestionsNPC3 = [...questionsNPC3];
-let localQuestionsNPC4 = [...questionsNPC4];
-let localDialogues = { ...dialogues };
-let localRemainingQuestions = { ...remainingQuestions };
+import * as missionData from "./data/MissionData.js";
+let questionsNPC1 = questionData.questionsNPC1;
+let questionsNPC2 = questionData.questionsNPC2;
+let questionsNPC3 = questionData.questionsNPC3;
+let questionsNPC4 = questionData.questionsNPC4;
+let dialogues = questionData.dialogues;
+let remainingQuestions = questionData.remainingQuestions;
+let sentenceNPCSpawn = questionData.sentenceNPCSpawn;
+let missions = missionData.missions;
 document.addEventListener("DOMContentLoaded", () => {
     let isDay = true;
     const sky = document.getElementById("sky");
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-
+  
     let currentNpcId = null;
 
    // Easing function for smoother movement
@@ -376,12 +376,13 @@ function validateMission(npcId) {
             data.rotation._z
         );
 
-        localRemainingQuestions = { ...data.remainingQuestions };
-        localDialogues = { ...data.dialogues };
-        localQuestionsNPC1 = [...data.questionsNPC1];
-        localQuestionsNPC2 = [...data.questionsNPC2];
-        localQuestionsNPC3 = [...data.questionsNPC3];
-        localQuestionsNPC4 = [...data.questionsNPC4];
+        remainingQuestions = data.remainingQuestions
+        dialogues = data.dialogues
+        missions = data.missions
+        questionsNPC1 = data.questionsNPC1
+        questionsNPC2 = data.questionsNPC2
+        questionsNPC3 = data.questionsNPC3
+        questionsNPC4 = data.questionsNPC4
         
         timeRemaining = data.time;
 
@@ -402,6 +403,7 @@ function validateMission(npcId) {
             },
             remainingQuestions: remainingQuestions,
             dialogues: dialogues,
+            missions: missions,
             questionsNPC1: questionsNPC1,
             questionsNPC2: questionsNPC2,
             questionsNPC3: questionsNPC3,
