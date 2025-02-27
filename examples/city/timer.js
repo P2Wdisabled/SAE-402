@@ -1,34 +1,37 @@
-// import { savePlayerThings, loadPlayerThings } from "./Save.js";
+    export let timeRemaining = 600;
+    
 
-// let timeRemaining = 600;
-// let chronoString = '';
-// let intervalId = null;
+    
 
-// async function updateChrono() {
-//     if (timeRemaining <= 0) {
-//         timeRemaining = 0;
-//         clearInterval(intervalId);
-//         await endGame('timeout');
-//         return;
-//     }
-//     timeRemaining--;
-//     let minutes = Math.floor(timeRemaining / 60);
-//     let seconds = timeRemaining % 60;
-//     chronoString = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
-//     document.getElementById('time').setAttribute("value", `time left: ${chronoString}`);
-// }
+    function endGame(endType) {
+        if (endType === 'timeout') {
+            alert('Time is up! Game over!');
+        } else if (endType === 'questions') {
+            alert('You have answered all questions!');
+        }
+    }
 
-// async function startChrono() {
-//     if (!intervalId) {
-//         intervalId = setInterval(async () => {
-//             await updateChrono();
-//         }, 1000);
-//     }
-// }
+    let chronoString = '';
+    let intervalId = null;
 
-// setInterval(() => {
-//     savePlayerThings();
-// }, 500);
+    export async function updateChrono() {
+        if (timeRemaining <= 0) {
+            timeRemaining = 0;
+            clearInterval(intervalId);
+            await endGame('timeout');
+            return;
+        }
+        timeRemaining--;
+        let minutes = Math.floor(timeRemaining / 60);
+        let seconds = timeRemaining % 60;
+        chronoString = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+        document.getElementById('time').setAttribute("value", `time left: ${chronoString}`);
+    }
 
-// loadPlayerThings();
-// export { startChrono, updateChrono, chronoString, intervalId };
+    export async function startChrono() {
+        if (!intervalId) {
+            intervalId = setInterval(async () => {
+                await updateChrono();
+            }, 1000);
+        }
+    }

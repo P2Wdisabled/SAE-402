@@ -2,6 +2,8 @@ import * as questionData from "./data/QuestionData.js";
 import { helper } from "./data/HelperData.js";
 import * as missionData from "./data/MissionData.js";
 import * as playerData from "./Save.js";
+import * as timer from "./timer.js";
+import * as score from "./score.js";
 let questionsNPC1 = questionData.questionsNPC1;
 let questionsNPC2 = questionData.questionsNPC2;
 let questionsNPC3 = questionData.questionsNPC3;
@@ -10,6 +12,8 @@ let dialogues = questionData.dialogues;
 let remainingQuestions = questionData.remainingQuestions;
 let sentenceNPCSpawn = questionData.sentenceNPCSpawn;
 let missions = missionData.missions;
+let currentScore = score.score;
+let timeRemaining = timer.timeRemaining
 document.addEventListener("DOMContentLoaded", () => {
     let isDay = true;
     const sky = document.getElementById("sky");
@@ -44,8 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-let score = 0;
-   
 
 let isDialogueOpen = false;
 let chronostarted = false;
@@ -71,7 +73,7 @@ function openDialogue(npcId) {
     
     isDialogueOpen = true;
     if (!chronostarted) {
-        startChrono();
+        timer.startChrono();
         chronostarted = true;
     }
 
@@ -292,7 +294,7 @@ function validateMission(npcId) {
     // Function to check the answer and display the feedback message
     function checkAnswer(question, selectedIndex) {
         if (selectedIndex === question.correct) {
-            score++;
+            currentScore++;
             showFeedbackMessage("✅ Correct! +1 Point", true);
     
             // Supprime la question actuelle pour passer à la suivante
@@ -307,19 +309,16 @@ function validateMission(npcId) {
             showFeedbackMessage("❌ Wrong! Try again.", false);
         }
     
-        updateScore();
+        score.updateScore(currentScore);
         closeDialogue();
     }
     
     
     window.checkAnswer = checkAnswer;
-    function updateScore() {
-        document.getElementById('score').setAttribute("value", `Score: ${score}`);
-        closeDialogue();
-    }
+    
 
-    function closeDialogue() {
-        playerData.savePlayerThings(remainingQuestions, questionsNPC1, questionsNPC2, questionsNPC3, questionsNPC4, dialogues, missions, timeRemaining, score, document.getElementById('rig').getAttribute('position'));
+    export function closeDialogue() {
+        playerData.savePlayerThings(remainingQuestions, questionsNPC1, questionsNPC2, questionsNPC3, questionsNPC4, dialogues, missions, timeRemaining, currentScore, document.getElementById('rig').getAttribute('position'));
         console.log("Fermeture du dialogue...");
         document.getElementById('mission-panel').setAttribute('visible', 'true');
         const dialogueBox = document.getElementById('dialogue-box');
@@ -360,50 +359,14 @@ function validateMission(npcId) {
 
     window.updateHitboxPosition = updateHitboxPosition;
 
-    let timeRemaining = 600;
-    
-
-    
-
-    function endGame(endType) {
-        if (endType === 'timeout') {
-            alert('Time is up! Game over!');
-        } else if (endType === 'questions') {
-            alert('You have answered all questions!');
-        }
-    }
-
-    let chronoString = '';
-    let intervalId = null;
-
-    async function updateChrono() {
-        if (timeRemaining <= 0) {
-            timeRemaining = 0;
-            clearInterval(intervalId);
-            await endGame('timeout');
-            return;
-        }
-        timeRemaining--;
-        let minutes = Math.floor(timeRemaining / 60);
-        let seconds = timeRemaining % 60;
-        chronoString = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
-        document.getElementById('time').setAttribute("value", `time left: ${chronoString}`);
-    }
-
-    async function startChrono() {
-        if (!intervalId) {
-            intervalId = setInterval(async () => {
-                await updateChrono();
-            }, 1000);
-        }
-    }
+    timer.startChrono();
 
     setInterval(() => {
-        playerData.savePlayerThings(remainingQuestions, questionsNPC1, questionsNPC2, questionsNPC3, questionsNPC4, dialogues, missions, timeRemaining, score, document.getElementById('rig').getAttribute('position'));
+        playerData.savePlayerThings(remainingQuestions, questionsNPC1, questionsNPC2, questionsNPC3, questionsNPC4, dialogues, missions, timeRemaining, currentScore, document.getElementById('rig').getAttribute('position'));
     }, 500);
 
     let data = await playerData.loadPlayerThings();
-    score = data.score;
+    currentScore = data.score;
     document.getElementById('rig').setAttribute('position', data.position);
 
     remainingQuestions = data.remainingQuestions
@@ -413,10 +376,10 @@ function validateMission(npcId) {
     questionsNPC2 = data.questionsNPC2
     questionsNPC3 = data.questionsNPC3
     questionsNPC4 = data.questionsNPC4
-    console.log(missions)
     timeRemaining = data.time;
-    updateScore();
-    playerData.savePlayerThings(remainingQuestions, questionsNPC1, questionsNPC2, questionsNPC3, questionsNPC4, dialogues, missions, timeRemaining, score, document.getElementById('rig').getAttribute('position'));
+    score.updateScore(currentScore);
+    timer.updateChrono()
+    playerData.savePlayerThings(remainingQuestions, questionsNPC1, questionsNPC2, questionsNPC3, questionsNPC4, dialogues, missions, timeRemaining, currentScore, document.getElementById('rig').getAttribute('position'));
 
     missions.forEach(mission => {
         if (mission.completed) {

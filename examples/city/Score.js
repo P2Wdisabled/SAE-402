@@ -1,8 +1,6 @@
-// import { closeDialogue } from './clickable.js';
-// let score = 0;
-
-//     function updateScore() {
-//         document.getElementById('score').setAttribute("value", `Score: ${score}`);
-//         // closeDialogue();
-//     }
-// export { updateScore };
+import * as interactions from './interaction.js';
+export let score = 0;
+export function updateScore(score) {
+    document.getElementById('score').setAttribute("value", `Score: ${score}`);
+    interactions.closeDialogue();
+}
