@@ -1,7 +1,8 @@
-let timeRemaining = 600;
+//string defining the current time in minutes:secondes
+let chronoString = '';
 
-export function endGame(endType , score) {
-        
+function endGame(endType , score) {
+        //timer ended because of out of time
         if (endType === 'timeout') {
             let endDialog = document.createElement('a-plane');
             endDialog.setAttribute('text', 'value', 'Time is up! Game over!' + score);
@@ -10,7 +11,7 @@ export function endGame(endType , score) {
             endDialog.setAttribute('position', '0 1 -2');
             endDialog.setAttribute('width', '2');
             endDialog.setAttribute('color', 'red');
-
+            //timer ended because of answered all questions
         } else if (endType === 'questions') {
             let endDialog = document.createElement('a-plane');
             endDialog.setAttribute('text', 'value', 'You have answered all questions! Game over!' + score);
@@ -22,28 +23,16 @@ export function endGame(endType , score) {
         }
         document.querySelector('a-camera').appendChild(endDialog);
     }
+function updateTimer(timeRemaining) {
+    //convert the current time to minutes
+    let minutes = Math.floor(timeRemaining / 60);
+    //get the seconds
+    let seconds = timeRemaining % 60;
+    //convert the values of the minutes and seconds to a string
+    chronoString = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+    //set the value of the timer to the current time
+    document.getElementById('time').setAttribute("value", `time left: ${chronoString}`);
+}
 
-    let chronoString = '';
-    let intervalId = null;
 
-    export async function updateChrono() {
-        if (timeRemaining <= 0) {
-            timeRemaining = 0;
-            clearInterval(intervalId);
-            await endGame('timeout');
-            return;
-        }
-        timeRemaining--;
-        let minutes = Math.floor(timeRemaining / 60);
-        let seconds = timeRemaining % 60;
-        chronoString = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
-        document.getElementById('time').setAttribute("value", `time left: ${chronoString}`);
-    }
-
-    export async function startChrono() {
-        if (!intervalId) {
-            intervalId = setInterval(async () => {
-                await updateChrono();
-            }, 1000);
-        }
-    }
+export {updateTimer, endGame};

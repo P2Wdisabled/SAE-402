@@ -1,14 +1,24 @@
 import { missions } from "../data/MissionData.js";
 let missionData =  missions;
 function updateMission(missionId) {
-    missionData = missionData.map(mission => 
-        mission.id === missionId ? { ...mission, completed: true } : mission
-    );
-    console.log(missionData.find(m => m.id === missionId));
-    return missionData;
+    let mission = findMissionById(missionId);
+    if (mission) {
+        mission.completed = true;  // ✅ Modification directe
+        console.log(`✅ Mission ${missionId} mise à jour !`);
+    } else {
+        console.error(`❌ Mission ${missionId} introuvable !`);
+    }
+
+    console.log("📢 État actuel des missions :", getMissions());  // 🔎 Vérifie si la mise à jour fonctionne
 }
-// function getMission() {
-//     // let mission = missions.find(m => m.id );
-//     return missionData;
-// }
-export {updateMission, missionData};
+
+function findMissionById(id) {
+    return missionData.find(m => m.id === id);
+}
+
+function getMissions() {
+
+    return missionData; 
+}
+
+export { updateMission, getMissions, findMissionById };

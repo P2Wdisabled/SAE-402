@@ -4,7 +4,8 @@ export function addScore() {
     score++;
     return score;
  }
-// export function getScore() {  // Getter pour récupérer la valeur
+export function getScore() {  
+    return score;
     
-// }
+}
 // export { score, addScore };
