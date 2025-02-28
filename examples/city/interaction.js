@@ -1,4 +1,4 @@
-import { remainingQuestions,  totalQuestions} from "./data/QuestionData.js";
+import { remainingQuestions,  addTotalQuestions, totalQuestions} from "./data/QuestionData.js";
 import { closeDialogue, isDialogueOpen} from "./Dialogs/ModelDialogs.js";
 import { openDialogue, showHelp} from "./Dialogs/ViewDialogs.js";
 import {getMissions, updateMission, findMissionById } from "./Mission/ModelMission.js";
@@ -7,6 +7,7 @@ import {showFeedbackMessage} from "./Dialogs/ViewDialogs.js";
 import {updateScore} from "./Score/viewScore.js";
 import {addScore, getScore} from "./Score/modelScore.js";
 import {endGame} from "./Timer/viewTimer.js";
+
 
 
 let currentNpcId = null;
@@ -154,12 +155,14 @@ hitbox.addEventListener('click', function () {
         if (selectedIndex === question.correct) {
             showFeedbackMessage("✅ Correct! +1 Point", true);
             updateScore(addScore());
-    
+            console.log(totalQuestions);
             delete currentQuestion[currentNpcId];
-    
+            addTotalQuestions(1);
             remainingQuestions[currentNpcId]--;
             if (remainingQuestions[currentNpcId] === 0) {
+                addTotalQuestions(1);
                 console.log(currentNpcId);
+                
                 validateMission(currentNpcId);
             }
         } else {
@@ -168,7 +171,7 @@ hitbox.addEventListener('click', function () {
     
         closeDialogue();
     }
+    
     if(totalQuestions==0  ){endGame('questions', getScore());}
     // window.checkAnswer = checkAnswer;
     window.updateHitboxPosition = updateHitboxPosition;
-

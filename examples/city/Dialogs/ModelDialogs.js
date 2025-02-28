@@ -2,7 +2,7 @@
 import {savePlayerThings} from "../Save.js";
 import {remainingQuestions, questionsNPC1, questionsNPC2, questionsNPC3, questionsNPC4, dialogues} from "../data/QuestionData.js";
 
-let chronostarted = false;
+
 export let isDialogueOpen = false;
 export function updateDialogueStatus(value) {
     isDialogueOpen = value;
@@ -21,4 +21,7 @@ export function closeDialogue() {
     overlay.setAttribute('visible', 'false');
 
     isDialogueOpen = false; // Réactive l'interaction
+}
+export function setRemainingQuestions(value) {
+    remainingQuestions = value;
 }

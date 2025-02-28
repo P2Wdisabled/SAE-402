@@ -1,7 +1,8 @@
 import { updateTimer } from "./viewTimer.js";
-
+import { endGame } from "./viewTimer.js";
+import { getScore } from "../Score/modelScore.js";
 let timeRemaining = 600;
-
+//600
 
     //interval to start the timer
     let intervalId = null;
@@ -12,7 +13,7 @@ let timeRemaining = 600;
             timeRemaining = 0;
             //stop the timer and end the inverval goes back to it's empty state
             clearInterval(intervalId);
-            
+            if(timeRemaining == 0){endGame('timeout', getScore());}
             return;
         }
         //decrease the timer
@@ -28,4 +29,10 @@ let timeRemaining = 600;
                 await updateChrono();
             }, 1000);
         }
+    }
+    export function getTimeRemaining() {
+        return timeRemaining;
+    }
+    export function setTimeRemaining(time) {
+        timeRemaining = time;
     }

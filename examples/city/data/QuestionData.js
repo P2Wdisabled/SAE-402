@@ -29,12 +29,7 @@ export let questionsNPC1 = [
         correct: 0,
         difficulty: "hard"
     },
-    {
-        question: "Which drink is most commonly associated with New York breakfast culture?",
-        choices: ["Coffee", "Green Tea"],
-        correct: 0,
-        difficulty: "easy"
-    }
+
 ];
 
 
@@ -72,12 +67,7 @@ export let questionsNPC1 = [
             correct: 0,
             difficulty: "hard"
         },
-        {
-            question: "Where do many entrepreneurs and freelancers work in New York?",
-            choices: ["Co-working spaces", "Central Park"],
-            correct: 0,
-            difficulty: "hard"
-        }
+
     ];
     
     
@@ -112,12 +102,7 @@ export let questionsNPC1 = [
             correct: 0,
             difficulty: "hard"
         },
-        {
-            question: "Which area in NYC is known for its vibrant nightlife and comedy clubs?",
-            choices: ["Greenwich Village", "Wall Street"],
-            correct: 0,
-            difficulty: "hard"
-        }
+
     ];
     
     export let questionsNPC4 = [
@@ -151,12 +136,7 @@ export let questionsNPC1 = [
             correct: 0, 
             difficulty: "hard" 
         },
-        { 
-            question: "Where can you take a free ferry ride with a great view of the Statue of Liberty?", 
-            choices: ["Staten Island Ferry", "Brooklyn Bridge"], 
-            correct: 0, 
-            difficulty: "hard" 
-        }
+
     ];
     export function getRandomQuestion(npcId) {
         let questionsList;
@@ -184,7 +164,12 @@ export let questionsNPC1 = [
             'npc1-hitbox': questionsNPC1.length,
             'npc2-hitbox': questionsNPC2.length,
             'npc3-hitbox': questionsNPC3.length,
-            'npc4-hitbox': questionsNPC4.length
+            'npc4-hitbox': questionsNPC4.length  
             
         };
-    export let totalQuestions = remainingQuestions.length;
+
+    export let totalQuestions = questionsNPC1.length + questionsNPC2.length + questionsNPC3.length + questionsNPC4.length - 1;
+    export function addTotalQuestions(number) {
+        totalQuestions =totalQuestions - number
+    }
+    console.log(`📢 totalQuestions =`, totalQuestions);
