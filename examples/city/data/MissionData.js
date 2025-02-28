@@ -9,7 +9,3 @@ export let missions = [
     { id: 8, text: "Talk to Jack", completed: false },
     { id: 9, text: "Speak about tourism with Jack", completed: false }
 ];
-
-export function updateMissionData(missionsData) {
-    missions = missionsData
-}

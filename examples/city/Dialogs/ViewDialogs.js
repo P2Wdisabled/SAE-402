@@ -4,6 +4,7 @@ import {getRandomQuestion, remainingQuestions, sentenceNPCSpawn} from "../data/Q
 import { isDialogueOpen, updateDialogueStatus } from "./ModelDialogs.js";
 import { helper } from "../data/HelperData.js";
 import {checkAnswer} from "../interaction.js"
+import {playSound} from "../sounds/sound.js";
 
 let currentNpcId = null;
 let currentQuestion = {}; 
@@ -12,6 +13,8 @@ export function openDialogue(npcId) {
     if (npcId === 'npcSpawn-hitbox') {
         document.getElementById('mission-panel').setAttribute('visible', 'true');
         updateMission(1); 
+        playSound("./sounds/hey.mp3");
+        
     }
     console.log("📢 Ouverture du dialogue avec :", npcId);
 
@@ -56,8 +59,11 @@ export function openDialogue(npcId) {
     }
     currentQuestion[npcId] = newQuestion;
     const randomQuestion = currentQuestion[npcId];
+    console.log(`📢 Avant vérification, remainingQuestions[${npcId}] =`, remainingQuestions[npcId]);
 
     if (remainingQuestions[npcId] === 0) {
+        console.log(`✅ remainingQuestions[${npcId}] est bien 0, on affiche la fin du dialogue.`);
+    
 
         let nextNPCName = '';
         switch (npcId) {
@@ -68,15 +74,18 @@ export function openDialogue(npcId) {
                 nextNPCName = 'Greg near some food truck';
                 break;
                 case 'npc3-hitbox':
+    
                     nextNPCName = 'Jack at the biggest statue of NY';
                     break;
             // default:
             //     nextNPCName = '';
         }
-        if(nextNPCName){
-        document.getElementById('dialogue-text').setAttribute('value', "You have answered all the questions. Please go see " + nextNPCName);}
-        else{
+        if (nextNPCName) {
+            document.getElementById('dialogue-text').setAttribute('value', "You have answered all the questions. Please go see " + nextNPCName);
+            document.getElementById('remaining-text').setAttribute('value', `Remaining: 0`)
+        } else {
             document.getElementById('dialogue-text').setAttribute('value', "You have answered all the questions. Good Job you are a real New Yorker.");
+            document.getElementById('remaining-text').setAttribute('value', `Remaining: 0`)
         }
         
         // Masquer les choix lorsque plus aucune question n'est disponible
@@ -104,8 +113,8 @@ export function openDialogue(npcId) {
     document.getElementById('choice2').setAttribute('text', `value: ${randomQuestion.choices[1]}; color: lightgreen;`);
 
     
-    document.getElementById('choice1').addEventListener('click', function() { checkAnswer(randomQuestion, 0); });
-    document.getElementById('choice2').addEventListener('click', function() { checkAnswer(randomQuestion, 1); });
+    document.getElementById('choice1').setAttribute('onclick', `checkAnswer(${JSON.stringify(randomQuestion)}, 0)`);
+    document.getElementById('choice2').setAttribute('onclick', `checkAnswer(${JSON.stringify(randomQuestion)}, 1)`);
 
 }
 

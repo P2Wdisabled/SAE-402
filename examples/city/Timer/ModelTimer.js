@@ -1,7 +1,7 @@
 import { updateTimer } from "./viewTimer.js";
 import { endGame } from "./viewTimer.js";
 import { getScore } from "../Score/ModelScore.js";
-let timeRemaining = 30;
+let timeRemaining = 600;
 //600
 
     //interval to start the timer
