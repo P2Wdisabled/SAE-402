@@ -189,11 +189,11 @@ export let questionsNPC1 = [
         };
     export let totalQuestions = remainingQuestions.length;
 
-    export function setDatas(questionsNPC1, questionsNPC2, questionsNPC3, questionsNPC4, dialogues, remainingQuestions) {
-    questionsNPC1 = questionsNPC1;
-    questionsNPC2 = questionsNPC2;
-    questionsNPC3 = questionsNPC3;
-    questionsNPC4 = questionsNPC4;
-        dialogues = dialogues;
-        remainingQuestions = remainingQuestions;
+    export function setDatas(npc1, npc2, npc3, npc4, dialogs, remainingQuestion) {
+    questionsNPC1 = npc1;
+    questionsNPC2 = npc2;
+    questionsNPC3 = npc3;
+    questionsNPC4 = npc4;
+        dialogues = dialogs;
+        remainingQuestions = remainingQuestion;
     }

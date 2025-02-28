@@ -18,10 +18,10 @@ export async function loadPlayerThings() {
     setDatas(data.questionsNPC1, data.questionsNPC2, data.questionsNPC3, data.questionsNPC4, data.dialogues, data.remainingQuestions)
     setscore(data.score);
     updateScore(data.score);
-    // document.getElementById('rig').getAttribute('position') = data.position;
     updateMissionDisplay(data.missions);
     setTimeRemaining(data.time);
     updateTimer(data.time)
+    document.getElementById('rig').setAttribute('position', data.position);
 }
 
 //function to save the player's data to local storage

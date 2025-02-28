@@ -173,4 +173,3 @@ hitbox.addEventListener('click', function () {
     if(totalQuestions==0  ){endGame('questions', getScore());}
     // window.checkAnswer = checkAnswer;
     window.updateHitboxPosition = updateHitboxPosition;
-
