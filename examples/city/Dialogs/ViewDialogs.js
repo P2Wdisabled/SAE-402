@@ -1,7 +1,7 @@
 import {updateMission} from "../Mission/ModelMission.js";
 import {startChrono} from "../Timer/ModelTimer.js";
 import {getRandomQuestion, remainingQuestions, sentenceNPCSpawn} from "../data/QuestionData.js";
-import { isDialogueOpen, updateDialogueStatus, setRemainingQuestions } from "./ModelDialogs.js";
+import { isDialogueOpen, updateDialogueStatus } from "./ModelDialogs.js";
 import { helper } from "../data/HelperData.js";
 import {checkAnswer} from "../interaction.js"
 
@@ -56,11 +56,8 @@ export function openDialogue(npcId) {
     }
     currentQuestion[npcId] = newQuestion;
     const randomQuestion = currentQuestion[npcId];
-    console.log(`📢 Avant vérification, remainingQuestions[${npcId}] =`, remainingQuestions[npcId]);
 
     if (remainingQuestions[npcId] === 0) {
-        console.log(`✅ remainingQuestions[${npcId}] est bien 0, on affiche la fin du dialogue.`);
-    
 
         let nextNPCName = '';
         switch (npcId) {
@@ -71,18 +68,15 @@ export function openDialogue(npcId) {
                 nextNPCName = 'Greg near some food truck';
                 break;
                 case 'npc3-hitbox':
-    
                     nextNPCName = 'Jack at the biggest statue of NY';
                     break;
             // default:
             //     nextNPCName = '';
         }
-        if (nextNPCName) {
-            document.getElementById('dialogue-text').setAttribute('value', "You have answered all the questions. Please go see " + nextNPCName);
-            document.getElementById('remaining-text').setAttribute('value', `Remaining: 0`)
-        } else {
+        if(nextNPCName){
+        document.getElementById('dialogue-text').setAttribute('value', "You have answered all the questions. Please go see " + nextNPCName);}
+        else{
             document.getElementById('dialogue-text').setAttribute('value', "You have answered all the questions. Good Job you are a real New Yorker.");
-            document.getElementById('remaining-text').setAttribute('value', `Remaining: 0`)
         }
         
         // Masquer les choix lorsque plus aucune question n'est disponible
