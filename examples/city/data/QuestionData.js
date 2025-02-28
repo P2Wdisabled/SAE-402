@@ -188,3 +188,12 @@ export let questionsNPC1 = [
             
         };
     export let totalQuestions = remainingQuestions.length;
+
+    export function setDatas(questionsNPC1, questionsNPC2, questionsNPC3, questionsNPC4, dialogues, remainingQuestions) {
+    questionsNPC1 = questionsNPC1;
+    questionsNPC2 = questionsNPC2;
+    questionsNPC3 = questionsNPC3;
+    questionsNPC4 = questionsNPC4;
+        dialogues = dialogues;
+        remainingQuestions = remainingQuestions;
+    }

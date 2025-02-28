@@ -7,13 +7,15 @@ import {showFeedbackMessage} from "./Dialogs/ViewDialogs.js";
 import {updateScore} from "./Score/viewScore.js";
 import {addScore, getScore} from "./Score/modelScore.js";
 import {endGame} from "./Timer/viewTimer.js";
-
+import {startSaving, loadPlayerThings} from "./Save.js";
 
 let currentNpcId = null;
 let currentQuestion = {}; 
 // let missions = missionData.missions;
 // let timeRemaining = timer.timeRemaining
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+    await loadPlayerThings()
+    startSaving();
     let isDay = true;
     const sky = document.getElementById("sky");
     const sun = document.getElementById("sun");
