@@ -1,9 +1,10 @@
 import {updateMission} from "../Mission/ModelMission.js";
 import {startChrono} from "../Timer/ModelTimer.js";
 import {getRandomQuestion, remainingQuestions, sentenceNPCSpawn} from "../data/QuestionData.js";
-import { isDialogueOpen, updateDialogueStatus, setRemainingQuestions } from "./ModelDialogs.js";
+import { isDialogueOpen, updateDialogueStatus } from "./ModelDialogs.js";
 import { helper } from "../data/HelperData.js";
 import {checkAnswer} from "../interaction.js"
+import {playSound} from "../sounds/sound.js";
 
 let currentNpcId = null;
 let currentQuestion = {}; 
@@ -12,6 +13,8 @@ export function openDialogue(npcId) {
     if (npcId === 'npcSpawn-hitbox') {
         document.getElementById('mission-panel').setAttribute('visible', 'true');
         updateMission(1); 
+        playSound("./sounds/hey.mp3");
+        
     }
     console.log("📢 Ouverture du dialogue avec :", npcId);
 
@@ -110,8 +113,8 @@ export function openDialogue(npcId) {
     document.getElementById('choice2').setAttribute('text', `value: ${randomQuestion.choices[1]}; color: lightgreen;`);
 
     
-    document.getElementById('choice1').addEventListener('click', function() { checkAnswer(randomQuestion, 0); });
-    document.getElementById('choice2').addEventListener('click', function() { checkAnswer(randomQuestion, 1); });
+    document.getElementById('choice1').setAttribute('onclick', `checkAnswer(${JSON.stringify(randomQuestion)}, 0)`);
+    document.getElementById('choice2').setAttribute('onclick', `checkAnswer(${JSON.stringify(randomQuestion)}, 1)`);
 
 }
 
