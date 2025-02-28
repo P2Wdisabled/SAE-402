@@ -123,7 +123,7 @@ export function showFeedbackMessage(text, isCorrect) {
     const feedback = document.getElementById('feedback-message');
     const textFeedback = document.getElementById('feedback-text');
 
-    feedback.setAttribute('position','0, 0.5, -1');
+    feedback.setAttribute('position','0, 0, -1');
     feedback.setAttribute('visible', 'true');
     // console.log(feedback);
    
