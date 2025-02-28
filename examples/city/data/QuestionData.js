@@ -175,3 +175,11 @@ export let questionsNPC1 = [
     export function addTotalQuestions(number) {
         totalQuestions =totalQuestions - number
     }
+    export function setDatas(npc1, npc2, npc3, npc4, dialogs, remainingQuestion) {
+        questionsNPC1 = npc1;
+        questionsNPC2 = npc2;
+        questionsNPC3 = npc3;
+        questionsNPC4 = npc4;
+            dialogues = dialogs;
+            remainingQuestions = remainingQuestion;
+        }
