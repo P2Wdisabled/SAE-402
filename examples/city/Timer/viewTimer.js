@@ -1,6 +1,12 @@
 //string defining the current time in minutes:secondes
 let chronoString = '';
 
+/**
+ * Ends the game and displays an end dialog based on the type of game ending.
+ *
+ * @param {string} endType - The type of game ending. Can be 'timeout' or 'questions'.
+ * @param {number} score - The player's score at the end of the game.
+ */
 function endGame(endType , score) {
         //timer ended because of out of time
         if (endType === 'timeout') {
@@ -23,6 +29,11 @@ function endGame(endType , score) {
         }
         document.querySelector('a-camera').appendChild(endDialog);
     }
+/**
+ * Updates the timer display with the given time remaining.
+ *
+ * @param {number} timeRemaining - The time remaining in seconds.
+ */
 function updateTimer(timeRemaining) {
     //convert the current time to minutes
     let minutes = Math.floor(timeRemaining / 60);

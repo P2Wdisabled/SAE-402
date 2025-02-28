@@ -5,7 +5,7 @@ import {getMissions, updateMission, findMissionById } from "./Mission/ModelMissi
 import { updateMissionDisplay } from "./Mission/ViewMission.js";
 import {showFeedbackMessage} from "./Dialogs/ViewDialogs.js";
 import {updateScore} from "./Score/viewScore.js";
-import {addScore, getScore} from "./Score/modelScore.js";
+import {addScore, getScore} from "./Score/ModelScore.js";
 import {endGame} from "./Timer/viewTimer.js";
 import {startSaving, loadPlayerThings} from "./Save.js";
 
@@ -51,6 +51,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 document.getElementById('help').addEventListener('click', showHelp);
 
+/**
+ * Validates the mission associated with the given NPC ID.
+ * 
+ * This function checks if the mission associated with the given NPC ID is completed.
+ * If the mission is not completed, it updates the mission status and refreshes the mission display.
+ * Additionally, it handles missions that involve answering questions, updating their status if all questions are answered.
+ * 
+ * @param {string} npcId - The ID of the NPC whose mission is to be validated.
+ */
 function validateMission(npcId) {
     console.log(`🟢 validateMission() appelé pour ${npcId}`);
 
