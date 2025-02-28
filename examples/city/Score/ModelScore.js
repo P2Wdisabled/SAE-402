@@ -8,4 +8,8 @@ export function getScore() {
     return score;
     
 }
+
+export function setscore(value) {
+    score = value;
+}
 // export { score, addScore };
